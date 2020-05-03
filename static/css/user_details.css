@@ -1,0 +1,324 @@
+body {
+    background-color: #e8f5f7;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: static;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+footer {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.content ul {
+    padding-left: 2rem;
+}
+
+.content ol {
+    padding-left: 2rem;
+}
+
+.content ul li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style-type: disc;
+}
+
+.menu {
+    position: fixed;
+    top: 2.5%;
+    right: 1vw;
+    z-index: 6;
+}
+
+.p_items_wrapper .p_action_item {
+    position: sticky;
+    top: 35vh;
+    text-align: center;
+    will-change: transform;
+}
+
+.p_items_wrapper .like-date-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.p_items_wrapper .like-date-wrapper .update_time, .p_items_wrapper .like-date-wrapper .display_like {
+    float: right;
+    vertical-align: bottom;
+}
+
+.display_like {
+    margin: 0px auto;
+}
+
+.display_like .like {
+    display: block;
+    vertical-align: middle
+}
+
+.display_like .like .like-button {
+    color: #ea3f60;
+    font-weight: bold;
+    height: 3.5rem;
+    width: 3.5rem;
+    font-size: 90%;
+    line-height: 2em;
+    text-decoration: none;
+    border: 2px solid #ea3f60;
+    border-radius: 50%;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.display_like .like .like-button:hover {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 426px) {
+    .display_like .like .like-button {
+        width: 10rem;
+        border-radius: 10%;
+        font-weight: bold;
+    }
+}
+
+.display_like .like .like-button.liked-button {
+    color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ea3f60), to(#d92e50));
+    background-color: #ea3f60;
+}
+
+.display_like .like #like_button:hover {
+    opacity: 0.75;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/*吹き出し*/
+
+.display_like .balloon {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.display_like .balloon span.like_number {
+    color: red;
+    font-size: 90%;
+    font-weight: bold;
+    line-height: 2em;
+    padding: 5px 12px;
+    position: relative;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.display_like .balloon span.like_number:after, .display_like .balloon span.like_number:before {
+    left: 50%;
+    top: 100%;
+    border: solid transparent;
+    content: "";
+    position: absolute;
+}
+
+.display_like .balloon span.like_number:after {
+    border-top-color: #fff;
+    border-width: 4px;
+    margin-left: -4px
+}
+
+.display_like .balloon span.like_number:before {
+    border-top-color: #ccc;
+    border-width: 5px;
+    margin-left: -5px;
+}
+
+.twitter img{
+    width:40px;
+    margin-top:5vh;
+}
+.twitter img:hover{
+    opacity: 0.5;
+}
+
+
+.facebook img{
+    width:55px;
+    margin:1vh;
+}
+.facebook img:hover{
+    opacity: 0.5;
+}
+
+.line img{
+    width:60px;
+    margin-top:5vh;
+}
+.line img:hover{
+    opacity: 0.5;
+}
+.p_items_wrapper .p_main_item {
+    padding: 1rem 1rem 1rem 1rem;
+    position: relative;
+    margin: 2rem 0rem 0rem 0rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 426px) {
+    .p_items_wrapper .p_main_item {
+        padding: 1rem 0rem 1rem 0rem;
+    }
+}
+
+.p_items_wrapper .p_main_item .tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0rem 0rem 1rem 0rem;
+}
+
+.p_items_wrapper .p_main_item .tags li:hover {
+    opacity: 0.5;
+}
+
+.p_items_wrapper .p_main_item .title {
+    font-size: 2.0rem;
+    margin-bottom: 1vh;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.p_items_wrapper .p_main_item #content {
+    margin: 1rem;
+}
+
+@media screen and (max-width: 426px) {
+    .p_items_wrapper .p_main_item .title {
+        margin: 0.5rem;
+    }
+    .p_items_wrapper .p_main_item #content {
+        margin: 0.5rem;
+    }
+}
+
+.p_items_wrapper .p_main_item #content p img {
+    max-width: 100%;
+    height: auto;
+}
+
+.p_items_wrapper .p_main_item #content ol li h1 span {
+    font-size: 4.2rem;
+    font-weight: bold;
+}
+
+.p_items_wrapper .p_main_item #content ol li h2 span {
+    font-size: 3.56rem;
+    font-weight: bold;
+}
+
+.p_items_wrapper .p_main_item #content ol li h3 span {
+    font-size: 3.56rem;
+    font-weight: bold;
+}
+
+.p_items_wrapper .p_main_item #content .scroll-table{
+    /* max-width: 100%; */
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.p_items_wrapper .p_table_items {
+    position: sticky;
+    margin-top: 20vh;
+    top: 0vh;
+    will-change: transform;
+    padding: 1rem;
+}
+
+.p_items_wrapper .p_table_items .item {
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.p_items_wrapper .p_table_items .item ul li a {
+    color: #827b7b;
+}
+
+.p_items_wrapper .p_main_item .tags li a {
+    font-size: 0.8em;
+    margin-left: 0.5rem;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    background-color: #827b7b;
+    line-height: 1.45em;
+    position: left;
+}
+
+.sidenav {
+    max-height: 80%;
+    margin-top: 20%;
+    border-radius: 5px;
+}
+
+.item_devise {
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+/* .item_devise ul li ul li {
+    color: #827b7b;
+    font-size: 0.4em;
+    line-height: 21px;
+} */
+
+.item_devise > div > ul {
+    margin:0%;
+    overflow: scroll;
+}
+.item_devise > div > ul >li > ul > li > a.h3 {
+    color: #827b7b;
+    font-size: 12px;
+    line-height: 21px;
+    margin-left: 10%;
+}
+.item_devise > div > ul >li > .h2 {
+    color: #827b7b;
+    font-size: 16px;
+    margin-top: 1rem;
+}
+
+.sidenav li>a {
+    height: auto;
+    line-height: normal;
+}

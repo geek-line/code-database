@@ -1,0 +1,10 @@
+sql_env.txt
+*.ddl
+*.pem
+node_modules
+aws_config.js
+.env
+knowledge-blog
+main
+google_sitemap/
+nohup.out

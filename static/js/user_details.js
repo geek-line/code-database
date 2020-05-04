@@ -6,7 +6,7 @@ const likes_inline = document.getElementById('likes_inline')
 const likes_baloon = document.getElementById('likes_baloon')
 const knowledge_id = document.getElementById('knowledge_id').value
 // SNSボタンを追加するエリア
-let snsArea = document.getElementById('sns-area');
+let snsArea = document.querySelectorAll('.sns-area');
 let title = document.getElementById('title').innerHTML;
 
 // シェア時に使用する値
@@ -14,6 +14,9 @@ let shareUrl = location.href; // 現在のページURLを使用する場合 loca
 let shareText = title+'\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者'; // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
+    snsArea.forEach(function(Area){
+        generate_share_button(Area, shareUrl, shareText,title);
+    }) 
    
     if (localStorage.getItem('noLoginLike')) {
         let value = localStorage.getItem('noLoginLike')
@@ -85,36 +88,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
  
-generate_share_button(snsArea, shareUrl, shareText,title);
  
 // シェアボタンを生成する関数
 function generate_share_button(area, url, text,title) {
     // シェアボタンの作成
     let twBtn = document.createElement('div');
     twBtn.className = 'twitter-btn';
-    let fbBtn = document.createElement('div');
-    fbBtn.className = 'facebook-btn';
-    let liBtn = document.createElement('div');
-    liBtn.className = 'line-btn';
- 
     // 各シェアボタンのリンク先
     let twHref = 'https://twitter.com/share?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-    let fbHref = 'http://www.facebook.com/share.php?u='+encodeURIComponent(url);
-    let liHref = 'https://line.me/R/msg/text/?'+encodeURIComponent(title)+' '+encodeURIComponent(url);
- 
     // シェアボタンにリンクを追加
-    let clickEv = 'onclick="popupWindow(this.href); return false;"';
-    let twLink = '<a href="' + twHref + '" ' + clickEv + ' class = "twitter"><img src="/static/public/twitter.png" ></a>';
-    // var fbLink = '<a href="' + fbHref + '" ' + clickEv + ' class = "facebook"><img src="/static/public/facebook.png" ></a>';
-    // var liLink = '<a href="' + liHref + '" target="_blank" class = "line"><img src="/static/public/line.png" ></a>';
+    let twLink = '<a href="' + twHref + '" ' + 'target="_blank"'+ ' class = "twitter"><img src="/static/public/twitter.png" ><div class="tweet-text hide-on-small-only">Tweet</div></a>';
     twBtn.innerHTML = twLink;
-    // fbBtn.innerHTML = fbLink;
-    // liBtn.innerHTML = liLink;
- 
     // シェアボタンを表示
     area.appendChild(twBtn);
-    // area.appendChild(fbBtn);
-    // area.appendChild(liBtn);
 }
 
 const smoothScroll = () =>{

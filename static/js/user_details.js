@@ -13,26 +13,25 @@ let shareUrl = location.href; // 現在のページURLを使用する場合 loca
 let shareText = title+'\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者'; // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
-    snsArea.forEach(function(Area){
-        generate_share_button(Area, shareUrl, shareText,title);
-    }) 
-   
+    content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
+    snsArea.forEach(function (Area) {
+        generate_share_button(Area, shareUrl, shareText, title);
+    })
     if (localStorage.getItem('noLoginLike')) {
         let value = localStorage.getItem('noLoginLike')
         let values = value.split(',')
         for (let i = 0; i < values.length; i++) {
             if (values[i] == knowledge_id) {
-                for (let j = 0;j < like_button_inline.length; j++){
+                for (let j = 0; j < like_button_inline.length; j++) {
                     like_button_inline[j].textContent = 'LIKED'
-                    like_button_inline[j].classList.add('liked-button')   
+                    like_button_inline[j].classList.add('liked-button')
                 }
                 like_button_baloon.textContent = 'LIKED'
-                like_button_baloon.classList.add('liked-button')   
+                like_button_baloon.classList.add('liked-button')
                 break
             }
         }
     }
-    content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
     var p_table_items = document.getElementById("p_table_items"); // 目次を追加する先(table of contents)
     var p_table_items_devise = document.getElementById("p_table_items_devise"); // 目次を追加する先(table of contents)
     var div = document.createElement('div'); // 作成する目次のコンテナ要素

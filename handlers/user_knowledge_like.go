@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
+	"code-database/models"
 )
 
 // KnowledgeLikeHandler /knowledge/likeに対するハンドラ

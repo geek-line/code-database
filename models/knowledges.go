@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"../config"
-	"../structs"
+	"code-database/config"
+	"code-database/structs"
 )
 
 //DeleteKnowledge 指定されたidのknowledgeを削除する

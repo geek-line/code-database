@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/models"
+	"code-database/routes"
+	"code-database/structs"
 )
 
 const lenPathTags = len(routes.UserTagsPath)

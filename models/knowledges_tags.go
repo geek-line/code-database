@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	"../config"
+	"code-database/config"
 )
 
 //DeleteKnowledgesTagsFromKnowledgeID 指定されたknowledgeのidのknowledges_tagsを削除する

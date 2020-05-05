@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"../models"
-	"../routes"
+	"code-database/models"
+	"code-database/routes"
 )
 
 //AdminSaveHandler /admin/saveに対するハンドラ

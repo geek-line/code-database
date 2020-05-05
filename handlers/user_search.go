@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/models"
+	"code-database/routes"
+	"code-database/structs"
 )
 
 // const lenPathUserSearch = len(routes.UserSearchPath)

@@ -6,9 +6,9 @@ import (
 	"net/http/fcgi"
 	"os"
 
-	"./handlers"
-	"./middleware"
-	"./routes"
+	"code-database/handlers"
+	"code-database/middleware"
+	"code-database/routes"
 	_ "github.com/go-sql-driver/mysql"
 )
 

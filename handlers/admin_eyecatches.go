@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/models"
+	"code-database/routes"
+	"code-database/structs"
 )
 
 //AdminEyecatchesHandler /admin/eyecatchesに対するハンドラ

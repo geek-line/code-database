@@ -10,6 +10,7 @@ const (
 	AdminNewPath           = "/admin/new/"
 	AdminSavePath          = "/admin/save/"
 	AdminDeletePath        = "/admin/delete/"
+	AdminPublishPath       = "/admin/publish/"
 	AdminEyecatchesPath    = "/admin/eyecatches/"
 	UserKnowledgePath      = "/knowledge/"
 	UserKnowledgesPath     = "/knowledges"

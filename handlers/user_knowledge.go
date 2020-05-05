@@ -29,7 +29,7 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		StatusNotFoundHandler(w, r, auth)
 		return
 	}
-	userDetailPage.Knowledge, err = models.GetKnowledge(id)
+	userDetailPage.Knowledge, err = models.GetKnowledgePublished(id)
 	switch {
 	case err == sql.ErrNoRows:
 		log.Println("レコードが存在しません")

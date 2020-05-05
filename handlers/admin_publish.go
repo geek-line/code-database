@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../routes"
+	"code-database/models"
+	"code-database/routes"
 )
 
 const lenPathAdminPublish = len(routes.AdminPublishPath)

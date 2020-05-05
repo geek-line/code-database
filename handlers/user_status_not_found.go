@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"text/template"
 
-	"../structs"
+	"code-database/structs"
 )
 
 // StatusNotFoundHandler に対するハンドラ

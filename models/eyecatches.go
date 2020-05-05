@@ -3,8 +3,8 @@ package models
 import (
 	"database/sql"
 
-	"../config"
-	"../structs"
+	"code-database/config"
+	"code-database/structs"
 )
 
 //GetAllEyecatches eyecatchを全て取得する

@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"net/http"
 
-	"../config"
-	"../routes"
+	"code-database/config"
+	"code-database/routes"
 	"github.com/gorilla/sessions"
 )
 

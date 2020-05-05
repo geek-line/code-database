@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../routes"
+	"code-database/models"
+	"code-database/routes"
 )
 
 const lenPathDelete = len(routes.AdminDeletePath)

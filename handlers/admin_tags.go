@@ -7,9 +7,9 @@ import (
 	"text/template"
 	"time"
 
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/models"
+	"code-database/routes"
+	"code-database/structs"
 )
 
 //AdminTagsHandler /admin/tagsに対するハンドラ

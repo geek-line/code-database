@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"net/http"
 
-	"../structs"
+	"code-database/structs"
 )
 
 // StatusInternalServerError に対するハンドラ

@@ -3,7 +3,7 @@ package models
 import (
 	"database/sql"
 
-	"../config"
+	"code-database/config"
 )
 
 //GetPasswordFromEmail emailからパスワードを取得する

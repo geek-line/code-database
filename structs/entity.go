@@ -1,7 +1,5 @@
 package structs
 
-import "time"
-
 //Knowledge knowledgesテーブルのエンティティ
 type Knowledge struct {
 	ID          int
@@ -18,8 +16,8 @@ type Knowledge struct {
 type Tag struct {
 	ID        int
 	Name      string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CreatedAt string
+	UpdatedAt string
 }
 
 //KnowledgesTags knowledges_tagsテーブルのエンティティ

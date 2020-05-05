@@ -15,6 +15,7 @@ import (
 func redirectHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, routes.UserKnowledgesPath, http.StatusFound)
 }
+
 func main() {
 	dir, _ := os.Getwd()
 	http.HandleFunc(routes.RootPath, redirectHandler)

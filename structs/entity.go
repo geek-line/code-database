@@ -11,6 +11,7 @@ type Knowledge struct {
 	UpdatedAt   string
 	Likes       int
 	EyecatchSrc string
+	IsPublished bool
 }
 
 //Tag tagsテーブルのエンティティ

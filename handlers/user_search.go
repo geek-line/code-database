@@ -6,6 +6,7 @@ import (
 	"math"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"../models"
 	"../routes"
@@ -33,8 +34,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		}
 	}
 	var queryKeys string
+	var currentQuery string
 	if query["q"] != nil {
 		queryKeys = query.Get("q")
+		currentQuery = strings.Split(r.URL.RawQuery, "&")[0]
 	} else {
 		StatusNotFoundHandler(w, r, auth)
 		return
@@ -113,16 +116,18 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	}
 	t := template.Must(template.ParseFiles("template/user_search.html", "template/_header.html", "template/_footer.html"))
 	if err = t.Execute(w, struct {
-		Header    structs.Header
-		IndexPage structs.UserIndexPage
-		IsHit     bool
-		QueryKeys string
+		Header       structs.Header
+		IndexPage    structs.UserIndexPage
+		IsHit        bool
+		QueryKeys    string
+		CurrentQuery string
 	}{
-		Header:    header,
-		IndexPage: indexPage,
-		IsHit:     isHit,
-		QueryKeys: queryKeys,
+		Header:       header,
+		IndexPage:    indexPage,
+		IsHit:        isHit,
+		QueryKeys:    queryKeys,
+		CurrentQuery: currentQuery,
 	}); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		StatusInternalServerError(w, r, auth)
 	}
 }

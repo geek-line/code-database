@@ -69,7 +69,7 @@ func DeleteTag(id int) error {
 func GetTop10ReferencedTags() ([]structs.TagRankingElem, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
-	rows, err := db.Query("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id GROUP BY knowledges_tags.tag_id ORDER BY count DESC LIMIT 10;")
+	rows, err := db.Query("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id INNER JOIN knowledges ON knowledges.id = knowledges_tags.knowledge_id WHERE is_published = true GROUP BY knowledges_tags.tag_id ORDER BY count DESC LIMIT 10;")
 	defer rows.Close()
 	var tags []structs.TagRankingElem
 	for rows.Next() {

@@ -18,7 +18,6 @@ search_submit.addEventListener('click', function (e) {
         queries[i] = encodeURIComponent(queries[i])
     }
     const qvalue = queries.join('+')
-    console.log(qvalue)
     XHR.open('GET', '/search?q=' + qvalue)
     XHR.onreadystatechange = function () {
         if (XHR.readyState === 4) {

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../structs"
+	"code-database/models"
+	"code-database/structs"
 )
 
 //KnowledgesHandler /knowledge/のリクエストに対するハンドラ

@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"../models"
-	"../structs"
+	"code-database/models"
+	"code-database/structs"
 )
 
 func newHeader(isLogin bool) structs.Header {

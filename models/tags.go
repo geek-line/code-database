@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"time"
 
-	"../config"
-	"../structs"
+	"code-database/config"
+	"code-database/structs"
 )
 
 //GetAllTags 全てのtagを取得する

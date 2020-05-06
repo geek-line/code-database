@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 
-	"../config"
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/config"
+	"code-database/models"
+	"code-database/routes"
+	"code-database/structs"
 	"github.com/gorilla/sessions"
 )
 

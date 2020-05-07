@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
 )
 
-const lenPathTags = len(routes.UserTagsPath)
+const lenPathTags = len(config.UserTagsPath)
 
 //TagsHandler /tags/に対するハンドラ
 func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {

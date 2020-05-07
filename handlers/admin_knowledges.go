@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
 )
 
-const lenPathAdminKnowledges = len(routes.AdminKnowledgesPath)
+const lenPathAdminKnowledges = len(config.AdminKnowledgesPath)
 
 //AdminKnowledgesHandler admin/knowledgesに対するハンドラ
 func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 )
 
 //AdminSaveHandler /admin/saveに対するハンドラ
@@ -62,5 +62,5 @@ func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	default:
 		break
 	}
-	http.Redirect(w, r, routes.AdminKnowledgesPath, http.StatusFound)
+	http.Redirect(w, r, config.AdminKnowledgesPath, http.StatusFound)
 }

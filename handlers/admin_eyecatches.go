@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
 )
 
@@ -38,7 +38,7 @@ func AdminEyecatchesHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		http.Redirect(w, r, routes.AdminEyecatchesPath, http.StatusFound)
+		http.Redirect(w, r, config.AdminEyecatchesPath, http.StatusFound)
 	case r.Method == "PUT":
 		id, _ := strconv.Atoi(r.FormValue("id"))
 		name := r.FormValue("name")

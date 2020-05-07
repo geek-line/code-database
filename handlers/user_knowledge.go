@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
 )
 
-const lenPathKnowledge = len(routes.UserKnowledgePath)
+const lenPathKnowledge = len(config.UserKnowledgePath)
 
 //KnowledgeHandler /knowledgesに対するハンドラ
 func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {

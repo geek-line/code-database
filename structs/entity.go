@@ -42,3 +42,12 @@ type AdminUser struct {
 	Email    string
 	Password string
 }
+
+//Category categoriesテーブルのエンティティ
+type Category struct {
+	ID          int
+	Name        string
+	EyecatchSrc string
+	CreatedAt   string
+	UpdatedAt   string
+}

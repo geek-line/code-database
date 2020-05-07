@@ -11,7 +11,7 @@ import (
 	"code-database/structs"
 )
 
-//KnowledgesHandler /knowledge/のリクエストに対するハンドラ
+//KnowledgesHandler /knowledges/のリクエストに対するハンドラ
 func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"net"
 	"net/http"
-	"net/http/fcgi"
 	"os"
 
 	"code-database/config"
@@ -34,12 +32,9 @@ func main() {
 	http.HandleFunc(config.UserKnowledgePath, middleware.UserAuth(handlers.KnowledgeHandler))
 	http.HandleFunc(config.UserKnowledgesLikePath, middleware.UserAuth(handlers.KnowledgeLikeHandler))
 	http.HandleFunc(config.UserTagsPath, middleware.UserAuth(handlers.TagsHandler))
+	http.HandleFunc(config.UserTagPath, middleware.UserAuth(handlers.TagHandler))
 	http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
 	http.Handle(config.NodeModulesPath, http.StripPrefix(config.NodeModulesPath, http.FileServer(http.Dir(dir+config.NodeModulesPath))))
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
-	l, err := net.Listen("tcp", "127.0.0.1:9000")
-	if err != nil {
-		return
-	}
-	fcgi.Serve(l, nil)
+	http.ListenAndServe(":3000", nil)
 }

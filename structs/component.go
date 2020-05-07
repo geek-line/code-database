@@ -45,3 +45,16 @@ type TagRankingElem struct {
 	TagName            string
 	CountOfRefferenced int
 }
+
+//TagElem タグ一覧ページのタグの各要素
+type TagElem struct {
+	Tag                Tag
+	CountOfRefferenced int
+}
+
+//UserTagsPage タグ一覧ページ全体の要素
+type UserTagsPage struct {
+	Tags       []TagElem
+	TagRanking []TagRankingElem
+	PageNation PageNation
+}

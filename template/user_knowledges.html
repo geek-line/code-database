@@ -88,7 +88,7 @@
                 </select>
             </div>
             {{ range .IndexPage.IndexElems }}
-            <div class="col s12 m6 card_wrapper" onclick="DivFrameClick('/knowledge/{{.Knowledge.ID |html|}}');">
+            <div class="col s12 m6 card_wrapper" onclick="DivFrameClick('/knowledges/{{.Knowledge.ID |html|}}');">
                 <div  class="cp_card02">
                     <div class ="photo">
                         <img class="photo1 responsive-img" src="{{ .Knowledge.EyecatchSrc }}">

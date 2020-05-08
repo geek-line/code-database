@@ -41,20 +41,21 @@
             <div class='content_header'>
                 <div class="content_title">"{{ .FilteredTag.Name }}"のタグがついている記事</div>
                 <div class="content_description">"{{ .FilteredTag.Name }}"のタグがついている記事を表示しています。</div>
+             
                 {{ $currentSort := .IndexPage.CurrentSort }}
-                <select class="select-sort" onchange="location=this.value">       
+                <select class="select-sort" onchange="location=this.value">
                     {{ if eq $currentSort "update" }}
-                    <option value="/knowledges?sort=create">作成日順</option>
-                    <option value="/knowledges?sort=like">いいね数順</option>
-                    <option selected value="/knowledges?sort=update">更新日順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=create">作成日順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=like">いいね数順</option>
+                    <option selected value="/tags/{{.FilteredTag.ID}}?sort=update">更新日順</option>
                     {{ else if eq $currentSort "like" }}
-                    <option value="/knowledges?sort=create">作成日順</option>
-                    <option selected value="/knowledges?sort=like">いいね数順</option>
-                    <option value="/knowledges?sort=update">更新日順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=create">作成日順</option>
+                    <option selected value="/tags/{{.FilteredTag.ID}}?sort=like">いいね数順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=update">更新日順</option>
                     {{ else }}
-                    <option selected value="/knowledges?sort=create">作成日順</option>
-                    <option value="/knowledges?sort=like">いいね数順</option>
-                    <option value="/knowledges?sort=update">更新日順</option>
+                    <option selected value="/tags/{{.FilteredTag.ID}}?sort=create">作成日順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=like">いいね数順</option>
+                    <option value="/tags/{{.FilteredTag.ID}}?sort=update">更新日順</option>
                     {{ end }}
                 </select>
             </div>

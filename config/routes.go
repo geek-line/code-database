@@ -1,4 +1,4 @@
-package routes
+package config
 
 //パスをまとめたもの
 const (
@@ -12,11 +12,15 @@ const (
 	AdminDeletePath        = "/admin/delete/"
 	AdminPublishPath       = "/admin/publish/"
 	AdminEyecatchesPath    = "/admin/eyecatches/"
-	UserKnowledgePath      = "/knowledge/"
+	AdminCategoriesPath    = "/admin/categories/"
+	UserKnowledgePath      = "/knowledges/"
 	UserKnowledgesPath     = "/knowledges"
 	UserSearchPath         = "/search"
 	UserKnowledgesLikePath = "/knowledges/like"
-	UserTagsPath           = "/tags/"
+	UserTagsPath           = "/tags"
+	UserTagPath            = "/tags/"
+	UserCategoriesPath     = "/categories"
+	UserCategoryPath       = "/categories/"
 	StaticPath             = "/static/"
 	NodeModulesPath        = "/node_modules/"
 	GoogleSitemapPath      = "/google_sitemap/"

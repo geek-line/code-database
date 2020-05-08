@@ -58,3 +58,16 @@ type UserTagsPage struct {
 	TagRanking []TagRankingElem
 	PageNation PageNation
 }
+
+//CategoryElem カテゴリ一覧ページのカテゴリの各要素
+type CategoryElem struct {
+	Category      Category
+	NumOfArticles int
+}
+
+//UserCategoriesPage カテゴリ一覧ページの要素
+type UserCategoriesPage struct {
+	Categories []CategoryElem
+	TagRanking []TagRankingElem
+	PageNation PageNation
+}

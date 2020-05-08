@@ -40,7 +40,7 @@
         <div class="col s12 m12 l9 offset-l3">
         <div class='content_header'>
             <div class="content_title">カテゴリ一覧</div>
-            <div class="content_description">Code-Databaseに登録されているカテゴリの一覧です。気になるカテゴリをクリックして記事を探してみましょう。</div>
+            <div class="content_description">Code Databaseに登録されているカテゴリの一覧です。気になるカテゴリをクリックして記事を探してみましょう。</div>
         </div></div>
         <div class="col s0 m0 l3 hide-on-med-and-down">
             <div class="tag_container">
@@ -89,27 +89,27 @@
                     </div>
                 </a>
                 {{ end }}
+                <ul class="pagination col s12 center">
+                    {{ if ne .CategoriesPage.PageNation.PageNum 1 }}
+                    <li class="waves-effect"><a href="/categories?page={{.CategoriesPage.PageNation.PrevPageNum}}"><i
+                                class="material-icons">chevron_left</i></a>
+                    </li>
+                    {{ end }}
+                    {{ range .CategoriesPage.PageNation.PageElems }}
+                    {{ if .IsSelect }}
+                    <li class="active cyan darken-1"><a>{{ .PageNum }}</a></li>
+                    {{ else }}
+                    <li class="waves-effect grey lighten-1"><a class="white-text"
+                            href="/categories?page={{.PageNum}}">{{ .PageNum }}</a></li>
+                    {{ end }}
+                    {{ end }}
+                    {{ $length := len .CategoriesPage.PageNation.PageElems }}
+                    {{ if ne .CategoriesPage.PageNation.PageNum $length  }}
+                    <li class="waves-effect"><a href="/categories?page={{.CategoriesPage.PageNation.NextPageNum}}"><i
+                                class="material-icons">chevron_right</i></a></li>
+                    {{ end }}
+                </ul>
             </div>
-            <ul class="pagination col s12 center">
-                {{ if ne .CategoriesPage.PageNation.PageNum 1 }}
-                <li class="waves-effect"><a href="/categories?page={{.CategoriesPage.PageNation.PrevPageNum}}"><i
-                            class="material-icons">chevron_left</i></a>
-                </li>
-                {{ end }}
-                {{ range .CategoriesPage.PageNation.PageElems }}
-                {{ if .IsSelect }}
-                <li class="active cyan darken-1"><a>{{ .PageNum }}</a></li>
-                {{ else }}
-                <li class="waves-effect grey lighten-1"><a class="white-text"
-                        href="/categories?page={{.PageNum}}">{{ .PageNum }}</a></li>
-                {{ end }}
-                {{ end }}
-                {{ $length := len .CategoriesPage.PageNation.PageElems }}
-                {{ if ne .CategoriesPage.PageNation.PageNum $length  }}
-                <li class="waves-effect"><a href="/categories?page={{.CategoriesPage.PageNation.NextPageNum}}"><i
-                            class="material-icons">chevron_right</i></a></li>
-                {{ end }}
-            </ul>
         </div>
 
         <div class="col s12 m12 l0 hide-on-large-only">

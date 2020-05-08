@@ -37,6 +37,11 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
+        <div class="col s12 m12 l9 offset-l3">
+        <div class='content_header'>
+            <div class="content_title">カテゴリ一覧</div>
+            <div class="content_description">Code-Databaseに登録されているカテゴリの一覧です。気になるカテゴリをクリックして記事を探してみましょう。</div>
+        </div></div>
         <div class="col s0 m0 l3 hide-on-med-and-down">
             <div class="tag_container">
                 <table class="tag_table striped ">
@@ -62,9 +67,7 @@
         </div>
         <div>
             <div class='col s12 l9 row card_wrapper'>
-                <div class='content_header'>
-                    <h4 class="content_title">カテゴリ一覧</h4>
-                </div>
+               
                 {{ range .CategoriesPage.Categories }}
                 <a href='/categories/{{.Category.ID}}'>
                     <div class="col s12 cp_card01 row">

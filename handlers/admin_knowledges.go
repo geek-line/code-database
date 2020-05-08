@@ -36,6 +36,11 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 				log.Print(err.Error())
 				return
 			}
+			categories, err := models.GetAllCategories()
+			if err != nil {
+				log.Print(err.Error())
+				return
+			}
 			selectedTagsID, err := models.GetTagIDsFromKnowledgeID(knowledgeID)
 			if err != nil {
 				log.Print(err.Error())
@@ -47,12 +52,14 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 				EditPage       structs.Knowledge
 				Tags           []structs.Tag
 				Eyecatches     []structs.Eyecatch
+				Categories     []structs.Category
 				SelectedTagsID []int
 			}{
 				Header:         header,
 				EditPage:       editPage,
 				Tags:           tags,
 				Eyecatches:     eyecatches,
+				Categories:     categories,
 				SelectedTagsID: selectedTagsID,
 			}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)

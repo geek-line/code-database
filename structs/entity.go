@@ -10,6 +10,7 @@ type Knowledge struct {
 	Likes       int
 	EyecatchSrc string
 	IsPublished bool
+	Category    string
 }
 
 //Tag tagsテーブルのエンティティ

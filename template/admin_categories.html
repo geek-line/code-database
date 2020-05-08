@@ -16,9 +16,9 @@
         <a href='/admin/knowledges/'>ナレッジ一覧へ</a>
         <h4>新規作成</h4>
         <form action='/admin/categories/' method="POST">
-            <span>カテゴリ名</span><input class="tag-input" type='text' name="name">
+            <span>カテゴリ名</span><input class="tag-input" type='text' name="name" required>
             <span>アイキャッチ</span>
-            <select id="select_eyecatch" class="select-eyecatch" name='eyecatch_src' id=''>
+            <select id="select_eyecatch" class="select-eyecatch" name='eyecatch_src'>
                 {{ range .Eyecatches }}
                 <option value='{{ .Src }}'>{{ .Name }}</option>
                 {{ end }}
@@ -33,7 +33,7 @@
             <li>
                 <form id="form">
                     <input type='hidden' name="id" value="{{ .ID }}">
-                    <span>カテゴリ名</span><input class="tag-input" type='text' name="name" value="{{ .Name }}">
+                    <span>カテゴリ名</span><input id="form-name" class="tag-input" type='text' name="name" value="{{ .Name }}" required>
                     <span>アイキャッチ</span>
                     <select id="select_eyecatch" name='eyecatch_src'>
                         {{ $src := .EyecatchSrc }}

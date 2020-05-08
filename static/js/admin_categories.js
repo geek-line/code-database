@@ -12,7 +12,12 @@ for (let i = 0; i < select_eyecatch.length; i++){
     })
 }
 for (let i = 0; i < forms.length; i++) {
-    update_buttons[i].addEventListener('click', function () {
+    update_buttons[i].addEventListener('click', function (e) {
+        if (document.querySelectorAll('#form-name')[i].value == '') {
+            alert('名前を入力してください')
+            e.preventDefault()
+            return
+        }
         const formdata = new FormData(forms[i])
         const XHR = new XMLHttpRequest()
         XHR.open('PUT', '/admin/categories/')

@@ -59,16 +59,34 @@
                     <input id="search_submit" type='button' value="検索">
                 </div>
             </div>
-
         </div>
-
         <div>
-            {{ range .CategoriesPage.Categories }}
-            <div>
-                <a href='/categories/{{.Category.ID}}'>{{ .Category.Name }}:{{ .Category.Summary }}:{{ .NumOfArticles }}</a>
-                <img src='{{.Category.EyecatchSrc}}' width="500px" class="responsive-img">
+            <div class='col s12 l9 row card_wrapper'>
+                <div class='content_header'>
+                    <h4 class="content_title">カテゴリ一覧</h4>
+                </div>
+                {{ range .CategoriesPage.Categories }}
+                <a href='/categories/{{.Category.ID}}'>
+                    <div class="col s12 cp_card01 row">
+                        <div class='photo col s5 m4'>
+                            <img src='{{.Category.EyecatchSrc}}' width="500px" class="photo1 responsive-img">
+                        </div>
+                        <div class='description col s7 m8'>
+                            <div class="category-name">
+                                <h1>{{ .Category.Name }}</h1>
+                            </div>
+                            <ul class="category-summary hide-on-small-only">
+                                {{ .Category.Summary }}
+                            </ul>
+                            <div class="category-num-of-articles">記事数:{{ .NumOfArticles }}</div>
+                        </div>
+                        <div class='col s12 show-on-small category-summary-small'>
+                            {{ .Category.Summary }}
+                        </div>
+                    </div>
+                </a>
+                {{ end }}
             </div>
-            {{ end }}
             <ul class="pagination col s12 center">
                 {{ if ne .CategoriesPage.PageNation.PageNum 1 }}
                 <li class="waves-effect"><a href="/categories?page={{.CategoriesPage.PageNation.PrevPageNum}}"><i

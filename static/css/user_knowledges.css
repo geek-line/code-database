@@ -192,6 +192,62 @@ select.select-sort {
     opacity: 0.5;
 }
 
+.row .col .cp_card01 {
+    padding-left: 0px;
+    font-size: 1rem;
+    color: black;
+    line-height: 1.3rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 1.6%;
+    height: 16em;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+    border-radius: 3px;
+    background: #ffffff;
+    -webkit-box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.cp_card01 .photo {
+    position: relative;
+    float: left;
+    width: 40%;
+    height: 100%;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.cp_card01 .photo .photo1 {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+}
+
+.cp_card01 .description h1 {
+    font-size: 3rem;
+    margin: 1rem 0 1rem 0;
+}
+
+@media screen and (max-width: 480px) {
+    .cp_card01 .photo {
+        height: 50%;
+    }
+    .category-summary-small {
+        overflow-y: auto;
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+    .cp_card01 .description h1 {
+        font-size: 2rem;
+        margin: 1rem 0 1rem 0;
+    }
+}
+
 .cp_card02 {
     font-size: 14px;
     line-height: 1.45em;

@@ -40,9 +40,10 @@ func AdminCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 	case r.Method == "POST":
 		name := r.FormValue("name")
 		eyecatchSrc := r.FormValue("eyecatch_src")
+		summary := r.FormValue("summary")
 		createdAt := time.Now()
 		updatedAt := time.Now()
-		err := models.PostCategory(name, eyecatchSrc, createdAt, updatedAt)
+		err := models.PostCategory(name, eyecatchSrc, summary, createdAt, updatedAt)
 		if err != nil {
 			log.Print(err.Error())
 			return
@@ -52,8 +53,9 @@ func AdminCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 		id, _ := strconv.Atoi(r.FormValue("id"))
 		name := r.FormValue("name")
 		eyecatchSrc := r.FormValue("eyecatch_src")
+		summary := r.FormValue("summary")
 		updatedAt := time.Now()
-		err := models.UpdateCategory(id, name, eyecatchSrc, updatedAt)
+		err := models.UpdateCategory(id, name, eyecatchSrc, summary, updatedAt)
 		if err != nil {
 			log.Print(err.Error())
 			return

@@ -11,31 +11,31 @@ import (
 func GetAllCategories() ([]structs.Category, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
-	rows, err := db.Query("SELECT id, name, eyecatch_src FROM categories")
+	rows, err := db.Query("SELECT id, name, eyecatch_src, summary FROM categories")
 	defer rows.Close()
 	var categories []structs.Category
 	for rows.Next() {
 		var category structs.Category
-		err = rows.Scan(&category.ID, &category.Name, &category.EyecatchSrc)
+		err = rows.Scan(&category.ID, &category.Name, &category.EyecatchSrc, &category.Summary)
 		categories = append(categories, category)
 	}
 	return categories, err
 }
 
 //PostCategory categoriesを新規作成する
-func PostCategory(name string, eyecatchSrc string, createdAt time.Time, updatedAt time.Time) error {
+func PostCategory(name string, eyecatchSrc string, summary string, createdAt time.Time, updatedAt time.Time) error {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
-	rows, err := db.Query("INSERT INTO categories(name, eyecatch_src, created_at, updated_at) VALUES(?, ?, ?, ?)", name, eyecatchSrc, createdAt, updatedAt)
+	rows, err := db.Query("INSERT INTO categories(name, eyecatch_src, summary, created_at, updated_at) VALUES(?, ?, ?, ?, ?)", name, eyecatchSrc, summary, createdAt, updatedAt)
 	defer rows.Close()
 	return err
 }
 
 //UpdateCategory 指定されたidのcategoriesを変更する
-func UpdateCategory(id int, name string, eyecatchSrc string, updatedAt time.Time) error {
+func UpdateCategory(id int, name string, eyecatchSrc string, summary string, updatedAt time.Time) error {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
-	rows, err := db.Query("UPDATE categories SET name = ?, eyecatch_src = ?, updated_at = ? WHERE id = ?", name, eyecatchSrc, updatedAt, id)
+	rows, err := db.Query("UPDATE categories SET name = ?, eyecatch_src = ?, summary = ?, updated_at = ? WHERE id = ?", name, eyecatchSrc, summary, updatedAt, id)
 	defer rows.Close()
 	return err
 }

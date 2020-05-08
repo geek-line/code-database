@@ -49,6 +49,7 @@ type Category struct {
 	ID          int
 	Name        string
 	EyecatchSrc string
+	Summary     string
 	CreatedAt   string
 	UpdatedAt   string
 }

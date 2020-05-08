@@ -37,26 +37,60 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
-        <div class="col s12 m12 l8 offset-l2">
+                
+        <div class="col s12 m12 l9 offset-l3">
             <div class='tagpage_title'>タグ一覧</div>
-            <div class='tagpage_description'>Code-Databaseに登録されているタグの一覧です。気になるタグをクリックして記事を探してみましょう。</div>
-        
-    
-    
-    
-            <div class='tagpage_tags'>
+            <div class='tagpage_description'>Code-Databaseに登録されているタグの一覧です。気になるタグをクリックして記事を探してみましょう。</div>   
+        </div>
+
+
+        <div class="col s0 m0 l3 hide-on-med-and-down">
+            <div class="tag_container">
+                <table class="tag_table striped ">
+                    <thead>
+                        <h6 class='tag_title'>タグランキング</h6>
+                    </thead>
+                    <tbody>
+                        {{ range .TagsPage.TagRanking }}
+                        <tr onclick="DivFrameClick('/tags/{{.TagID |html|}}');">
+                            <td class="center"></td>
+                            <td><a href="/tags/{{.TagID}}" class="tag">{{ .TagName }}</a></td>
+                            <td class="center">記事数:{{ .CountOfRefferenced }}</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+                <div class="search_container">
+                    <h6>キーワード検索</h6>
+                        <input 
+                        id="search_input" 
+                        placeholder="キーワードを入力" 
+                        onkeydown="go();" 
+                        type='text'
+                        value=""
+                        >
+                        <input 
+                        id="search_submit" 
+                        type='button' 
+                        value="検索"
+                        >
+                </div>
+            </div>
+        </div>
+        <div class='col s12 m12 l9 tagpage_tags'>
             {{ range $v:= .TagsPage.Tags }}
                 <div class="col s6 m4 l3">
-                    <div class="tag_table" onclick="DivFrameClick('/tags/{{.Tag.ID |html|}}');">
+                    <div class="tag_tables" onclick="DivFrameClick('/tags/{{.Tag.ID |html|}}');">
                         <div class="center"></div>
                         <a href="/tags/{{.Tag.ID}}" class="tag">{{ .Tag.Name }}</a>&nbsp;&nbsp;記事数:{{ .CountOfRefferenced }}
-                      
+                    
                     </div>
                 </div>
             {{ end }}
         </div>
-    </div>
-        <ul class="pagination col s12 center">
+
+
+        <ul class="pagination col s12 m12 l12 center">
             {{ if ne .TagsPage.PageNation.PageNum 1 }}
             <li class="waves-effect"><a
                     href="/tags?page={{.TagsPage.PageNation.PrevPageNum}}"><i
@@ -78,7 +112,45 @@
                         class="material-icons">chevron_right</i></a></li>
             {{ end }}
         </ul>
+
+
+        <div class="col s12 m12 l0 hide-on-large-only">
+            <div class="tag_container">
+                <table class="tag_table striped ">
+                    <thead>
+                        <h6 class='tag_title'>タグランキング</h6>
+                    </thead>
+                    <tbody>
+                        {{ range .TagsPage.TagRanking }}
+                        <tr onclick="DivFrameClick('/tags/{{.TagID |html|}}');">
+                            <td class="center"></td>
+                            <td><a href="/tags/{{.TagID}}" class="tag">{{ .TagName }}</a></td>
+                            <td class="center">記事数:{{ .CountOfRefferenced }}</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+                  <div class="search_container">
+                    <h6>キーワード検索</h6>
+                        <input 
+                          id="search_input" 
+                          placeholder="キーワードを入力" 
+                          onkeydown="go();" 
+                          type='text'
+                          value=""
+                        >
+                        <input 
+                          id="search_submit" 
+                          type='button' 
+                          value="検索"
+                        >
+                </div>
+            </div>
+           
+        </div>
     </div>
+
+   
 
     {{ template "footer" }}
     <script src='/static/js/user_knowledges.js'></script>

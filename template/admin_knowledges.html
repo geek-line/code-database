@@ -13,6 +13,7 @@
     <div class='container'>
         <a href='/admin/tags/'>タグ編集へ</a>
         <a href='/admin/eyecatches/'>アイキャッチ編集へ</a>
+        <a href='/admin/categories/'>カテゴリ編集へ</a>
         <h4>knowledges一覧</h4>
         <table>
             <tr>
@@ -38,7 +39,7 @@
                 <td><button id='publish_button' value="{{ .ID }}">公開する</button></td>
                 {{ end }}
                 <td><button id="delete_button" value="{{ .ID }}">削除</button></td>
-                <td><a href="/knowledge/{{ .ID |html| }}">ユーザーページで表示</a></td>
+                <td><a href="/knowledges/{{ .ID |html| }}">ユーザーページで表示</a></td>
             </tr>
             {{ end }}
         </table>

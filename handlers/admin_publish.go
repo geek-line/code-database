@@ -4,11 +4,11 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 )
 
-const lenPathAdminPublish = len(routes.AdminPublishPath)
+const lenPathAdminPublish = len(config.AdminPublishPath)
 
 //AdminPublishHandler /admin/publish/に対するハンドラ
 func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {

@@ -7,8 +7,8 @@ import (
 
 	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
+
 	"github.com/gorilla/sessions"
 )
 
@@ -30,7 +30,7 @@ func AdminLoginHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			session, _ := store.Get(r, "cookie-name")
 			session.Values["authenticated"] = true
 			session.Save(r, w)
-			http.Redirect(w, r, routes.AdminKnowledgesPath, http.StatusFound)
+			http.Redirect(w, r, config.AdminKnowledgesPath, http.StatusFound)
 		}
 	} else {
 		email := r.FormValue("email")
@@ -39,16 +39,16 @@ func AdminLoginHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		correctPassword, err := models.GetPasswordFromEmail(email)
 		if err != nil {
 			log.Print(err.Error())
-			http.Redirect(w, r, routes.AdminLoginPath, http.StatusFound)
+			http.Redirect(w, r, config.AdminLoginPath, http.StatusFound)
 		}
 		if correctPassword == password {
 			session, _ := store.Get(r, "cookie-name")
 			session.Values["authenticated"] = true
 			session.Save(r, w)
-			http.Redirect(w, r, routes.AdminKnowledgesPath, http.StatusFound)
+			http.Redirect(w, r, config.AdminKnowledgesPath, http.StatusFound)
 
 		} else {
-			http.Redirect(w, r, routes.AdminLoginPath, http.StatusFound)
+			http.Redirect(w, r, config.AdminLoginPath, http.StatusFound)
 			return
 		}
 	}

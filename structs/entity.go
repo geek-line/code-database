@@ -10,6 +10,7 @@ type Knowledge struct {
 	Likes       int
 	EyecatchSrc string
 	IsPublished bool
+	Category    string
 }
 
 //Tag tagsテーブルのエンティティ
@@ -41,4 +42,14 @@ type AdminUser struct {
 	ID       int
 	Email    string
 	Password string
+}
+
+//Category categoriesテーブルのエンティティ
+type Category struct {
+	ID          int
+	Name        string
+	EyecatchSrc string
+	Summary     string
+	CreatedAt   string
+	UpdatedAt   string
 }

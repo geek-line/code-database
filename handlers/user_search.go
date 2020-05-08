@@ -8,13 +8,13 @@ import (
 	"strconv"
 	"strings"
 
+	"code-database/config"
 	"code-database/models"
-	"code-database/routes"
 	"code-database/structs"
 )
 
-// const lenPathUserSearch = len(routes.UserSearchPath)
-const lenPathUserSearch = len(routes.UserSearchPath)
+// const lenPathUserSearch = len(config.UserSearchPath)
+const lenPathUserSearch = len(config.UserSearchPath)
 
 //SearchHandler /searchに対するハンドラ
 func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {

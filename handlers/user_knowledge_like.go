@@ -8,7 +8,7 @@ import (
 	"code-database/models"
 )
 
-// KnowledgeLikeHandler /knowledge/likeに対するハンドラ
+// KnowledgeLikeHandler /knowledges/likeに対するハンドラ
 func KnowledgeLikeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	id, err := strconv.Atoi(r.FormValue("id"))
 	if err != nil {

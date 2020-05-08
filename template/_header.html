@@ -10,11 +10,12 @@
             <a class="header-anker white-text hide-on-med-and-up brand-logo center " href="/knowledges" style="height: 100%;"><img class="code-database-logo-img " style="height: 100%; padding: 15px 0;"  src='/static/public/code-database.png'></a>
          
             <ul id="nav-mobile" class="right ">
-                    <li><a class="header-anker white-text hide-on-small-only" href='/tags'>タグ一覧</a></li>
+                <li><a class="header-anker white-text hide-on-small-only" href='/categories'>カテゴリ一覧</a></li>
+                <li><a class="header-anker white-text hide-on-small-only" href='/tags'>タグ一覧</a></li>
                 {{ if .IsLogin  }}
-                    <li><a class="header-anker white-text hide-on-small-only" href='/admin/knowledges/' >管理画面</a></li>
-                    <li><a class="header-anker white-text hide-on-small-only" href="/admin/new/">新規作成</a></li>
-                    <li><a class="header-anker white-text hide-on-small-only" href="/admin/logout/">ログアウト</a></li>
+                <li><a class="header-anker white-text hide-on-small-only" href='/admin/knowledges/' >管理画面</a></li>
+                <li><a class="header-anker white-text hide-on-small-only" href="/admin/new/">新規作成</a></li>
+                <li><a class="header-anker white-text hide-on-small-only" href="/admin/logout/">ログアウト</a></li>
                 {{else}}
                 {{ end }}
             </ul>

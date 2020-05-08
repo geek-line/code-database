@@ -11,15 +11,15 @@ import (
 	"strconv"
 )
 
-const lenPathTag = len(config.UserTagPath)
+const lenPathCategory = len(config.UserCategoryPath)
 
-//TagHandler /tags/に対するハンドラ
-func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
+//CategoryHandler /categories/に対するハンドラ
+func CategoryHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
 		header.IsLogin = true
 	}
-	suffix := r.URL.Path[lenPathTag:]
+	suffix := r.URL.Path[lenPathCategory:]
 	if suffix != "" {
 		pageNum := 1
 		var err error
@@ -53,8 +53,8 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		} else {
 			currentSort = "create"
 		}
-		var filteredTag structs.Tag
-		filteredTag.ID, err = strconv.Atoi(suffix)
+		var selectedCategory structs.Category
+		selectedCategory.ID, err = strconv.Atoi(suffix)
 		if err != nil {
 			StatusNotFoundHandler(w, r, auth)
 			return
@@ -65,7 +65,7 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			StatusInternalServerError(w, r, auth)
 			return
 		}
-		NumOfKnowledges, err := models.GetNumOfKnowledgesFilteredByTagID(filteredTag.ID)
+		NumOfKnowledges, err := models.GetNumOfCategoriesFilteredByCategoryID(selectedCategory.ID)
 		if err != nil {
 			log.Print(err.Error())
 			StatusNotFoundHandler(w, r, auth)
@@ -88,7 +88,7 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		pageNation.NextPageNum = pageNum + 1
 		pageNation.PrevPageNum = pageNum - 1
 		var indexElems []structs.IndexElem
-		indexElems, filteredTag.Name, err = models.Get20SortedElemFilteredTagID(sortKey, filteredTag.ID, (pageNum-1)*20, 20)
+		indexElems, selectedCategory, err = models.Get20SortedElemFilteredByCategoryID(sortKey, selectedCategory.ID, (pageNum-1)*20, 20)
 		if err != nil {
 			log.Print(err.Error())
 			StatusNotFoundHandler(w, r, auth)
@@ -100,19 +100,19 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			CurrentSort: currentSort,
 			TagRanking:  tagRankingElem,
 		}
-		t := template.Must(template.ParseFiles("template/user_tag.html", "template/_header.html", "template/_footer.html"))
+		t := template.Must(template.ParseFiles("template/user_category.html", "template/_header.html", "template/_footer.html"))
 		if err = t.Execute(w, struct {
-			Header      structs.Header
-			IndexPage   structs.UserIndexPage
-			FilteredTag structs.Tag
+			Header           structs.Header
+			IndexPage        structs.UserIndexPage
+			SelectedCategory structs.Category
 		}{
-			Header:      header,
-			IndexPage:   indexPage,
-			FilteredTag: filteredTag,
+			Header:           header,
+			IndexPage:        indexPage,
+			SelectedCategory: selectedCategory,
 		}); err != nil {
 			StatusInternalServerError(w, r, auth)
 		}
 	} else {
-		TagsHandler(w, r, auth)
+		CategoriesHandler(w, r, auth)
 	}
 }

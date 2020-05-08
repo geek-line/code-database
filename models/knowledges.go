@@ -99,12 +99,21 @@ func GetNumOfKnowledges() (float64, error) {
 	return numOfKnowledges, err
 }
 
-//GetNumOfKnowledgesFilteredTagID 指定されたtag_idに該当するknowledgeの数を取得する
-func GetNumOfKnowledgesFilteredTagID(id int) (float64, error) {
+//GetNumOfKnowledgesFilteredByTagID 指定されたtag_idに該当するknowledgeの数を取得する
+func GetNumOfKnowledgesFilteredByTagID(id int) (float64, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
 	var numOfKnowledges float64
 	err = db.QueryRow("SELECT count(knowledges.id) FROM knowledges INNER JOIN knowledges_tags ON knowledges_tags.knowledge_id = knowledges.id WHERE tag_id = ? AND is_published = true", id).Scan(&numOfKnowledges)
+	return numOfKnowledges, err
+}
+
+//GetNumOfCategoriesFilteredByCategoryID 指定されたidのカテゴリに含まれる記事の数を取得する
+func GetNumOfCategoriesFilteredByCategoryID(id int) (float64, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	var numOfKnowledges float64
+	err = db.QueryRow("SELECT count(knowledges.id) FROM knowledges INNER JOIN categories ON categories.name = knowledges.category WHERE categories.id = ?", id).Scan(&numOfKnowledges)
 	return numOfKnowledges, err
 }
 
@@ -173,6 +182,38 @@ func Get20SortedElemFilteredTagID(sortKey string, tagID int, startIndex int, len
 		indexElems = append(indexElems, indexElem)
 	}
 	return indexElems, tagName, err
+}
+
+//Get20SortedElemFilteredByCategoryID 指定のsortKeyでソートされ、指定のcategoryIdでフィルターされた20のknowledgeの要素を取得する
+func Get20SortedElemFilteredByCategoryID(sortKey string, categoryID int, startIndex int, length int) ([]structs.IndexElem, structs.Category, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	category := structs.Category{
+		ID: categoryID,
+	}
+	if err = db.QueryRow("SELECT name, eyecatch_src FROM categories WHERE id = ?", categoryID).Scan(&category.Name, &category.EyecatchSrc); err != nil {
+		return nil, category, err
+	}
+	qtext := fmt.Sprintf("SELECT knowledges.id, title, knowledges.updated_at, likes, knowledges.eyecatch_src FROM knowledges INNER JOIN categories ON categories.name = knowledges.category WHERE categories.id = ? AND is_published = true ORDER BY knowledges.%s DESC LIMIT ?, ?", sortKey)
+	rows, err := db.Query(qtext, categoryID, startIndex, length)
+	defer rows.Close()
+	var indexElems []structs.IndexElem
+	for rows.Next() {
+		var indexElem structs.IndexElem
+		err = rows.Scan(&indexElem.Knowledge.ID, &indexElem.Knowledge.Title, &indexElem.Knowledge.UpdatedAt, &indexElem.Knowledge.Likes, &indexElem.Knowledge.EyecatchSrc)
+		var selectedTags []structs.Tag
+		var tagsRows *sql.Rows
+		tagsRows, err = db.Query("SELECT tags.id, tags.name FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id WHERE knowledge_id = ?", indexElem.Knowledge.ID)
+		defer tagsRows.Close()
+		for tagsRows.Next() {
+			var selectedTag structs.Tag
+			err = tagsRows.Scan(&selectedTag.ID, &selectedTag.Name)
+			selectedTags = append(selectedTags, selectedTag)
+		}
+		indexElem.SelectedTags = selectedTags
+		indexElems = append(indexElems, indexElem)
+	}
+	return indexElems, category, err
 }
 
 //Get20SortedElemHitByQuery 指定されたクエリを含むコンテンツにヒットしたナレッジのなかで上位20を返す

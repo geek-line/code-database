@@ -1,18 +1,17 @@
 package handlers
 
 import (
+	"code-database/models"
+	"code-database/structs"
 	"html/template"
 	"log"
 	"math"
 	"net/http"
 	"strconv"
-
-	"code-database/models"
-	"code-database/structs"
 )
 
-//TagsHandler /tagsに対するハンドラ
-func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
+//CategoriesHandler /categoriesに対するハンドラ
+func CategoriesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
 		header.IsLogin = true
@@ -26,13 +25,13 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			return
 		}
 	}
-	NumOfTags, err := models.GetNumOfTags()
+	NumOfCategories, err := models.GetNumOfCategories()
 	if err != nil {
 		log.Print(err.Error())
 		StatusNotFoundHandler(w, r, auth)
 		return
 	}
-	pageNums := int(math.Ceil(NumOfTags / 50))
+	pageNums := int(math.Ceil(NumOfCategories / 20))
 	if pageNums < pageNum {
 		StatusNotFoundHandler(w, r, auth)
 		return
@@ -54,24 +53,24 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		StatusInternalServerError(w, r, auth)
 		return
 	}
-	tagElems, err := models.Get50TagElems((pageNum-1)*50, 50)
+	categoryElems, err := models.Get20CategoryElems((pageNum-1)*20, 20)
 	if err != nil {
 		log.Print(err.Error())
 		StatusInternalServerError(w, r, auth)
 		return
 	}
-	userTagsPage := structs.UserTagsPage{
-		Tags:       tagElems,
+	userCategoriesPage := structs.UserCategoriesPage{
+		Categories: categoryElems,
 		TagRanking: tagRanking,
 		PageNation: pageNation,
 	}
-	t := template.Must(template.ParseFiles("template/user_tags.html", "template/_header.html", "template/_footer.html"))
+	t := template.Must(template.ParseFiles("template/user_categories.html", "template/_header.html", "template/_footer.html"))
 	if err = t.Execute(w, struct {
-		Header   structs.Header
-		TagsPage structs.UserTagsPage
+		Header         structs.Header
+		CategoriesPage structs.UserCategoriesPage
 	}{
-		Header:   header,
-		TagsPage: userTagsPage,
+		Header:         header,
+		CategoriesPage: userCategoriesPage,
 	}); err != nil {
 		log.Print(err)
 		StatusInternalServerError(w, r, auth)

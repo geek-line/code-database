@@ -35,7 +35,7 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		StatusNotFoundHandler(w, r, auth)
 		return
 	}
-	pageNums := int(math.Ceil(NumOfTags / 50))
+	pageNums := int(math.Ceil(NumOfTags / 100))
 	if pageNums < pageNum {
 		StatusNotFoundHandler(w, r, auth)
 		return
@@ -57,7 +57,7 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		StatusInternalServerError(w, r, auth)
 		return
 	}
-	tags, err := models.Get50TagElems((pageNum-1)*50, 50)
+	tags, err := models.Get50TagElems((pageNum-1)*100, 100)
 	if err != nil {
 		log.Print(err.Error())
 		StatusInternalServerError(w, r, auth)

@@ -1,0 +1,67 @@
+html {
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+body {
+    background-color: #e8f5f7;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: static;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+footer {
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+.tagpage_title{
+    margin-top: 2rem;
+    font-size:2.28rem;
+}
+
+.tagpage_description{
+    border-top: solid 1px #ccc;
+    margin-bottom: 3rem;
+}
+
+.tag_table{
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+.tag_table:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.tag {
+    
+    font-size: 0.8em;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    background-color: #827b7b;
+    line-height: 1.45em;
+}
+
+
+.pagination{
+
+    margin-top:3rem;
+}
+
+
+
+

@@ -40,7 +40,7 @@
         <div class="col s12 m12 l9 offset-l3">
         <div class='content_header'>
             <div class="content_title">{{ .SelectedCategory.Name }}カテゴリ</div>
-            <div class="content_description">{{ .SelectedCategory.Name }}のカテゴリの記事を表示しています。</div>
+            <div class="content_description">{{ .SelectedCategory.Name }}カテゴリの記事を表示しています。</div>
             {{ $currentSort := .IndexPage.CurrentSort }}
             <select class="select-sort" onchange="location=this.value">
                 {{ if eq $currentSort "update" }}

@@ -7,7 +7,7 @@
     <meta name="description" content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！">
     <meta property="og:site_name" content="Code Database" />
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://code-database.com/knowledges" />
+    <meta property="og:url" content="https://code-database.com/search?{{.CurrentQuery}}" />
     <meta property="og:title" content="Code Database" />
     <meta property="og:description"
         content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！" />
@@ -84,7 +84,7 @@
                         <input 
                           id="search_input" 
                           placeholder="キーワードを入力" 
-                          onkeydown="go();" 
+                          
                           type='text' 
                           value="{{.QueryKeys}}"
                         >
@@ -165,6 +165,11 @@
                         {{ end }}
                     </tbody>
                 </table>
+                <div class="search_container">
+                    <h6>キーワード検索</h6>
+                    <input id="search_input" placeholder="キーワードを入力" type='text' value="{{.QueryKeys}}">
+                    <input id="search_submit" type='button' value="検索">
+                </div>
             </div>
         </div>
     </div>

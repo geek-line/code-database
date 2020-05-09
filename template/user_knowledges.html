@@ -6,7 +6,7 @@
     <meta name="description" content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！">
     <meta property="og:site_name" content="Code Database" />
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://code-database.com/knowledgess" />
+    <meta property="og:url" content="https://code-database.com/knowledges" />
     <meta property="og:title" content="Code Database" />
     <meta property="og:description" content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！"/>
     <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/code-database.com/images/code-database-ogp.png" />
@@ -74,20 +74,20 @@
                 <div class="search_container">
                     <h6>キーワード検索</h6>
                         <input 
-                          id="search_input" 
-                          placeholder="キーワードを入力" 
-                          onkeydown="go();" 
-                          type='text'
-                          value=""
+                        id="search_input" 
+                        placeholder="キーワードを入力" 
+                        
+                        type='text'
+                        value=""
                         >
                         <input 
-                          id="search_submit" 
-                          type='button' 
-                          value="検索"
+                        id="search_submit" 
+                        type='button' 
+                        value="検索"
                         >
                 </div>
             </div>
-           
+        
         </div>
         <div class="col s12 m12 l9">
 
@@ -101,9 +101,9 @@
                         <li class="date">最終更新日:<br />{{ .Knowledge.UpdatedAt }}</li>
                     </ul>
                     <div class="description">
-                       <div class="knowledge_title">
+                    <div class="knowledge_title">
                             <h1>{{ .Knowledge.Title }}</h1>
-                       </div>
+                    </div>
                         <ul class="tag_list hide-on-med-and-down">
                             {{ range .SelectedTags }}
                             <li><a href="/tags/{{.ID}}" class="tag">{{ .Name }}</a></li>
@@ -150,24 +150,23 @@
                         </tr>  
                         {{ end }}
                     </tbody>
-                  </table>
-                  <div class="search_container">
+                </table>
+                <div class="search_container">
                     <h6>キーワード検索</h6>
-                        <input 
-                          id="search_input" 
-                          placeholder="キーワードを入力" 
-                          onkeydown="go();" 
-                          type='text'
-                          value=""
-                        >
-                        <input 
-                          id="search_submit" 
-                          type='button' 
-                          value="検索"
-                        >
+                    <input 
+                        id="search_input" 
+                        placeholder="キーワードを入力" 
+                        
+                        type='text'
+                        value=""
+                    >
+                    <input 
+                        id="search_submit" 
+                        type='button' 
+                        value="検索"
+                    >
                 </div>
             </div>
-           
         </div>
     </div>
     {{ template "footer" }}

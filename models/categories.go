@@ -46,6 +46,15 @@ func Get20CategoryElems(startIndex int, length int) ([]structs.CategoryElem, err
 	return categoryElems, err
 }
 
+//GetCategoryFromKnowledgeID ナレッジのidからそのナレッジのカテゴリ情報を取得する
+func GetCategoryFromKnowledgeID(id int) (structs.Category, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	var category structs.Category
+	err = db.QueryRow("SELECT categories.id, name FROM categories INNER JOIN knowledges ON knowledges.category = categories.name WHERE knowledges.id = ?", id).Scan(&category.ID, &category.Name)
+	return category, err
+}
+
 //PostCategory categoriesを新規作成する
 func PostCategory(name string, eyecatchSrc string, summary string, createdAt time.Time, updatedAt time.Time) error {
 	db, err := sql.Open("mysql", config.SQLEnv)

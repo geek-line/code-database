@@ -37,7 +37,29 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
-        <div class="col s12 m12 l9 offset-l3">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/tags" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">タグ一覧</span></a>
+                        <meta itemprop="position" content="2" />
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/tags/{{.FilteredTag.ID}}" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{.FilteredTag.Name}}タグ</span></a>
+                        <meta itemprop="position" content="3" />
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m12 l9">
             <div class='content_header'>
                 <div class="content_title">"{{ .FilteredTag.Name }}"のタグがついている記事</div>
                 <div class="content_description">"{{ .FilteredTag.Name }}"のタグがついている記事を表示しています。</div>
@@ -98,16 +120,19 @@
             
 
             {{ range .IndexPage.IndexElems }}
-            <div class='col s12 m6 card_wrapper' onclick="DivFrameClick('/knowledges/{{.Knowledge.ID |html|}}');">
+            <div class='col s12 m6 card_wrapper'>
                 <div class="cp_card02">
-                
+                   
                     <div class ="photo">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <img class="photo1 responsive-img" src="{{ .Knowledge.EyecatchSrc }}">
                     </div>
                     <ul class="details">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <li class="date">最終更新日:<br />{{ .Knowledge.UpdatedAt }}</li>
                     </ul>
                     <div class="description">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <div  class="knowledge_title">
                             <h1>{{ .Knowledge.Title }}</h1>
                         </div>

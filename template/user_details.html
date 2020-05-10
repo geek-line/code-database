@@ -35,7 +35,6 @@
 <body>
     {{ template "header" .Header }}
     <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
-
     <div class="p_items_wrapper row">
         <div class= "p_action_item col s0 m0 l1 hide-on-med-and-down">
             <div class='display_like'>
@@ -48,7 +47,33 @@
                 <div class='sns-area'></div>
             </div>
         </div>
-
+        <nav class="col s12 m12 l8 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">カテゴリ一覧</span></a>
+                        <meta itemprop="position" content="2"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories/{{.SelectedCategory.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .SelectedCategory.Name }}カテゴリ</span></a>
+                            <meta itemprop="position" content="3"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges/{{.DetailPage.Knowledge.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .DetailPage.Knowledge.Title }}</span></a>
+                            <meta itemprop="position" content="4"/>
+                    </span>
+                </div>
+            </div>
+        </nav>
         <div class= "p_main_item col s12 m12 l8">
             <ul class="tags">   
                 {{ range .DetailPage.SelectedTags }}

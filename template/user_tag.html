@@ -120,16 +120,19 @@
             
 
             {{ range .IndexPage.IndexElems }}
-            <div class='col s12 m6 card_wrapper' onclick="DivFrameClick('/knowledges/{{.Knowledge.ID |html|}}');">
+            <div class='col s12 m6 card_wrapper'>
                 <div class="cp_card02">
-                
+                   
                     <div class ="photo">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <img class="photo1 responsive-img" src="{{ .Knowledge.EyecatchSrc }}">
                     </div>
                     <ul class="details">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <li class="date">最終更新日:<br />{{ .Knowledge.UpdatedAt }}</li>
                     </ul>
                     <div class="description">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <div  class="knowledge_title">
                             <h1>{{ .Knowledge.Title }}</h1>
                         </div>

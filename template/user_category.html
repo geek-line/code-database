@@ -37,7 +37,16 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
-        <div class="col s12 m12 l9 offset-l3">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
+                    <a href="/categories" class="breadcrumb cyan-text text-darken-4">カテゴリ一覧</a>
+                    <a href="/categories/{{.SelectedCategory.ID}}" class="breadcrumb cyan-text text-darken-4">{{ .SelectedCategory.Name }}カテゴリ</a>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m12 l9">
         <div class='content_header'>
             <div class="content_title">{{ .SelectedCategory.Name }}</div>
             <div class="content_description">{{ .SelectedCategory.Name }}の記事を表示しています。</div>

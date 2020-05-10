@@ -25,24 +25,50 @@ footer {
 
 .content_header {
     position: relative;
-    
-
 }
 
 .content_header .content_title {
     margin-top: 2rem;
-    font-size:2.28rem;
+    font-size: 2.28rem;
 }
 
-.content_header .content_description{
+.content_header .content_description {
     border-top: solid 1px #ccc;
     margin-bottom: 3rem;
+}
+
+nav.breadcrumb-countainer {
+    margin-top: 2rem;
+    height: auto;
+    line-height: .875rem;
+}
+
+.nav-wrapper {
+    height: 3rem;
+}
+
+.breadcrumb-countainer {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.breadcrumb {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.breadcrumb:before {
+    height: .875rem;
+    font-size: .875rem;
+    font-weight: bold;
+    margin: 0;
+    color: #827b7b;
 }
 
 select.select-sort {
     display: block;
     position: absolute;
-    top:0;
+    top: 0;
     right: 1.5rem;
     width: 8rem;
     border-style: solid;
@@ -51,31 +77,25 @@ select.select-sort {
 
 @media screen and (max-width: 480px) {
     .tag_container {
-        
         padding: 1rem 2rem;
         border-radius: 3px;
         background-color: white;
     }
     .content_header {
         position: static;
-        
-    
     }
-    
     .content_header .content_title {
         margin-top: 2rem;
-        font-size:2.28rem;
+        font-size: 2.28rem;
     }
-    
-    .content_header .content_description{
+    .content_header .content_description {
         border-top: solid 1px #ccc;
         margin-bottom: 1rem;
     }
-    
     select.select-sort {
         display: block;
         position: relative;
-        margin:0.75rem 0rem 0.75rem 0rem;
+        margin: 0.75rem 0rem 0.75rem 0rem;
         width: 100%;
         border-style: solid;
         border-color: #00acc1;
@@ -84,31 +104,25 @@ select.select-sort {
 
 @media screen and (min-width: 479px) and (max-width: 824px) {
     .tag_container {
-        
         padding: 1rem 2rem;
         border-radius: 3px;
         background-color: white;
     }
     .content_header {
         position: relative;
-        
-    
     }
-    
     .content_header .content_title {
         margin-top: 2rem;
-        font-size:2.28rem;
+        font-size: 2.28rem;
     }
-    
-    .content_header .content_description{
+    .content_header .content_description {
         border-top: solid 1px #ccc;
         margin-bottom: 3rem;
     }
-    
     select.select-sort {
         display: block;
         position: absolute;
-        top:0;
+        top: 0;
         right: 1.5rem;
         width: 8rem;
         border-style: solid;
@@ -118,32 +132,25 @@ select.select-sort {
 
 @media screen and (min-width: 825px) {
     .tag_container {
-       
         padding: 1rem 2rem;
         border-radius: 3px;
         background-color: white;
     }
-
     .content_header {
         position: relative;
-        
-    
     }
-    
     .content_header .content_title {
         margin-top: 2rem;
-        font-size:2.28rem;
+        font-size: 2.28rem;
     }
-    
-    .content_header .content_description{
+    .content_header .content_description {
         border-top: solid 1px #ccc;
         margin-bottom: 3rem;
     }
-    
     select.select-sort {
         display: block;
         position: absolute;
-        top:0;
+        top: 0;
         right: 1.5rem;
         width: 8rem;
         border-style: solid;
@@ -205,7 +212,6 @@ table>tbody>tr>td:nth-child(2) .tag {
 .row .col .card_wrapper {
     padding: 0rem 1.5rem 0rem 0rem;
 }
-
 
 @media screen and (max-width: 480px) {
     select.select-sort {

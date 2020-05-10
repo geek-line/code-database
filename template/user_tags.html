@@ -37,8 +37,15 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
-                
-        <div class="col s12 m12 l9 offset-l3">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
+                    <a href="/tags" class="breadcrumb cyan-text text-darken-4">タグ一覧</a>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m12 l9">
             <div class='tagpage_title'>タグ一覧</div>
             <div class='tagpage_description'>Code Databaseに登録されているタグの一覧です。気になるタグをクリックして記事を探してみましょう。</div>   
         </div>

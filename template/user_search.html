@@ -38,7 +38,15 @@
     {{ template "header" .Header }}
     <div class="display row">
         <div class="row">
-            <div class="col s12 m12 l9 offset-l3">
+            <nav class="col l3 transparent breadcrumb-countainer">
+                <div class="nav-wrapper">
+                    <div class="col s12">
+                        <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
+                        <a href="/search?{{.CurrentQuery}}" class="breadcrumb cyan-text text-darken-4">"{{ .QueryKeys }}"の検索結果</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="col s12 m12 l9">
                 <div class='content_header'>
                     <div class="content_title">"{{ .QueryKeys }}"の検索結果</div>
                     <div class="content_description">"{{ .QueryKeys }}"の検索結果を表示しています。</div>

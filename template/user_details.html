@@ -35,7 +35,6 @@
 <body>
     {{ template "header" .Header }}
     <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
-
     <div class="p_items_wrapper row">
         <div class= "p_action_item col s0 m0 l1 hide-on-med-and-down">
             <div class='display_like'>
@@ -48,7 +47,17 @@
                 <div class='sns-area'></div>
             </div>
         </div>
-
+        <nav class="col s12 m12 l8 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
+                    <a href="/categories" class="breadcrumb cyan-text text-darken-4">カテゴリ一覧</a>
+                    <a href="/categories/{{.SelectedCategory.ID}}"
+                        class="breadcrumb cyan-text text-darken-4">{{ .SelectedCategory.Name }}カテゴリ</a>
+                        <a href="/knowledges/{{.DetailPage.Knowledge.ID}}" class="breadcrumb cyan-text text-darken-4">{{ .DetailPage.Knowledge.Title }}</a>
+                </div>
+            </div>
+        </nav>
         <div class= "p_main_item col s12 m12 l8">
             <ul class="tags">   
                 {{ range .DetailPage.SelectedTags }}

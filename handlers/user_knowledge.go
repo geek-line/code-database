@@ -30,6 +30,11 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			StatusNotFoundHandler(w, r, auth)
 			return
 		}
+		selectedCategory, err := models.GetCategoryFromKnowledgeID(id)
+		if err != nil {
+			log.Print(err.Error())
+			StatusInternalServerError(w, r, auth)
+		}
 		userDetailPage.Knowledge, err = models.GetKnowledgePublished(id)
 		switch {
 		case err == sql.ErrNoRows:
@@ -48,11 +53,13 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			}
 			t := template.Must(template.ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
 			if err := t.Execute(w, struct {
-				Header     structs.Header
-				DetailPage structs.UserDetailPage
+				Header           structs.Header
+				SelectedCategory structs.Category
+				DetailPage       structs.UserDetailPage
 			}{
-				Header:     header,
-				DetailPage: userDetailPage,
+				Header:           header,
+				SelectedCategory: selectedCategory,
+				DetailPage:       userDetailPage,
 			}); err != nil {
 				log.Print(err.Error())
 				StatusInternalServerError(w, r, auth)

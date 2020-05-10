@@ -33,7 +33,18 @@
 <body>
     {{ template "header" .Header }}
     <div class="display row">
-        <div class="col s12 m12 l9 offset-l3">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m12 l9">
             <div class='content_header'>
                 <div class="content_title">記事一覧</div>
                 <div class="content_description">記事一覧ページでは全ての記事をみることができます。また更新日順、作成日順、いいね数順で並び替えることができます。</div>
@@ -76,7 +87,6 @@
                         <input 
                         id="search_input" 
                         placeholder="キーワードを入力" 
-                        
                         type='text'
                         value=""
                         >

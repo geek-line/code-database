@@ -33,7 +33,7 @@ func GetKnowledgePublished(id int) (structs.Knowledge, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
 	var knowledge structs.Knowledge
-	err = db.QueryRow("SELECT id, title, content, updated_at, likes, eyecatch_src FROM knowledges WHERE id = ? AND is_published = true", id).Scan(&knowledge.ID, &knowledge.Title, &knowledge.Content, &knowledge.UpdatedAt, &knowledge.Likes, &knowledge.EyecatchSrc)
+	err = db.QueryRow("SELECT id, title, content, updated_at, likes, eyecatch_src, category FROM knowledges WHERE id = ? AND is_published = true", id).Scan(&knowledge.ID, &knowledge.Title, &knowledge.Content, &knowledge.UpdatedAt, &knowledge.Likes, &knowledge.EyecatchSrc, &knowledge.Category)
 	return knowledge, err
 }
 

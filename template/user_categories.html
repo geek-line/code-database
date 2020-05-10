@@ -37,7 +37,24 @@
 <body>
     {{ template "header" .Header }}
     <div class="row">
-        <div class="col s12 m12 l9 offset-l3">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">カテゴリ一覧</span></a>
+                        <meta itemprop="position" content="2" />
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m12 l9">
         <div class='content_header'>
             <div class="content_title">カテゴリ一覧</div>
             <div class="content_description">Code Databaseに登録されているカテゴリの一覧です。気になるカテゴリをクリックして記事を探してみましょう。</div>

@@ -23,6 +23,34 @@ footer {
     bottom: 0;
 }
 
+nav.breadcrumb-countainer {
+    margin-top: 2rem;
+    height: auto;
+    line-height: .875rem;
+}
+
+.nav-wrapper {
+    height: 3rem;
+}
+
+.breadcrumb-countainer {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.breadcrumb {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.breadcrumb-wrapper {
+    height: auto;
+    font-size: .875rem;
+    font-weight: bold;
+    margin: 0;
+    color: #827b7b;
+}
+
 .tagpage_title {
     margin-top: 2rem;
     font-size: 2.28rem;

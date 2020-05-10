@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"time"
 
-	"../config"
-	"../structs"
+	"code-database/config"
+	"code-database/structs"
 )
 
 //GetAllTags 全てのtagを取得する
@@ -21,6 +21,30 @@ func GetAllTags() ([]structs.Tag, error) {
 		tags = append(tags, tag)
 	}
 	return tags, err
+}
+
+//Get50TagElems 被参照数でソートされた50個のtagを取得する(ユーザー表示用に)
+func Get50TagElems(startIndex int, length int) ([]structs.TagElem, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	rows, err := db.Query("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id INNER JOIN knowledges ON knowledges.id = knowledges_tags.knowledge_id WHERE is_published = true GROUP BY knowledges_tags.tag_id ORDER BY count DESC LIMIT ?, ?", startIndex, length)
+	defer rows.Close()
+	var tagElems []structs.TagElem
+	for rows.Next() {
+		var tagElem structs.TagElem
+		err = rows.Scan(&tagElem.Tag.ID, &tagElem.Tag.Name, &tagElem.CountOfRefferenced)
+		tagElems = append(tagElems, tagElem)
+	}
+	return tagElems, err
+}
+
+//GetNumOfTags 全てのタグの数を取得する
+func GetNumOfTags() (float64, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	var numOfTags float64
+	err = db.QueryRow("SELECT count(id) FROM tags").Scan(&numOfTags)
+	return numOfTags, err
 }
 
 //GetTagFromKnowledgeID 指定されたknowledgeのidからついているタグを取得する
@@ -69,7 +93,7 @@ func DeleteTag(id int) error {
 func GetTop10ReferencedTags() ([]structs.TagRankingElem, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)
 	defer db.Close()
-	rows, err := db.Query("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id GROUP BY knowledges_tags.tag_id ORDER BY count DESC LIMIT 10;")
+	rows, err := db.Query("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id INNER JOIN knowledges ON knowledges.id = knowledges_tags.knowledge_id WHERE is_published = true GROUP BY knowledges_tags.tag_id ORDER BY count DESC LIMIT 10;")
 	defer rows.Close()
 	var tags []structs.TagRankingElem
 	for rows.Next() {

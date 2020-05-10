@@ -52,6 +52,34 @@ h3 {
     z-index: 6;
 }
 
+nav.breadcrumb-countainer {
+    margin: 2rem 0 1rem;
+    height: auto;
+    line-height: 1rem;
+}
+
+.nav-wrapper {
+    height: 3rem;
+}
+
+.breadcrumb-countainer {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.breadcrumb {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.breadcrumb-wrapper {
+    height: auto;
+    font-size: .875rem;
+    font-weight: bold;
+    margin: 0;
+    color: #827b7b;
+}
+
 .p_items_wrapper .p_action_item {
     position: sticky;
     top: 35vh;
@@ -61,23 +89,26 @@ h3 {
 
 .p_items_wrapper .like-date-wrapper {
     display: flex;
-    flex-direction: row-reverse;
     align-items: flex-end;
     width: 100%;
 }
 
 .p_items_wrapper .like-date-wrapper .update_time, .p_items_wrapper .like-date-wrapper .display_like {
+    float: left;
+    vertical-align: bottom;
+}
+
+.update_time {
     float: right;
     vertical-align: bottom;
 }
 
 .display_like {
-    margin: 0px auto;
+    margin: 0px 1vw;
 }
 
 .display_like .like {
     display: block;
-    vertical-align: middle
 }
 
 .display_like .like .like-button {
@@ -94,16 +125,92 @@ h3 {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-
 .display_like .like .like-button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.twitter img {
+    width: 40px;
+    margin-top: 5vh;
+}
+
+.twitter img:hover {
     opacity: 0.5;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 426px) {
-    .display_like .like .like-button {
+@media screen and (min-width: 426px) {
+    .display_like {
+        margin: 0px 1vw;
+        left: 0;
+    }
+    .like-date-wrapper .display_like .like .like-button {
         width: 10rem;
-        border-radius: 10%;
+        border-radius: 5%;
         font-weight: bold;
+    }
+    /*吹き出し*/
+    .like-date-wrapper .balloon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+    }
+    .like-date-wrapper .balloon span.like_number {
+        color: #777;
+        font-size: 90%;
+        line-height: 2em;
+        padding: 5px 10px;
+        position: relative;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .like-date-wrapper .balloon span.like_number:after, .like-date-wrapper .balloon span.like_number:before {
+        right: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: "";
+        position: absolute;
+    }
+    .like-date-wrapper .balloon span .number:after {
+        border-right-color: #fff;
+        border-width: 4px;
+        margin-top: -4px
+    }
+    .like-date-wrapper .balloon span .number:before {
+        border-right-color: #ccc;
+        border-width: 5px;
+        margin-top: -5px;
+    }
+    .like-date-wrapper .twitter {
+        position: static;
+        width: 10rem;
+        border-radius: 5%;
+        font-weight: bold;
+        border: 2px solid #039be5;
+        display: flex;
+        height: 3.5rem;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+    .like-date-wrapper .twitter-btn a {
+        margin: auto auto;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+    .like-date-wrapper .twitter img {
+        width: 20%;
+        margin: auto 0 auto 2vw;
+        color: white;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .like-date-wrapper .twitter:hover {
+        opacity: 0.5;
+    }
+    .like-date-wrapper .tweet-text {
+        text-align: left;
+        vertical-align: middle;
+        margin: auto 0 auto auto;
+        width: 80%;
     }
 }
 
@@ -122,7 +229,6 @@ h3 {
 
 .display_like .balloon {
     display: block;
-    vertical-align: middle;
     margin-bottom: 5px;
     width: 100%;
 }
@@ -159,34 +265,9 @@ h3 {
     margin-left: -5px;
 }
 
-.twitter img{
-    width:40px;
-    margin-top:5vh;
-}
-.twitter img:hover{
-    opacity: 0.5;
-}
-
-
-.facebook img{
-    width:55px;
-    margin:1vh;
-}
-.facebook img:hover{
-    opacity: 0.5;
-}
-
-.line img{
-    width:60px;
-    margin-top:5vh;
-}
-.line img:hover{
-    opacity: 0.5;
-}
 .p_items_wrapper .p_main_item {
     padding: 1rem 1rem 1rem 1rem;
     position: relative;
-    margin: 2rem 0rem 0rem 0rem;
     background-color: white;
     border-radius: 10px;
 }
@@ -248,7 +329,7 @@ h3 {
     font-weight: bold;
 }
 
-.p_items_wrapper .p_main_item #content .scroll-table{
+.p_items_wrapper .p_main_item #content .scroll-table {
     /* max-width: 100%; */
     overflow: auto;
     white-space: nowrap;
@@ -296,23 +377,19 @@ h3 {
     overflow-y: auto;
 }
 
-/* .item_devise ul li ul li {
-    color: #827b7b;
-    font-size: 0.4em;
-    line-height: 21px;
-} */
-
-.item_devise > div > ul {
-    margin:0%;
+.item_devise>div>ul {
+    margin: 0%;
     overflow: scroll;
 }
-.item_devise > div > ul >li > ul > li > a.h3 {
+
+.item_devise>div>ul>li>ul>li>a.h3 {
     color: #827b7b;
     font-size: 12px;
     line-height: 21px;
     margin-left: 10%;
 }
-.item_devise > div > ul >li > .h2 {
+
+.item_devise>div>ul>li>.h2 {
     color: #827b7b;
     font-size: 16px;
     margin-top: 1rem;

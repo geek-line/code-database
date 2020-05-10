@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"../config"
-	"../routes"
+	"code-database/config"
+
 	"github.com/gorilla/sessions"
 )
 
@@ -14,5 +14,5 @@ func AdminLogoutHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie-name")
 	session.Values["authenticated"] = false
 	session.Save(r, w)
-	http.Redirect(w, r, routes.AdminLoginPath, http.StatusFound)
+	http.Redirect(w, r, config.AdminLoginPath, http.StatusFound)
 }

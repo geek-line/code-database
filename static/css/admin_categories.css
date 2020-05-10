@@ -1,0 +1,13 @@
+select {
+    display: inline-block;
+    width: 15rem;
+}
+
+input[type=text].tag-input {
+    padding-left: 1rem;
+    width: 15rem;
+}
+
+li.category-list{
+    margin-bottom: 3rem;
+}

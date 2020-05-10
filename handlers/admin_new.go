@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"../models"
-	"../structs"
+	"code-database/models"
+	"code-database/structs"
 )
 
 func newHeader(isLogin bool) structs.Header {
@@ -25,16 +25,23 @@ func AdminNewHandler(w http.ResponseWriter, r *http.Request) {
 		log.Print(err.Error())
 		return
 	}
+	categories, err := models.GetAllCategories()
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}
 	t := template.Must(template.ParseFiles("template/admin_new.html", "template/_header.html"))
 	header := newHeader(true)
 	if err := t.Execute(w, struct {
 		Header     structs.Header
 		Tags       []structs.Tag
 		Eyecatches []structs.Eyecatch
+		Categories []structs.Category
 	}{
 		Header:     header,
 		Tags:       tags,
 		Eyecatches: eyecatches,
+		Categories: categories,
 	}); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

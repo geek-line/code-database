@@ -1,7 +1,5 @@
 package structs
 
-import "time"
-
 //Knowledge knowledgesテーブルのエンティティ
 type Knowledge struct {
 	ID          int
@@ -11,14 +9,16 @@ type Knowledge struct {
 	UpdatedAt   string
 	Likes       int
 	EyecatchSrc string
+	IsPublished bool
+	Category    string
 }
 
 //Tag tagsテーブルのエンティティ
 type Tag struct {
 	ID        int
 	Name      string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CreatedAt string
+	UpdatedAt string
 }
 
 //KnowledgesTags knowledges_tagsテーブルのエンティティ
@@ -42,4 +42,14 @@ type AdminUser struct {
 	ID       int
 	Email    string
 	Password string
+}
+
+//Category categoriesテーブルのエンティティ
+type Category struct {
+	ID          int
+	Name        string
+	EyecatchSrc string
+	Summary     string
+	CreatedAt   string
+	UpdatedAt   string
 }

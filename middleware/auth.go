@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"net/http"
 
-	"../config"
-	"../routes"
+	"code-database/config"
+
 	"github.com/gorilla/sessions"
 )
 
@@ -23,7 +23,7 @@ func AdminAuth(fn func(w http.ResponseWriter, r *http.Request)) http.HandlerFunc
 			fn(w, r)
 			return
 		}
-		http.Redirect(w, r, routes.AdminLoginPath, http.StatusFound)
+		http.Redirect(w, r, config.AdminLoginPath, http.StatusFound)
 		return
 	}
 }

@@ -7,13 +7,14 @@ import (
 	"strings"
 	"time"
 
-	"../models"
-	"../routes"
+	"code-database/config"
+	"code-database/models"
 )
 
 //AdminSaveHandler /admin/saveに対するハンドラ
 func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.FormValue("title")
+	category := r.FormValue("category")
 	content := r.FormValue("content")
 	rowContent := r.FormValue("row_content")
 	eyecatchSrc := r.FormValue("eyecatch_src")
@@ -21,7 +22,7 @@ func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	case r.Method == "POST":
 		createdAt := time.Now()
 		updatedAt := time.Now()
-		knowledgeID, err := models.PostKnowledge(title, content, rowContent, createdAt, updatedAt, eyecatchSrc)
+		knowledgeID, err := models.PostKnowledge(title, content, rowContent, createdAt, updatedAt, eyecatchSrc, category)
 		if err != nil {
 			log.Print(err.Error())
 			return
@@ -40,7 +41,7 @@ func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	case r.Method == "PUT":
 		knowledgeID, _ := strconv.Atoi(r.FormValue("id"))
 		updatedAt := time.Now()
-		err := models.UpdateKnowledge(knowledgeID, title, content, rowContent, updatedAt, eyecatchSrc)
+		err := models.UpdateKnowledge(knowledgeID, title, content, rowContent, updatedAt, eyecatchSrc, category)
 		if err != nil {
 			log.Print(err.Error())
 			return
@@ -62,5 +63,5 @@ func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	default:
 		break
 	}
-	http.Redirect(w, r, routes.AdminKnowledgesPath, http.StatusFound)
+	http.Redirect(w, r, config.AdminKnowledgesPath, http.StatusFound)
 }

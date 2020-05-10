@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../routes"
+	"code-database/config"
+	"code-database/models"
 )
 
-const lenPathDelete = len(routes.AdminDeletePath)
+const lenPathDelete = len(config.AdminDeletePath)
 
 //AdminDeleteHandler admin/deleteに対するハンドラ
 func AdminDeleteHandler(w http.ResponseWriter, r *http.Request) {
@@ -27,5 +27,5 @@ func AdminDeleteHandler(w http.ResponseWriter, r *http.Request) {
 		log.Print(err.Error())
 		return
 	}
-	http.Redirect(w, r, routes.AdminKnowledgesPath, http.StatusFound)
+	http.Redirect(w, r, config.AdminKnowledgesPath, http.StatusFound)
 }

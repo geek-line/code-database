@@ -1,33 +1,33 @@
-const search_input = document.getElementById('search_input')
-const search_submit = document.getElementById('search_submit')
+const search_input = document.querySelectorAll('#search_input')
+const search_submit = document.querySelectorAll('#search_submit')
 
-
-function go(){
-    //EnterキーならSubmit
-    if(window.event.keyCode==13)document.getElementById("search_submit").click();
-}
-
-search_submit.addEventListener('click', function (e) {
-    if (!search_input.value) {
-        e.preventDefault()
-        return
-    }
-    const XHR = new XMLHttpRequest()
-    let queries = search_input.value.split(/\s+/g)
-    for (let i = 0; i < queries.length; i++){
-        queries[i] = encodeURIComponent(queries[i])
-    }
-    const qvalue = queries.join('+')
-    console.log(qvalue)
-    XHR.open('GET', '/search?q=' + qvalue)
-    XHR.onreadystatechange = function () {
-        if (XHR.readyState === 4) {
-            if (XHR.status === 200) {
-                location.href = '/search?q=' + qvalue
-            } else {
-                alert('キーワードを正常に送信できませんでした。')
+for (let i = 0; i < search_submit.length; i++){
+    search_input[i].addEventListener('keydown', function () {
+        if (window.event.keyCode == 13) {
+            search_submit[i].click();
+        }
+    })
+    search_submit[i].addEventListener('click', function (e) {
+        if (!search_input[i].value) {
+            e.preventDefault()
+            return
+        }
+        const XHR = new XMLHttpRequest()
+        let queries = search_input[i].value.split(/\s+/g)
+        for (let j = 0; j < queries.length; j++) {
+            queries[j] = encodeURIComponent(queries[j])
+        }
+        const qvalue = queries.join('+')
+        XHR.open('GET', '/search?q=' + qvalue)
+        XHR.onreadystatechange = function () {
+            if (XHR.readyState === 4) {
+                if (XHR.status === 200) {
+                    location.href = '/search?q=' + qvalue
+                } else {
+                    alert('キーワードを正常に送信できませんでした。')
+                }
             }
         }
-    }
-    XHR.send()
-})
+        XHR.send()
+    })
+}

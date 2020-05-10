@@ -25,65 +25,136 @@ footer {
 
 .content_header {
     position: relative;
-    padding: 2.5rem 0;
-    height: 8rem;
 }
 
 .content_header .content_title {
-    margin: 0rem;
+    margin-top: 2rem;
+    font-size: 2.28rem;
+}
+
+.content_header .content_description {
+    border-top: solid 1px #ccc;
+    margin-bottom: 3rem;
+}
+
+nav.breadcrumb-countainer {
+    margin-top: 2rem;
+    height: auto;
+    line-height: .875rem;
+}
+
+.nav-wrapper {
+    height: 3rem;
+}
+
+.breadcrumb-countainer {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.breadcrumb {
+    font-size: .875rem;
+    font-weight: bold;
+}
+
+.breadcrumb-wrapper {
+    height: auto;
+    font-size: .875rem;
+    font-weight: bold;
+    margin: 0;
+    color: #827b7b;
+}
+
+select.select-sort {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    width: 8rem;
+    border-style: solid;
+    border-color: #00acc1;
 }
 
 @media screen and (max-width: 480px) {
     .tag_container {
-        margin-top: 1rem;
         padding: 1rem 2rem;
         border-radius: 3px;
         background-color: white;
     }
-    h4.content_title {
-        font-size: 1.5rem;
-    }
     .content_header {
-        height: 4rem;
+        position: static;
+    }
+    .content_header .content_title {
+        margin-top: 2rem;
+        font-size: 2.28rem;
+    }
+    .content_header .content_description {
+        border-top: solid 1px #ccc;
+        margin-bottom: 1rem;
+    }
+    select.select-sort {
+        display: block;
+        position: relative;
+        margin: 0.75rem 0rem 0.75rem 0rem;
+        width: 100%;
+        border-style: solid;
+        border-color: #00acc1;
     }
 }
 
-@media screen and (max-width: 824px) {
+@media screen and (min-width: 479px) and (max-width: 824px) {
     .tag_container {
-        margin-top: 1rem;
         padding: 1rem 2rem;
         border-radius: 3px;
         background-color: white;
     }
-    h4.content_title {
-        font-size: 1.5rem;
-    }
     .content_header {
-        height: 4rem;
+        position: relative;
     }
-}
-
-@media screen and (max-width: 824px) {
-    .tag_container {
-        margin-top: 1rem;
-        padding: 1rem 2rem;
-        border-radius: 3px;
-        background-color: white;
+    .content_header .content_title {
+        margin-top: 2rem;
+        font-size: 2.28rem;
     }
-    h4.content_title {
-        font-size: 1.5rem;
+    .content_header .content_description {
+        border-top: solid 1px #ccc;
+        margin-bottom: 3rem;
     }
-    .content_header {
-        height: 4rem;
+    select.select-sort {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 1.5rem;
+        width: 8rem;
+        border-style: solid;
+        border-color: #00acc1;
     }
 }
 
 @media screen and (min-width: 825px) {
     .tag_container {
-        margin-top: 8rem;
         padding: 1rem 2rem;
         border-radius: 3px;
-        background-color: #fff;
+        background-color: white;
+    }
+    .content_header {
+        position: relative;
+    }
+    .content_header .content_title {
+        margin-top: 2rem;
+        font-size: 2.28rem;
+    }
+    .content_header .content_description {
+        border-top: solid 1px #ccc;
+        margin-bottom: 3rem;
+    }
+    select.select-sort {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 1.5rem;
+        width: 8rem;
+        border-style: solid;
+        border-color: #00acc1;
     }
 }
 
@@ -142,16 +213,6 @@ table>tbody>tr>td:nth-child(2) .tag {
     padding: 0rem 1.5rem 0rem 0rem;
 }
 
-select.select-sort {
-    display: block;
-    position: absolute;
-    bottom: 0.5rem;
-    right: 1.5rem;
-    width: 8rem;
-    border-style: solid;
-    border-color: #00acc1;
-}
-
 @media screen and (max-width: 480px) {
     select.select-sort {
         bottom: 0.5rem;
@@ -192,6 +253,62 @@ select.select-sort {
     opacity: 0.5;
 }
 
+.row .col .cp_card01 {
+    padding-left: 0px;
+    font-size: 1rem;
+    color: black;
+    line-height: 1.3rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 1.6%;
+    height: 16em;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+    border-radius: 3px;
+    background: #ffffff;
+    -webkit-box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.cp_card01 .photo {
+    position: relative;
+    float: left;
+    width: 40%;
+    height: 100%;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.cp_card01 .photo .photo1 {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+}
+
+.cp_card01 .description h1 {
+    font-size: 3rem;
+    margin: 1rem 0 1rem 0;
+}
+
+@media screen and (max-width: 480px) {
+    .cp_card01 .photo {
+        height: 50%;
+    }
+    .category-summary-small {
+        overflow-y: auto;
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+    .cp_card01 .description h1 {
+        font-size: 2rem;
+        margin: 1rem 0 1rem 0;
+    }
+}
+
 .cp_card02 {
     font-size: 14px;
     line-height: 1.45em;
@@ -205,16 +322,17 @@ select.select-sort {
     background: #ffffff;
     -webkit-box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    
 }
 
 .cp_card02 .link_box {
     position: absolute;
+    display: block;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .cp_card02:hover .details {
@@ -230,20 +348,13 @@ select.select-sort {
     left: inherit;
 }
 
-.cp_card02 .knowledge_link {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-}
-
 .cp_card02 .photo {
     position: relative;
     float: left;
     width: 40%;
     height: 100%;
+   
+   
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
@@ -268,7 +379,7 @@ select.select-sort {
     position: absolute;
     top: 0;
     left: -100%;
-    width: 52%;
+    width: 40%;
     height: 10rem;
     margin: 0;
     padding: 10px 15px;
@@ -283,49 +394,21 @@ select.select-sort {
     padding: 3px 0;
 }
 
-.cp_card02 .details li::before, .cp_card02 .details .tags ul::before {
-    font-family: FontAwesome;
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-.cp_card02 .details .tags ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.cp_card02 .details .tags ul::before {
-    content: '\f02b';
-}
-
-.cp_card02 .details .tags li {
-    display: inline-block;
-    margin-right: 3px;
-}
-
-.cp_card02 .details a {
-    color: inherit;
-}
-
-.cp_card02 .details a:hover {
-    color: #827b7b;
-}
 
 .cp_card02 .description {
     position: relative;
-    z-index: 0;
     float: left;
     width: 60%;
     height: 100%;
     padding: 10px;
     min-height: 10em;
     display: table;
+    z-index: 0;
 }
 
 .cp_card02 .description::before {
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 0;
     bottom: 0;
     /* left: -15px; */
@@ -336,21 +419,7 @@ select.select-sort {
     background: #ffffff;
 }
 
-.cp_card02 .description a {
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: #827b7b;
-}
 
-.cp_card02 .description a::after {
-    font-family: FontAwesome;
-    margin-left: -10px;
-    content: '\f061';
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    vertical-align: middle;
-    opacity: 0;
-}
 
 .cp_card02 .description .knowledge_title {
     position: absolute;
@@ -363,28 +432,15 @@ select.select-sort {
     display: table-cell;
     min-height: 20%;
     max-height: 45%;
+    z-index: 1;
 }
 
 .cp_card02 .description .knowledge_title h1 {
     font-size: 1.2rem;
     margin: 0 0 0px 0;
+    z-index: 2;
 }
 
-.cp_card02 .description p {
-    position: relative;
-    margin: 0;
-    top: 2%;
-}
-
-.cp_card02 .description p::after {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    content: '';
-    background: #ff5722;
-}
 
 .cp_card02 .description .tag_list {
     position: absolute;
@@ -395,6 +451,7 @@ select.select-sort {
     flex-wrap: wrap;
     display: flex;
     max-height: 40%;
+    z-index: 4;
 }
 
 .cp_card02 .description ul li {
@@ -429,6 +486,7 @@ select.select-sort {
     text-decoration: none;
     color: #827b7b;
     height: 20%;
+    z-index: 1;
 }
 
 @media screen and (max-width: 480px) {

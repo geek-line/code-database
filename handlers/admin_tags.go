@@ -7,9 +7,9 @@ import (
 	"text/template"
 	"time"
 
-	"../models"
-	"../routes"
-	"../structs"
+	"code-database/config"
+	"code-database/models"
+	"code-database/structs"
 )
 
 //AdminTagsHandler /admin/tagsに対するハンドラ
@@ -41,7 +41,7 @@ func AdminTagsHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		http.Redirect(w, r, routes.AdminTagsPath, http.StatusFound)
+		http.Redirect(w, r, config.AdminTagsPath, http.StatusFound)
 	case r.Method == "PUT":
 		id, _ := strconv.Atoi(r.FormValue("id"))
 		name := r.FormValue("name")

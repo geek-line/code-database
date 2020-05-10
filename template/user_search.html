@@ -7,7 +7,7 @@
     <meta name="description" content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！">
     <meta property="og:site_name" content="Code Database" />
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://code-database.com/knowledges/" />
+    <meta property="og:url" content="https://code-database.com/search?{{.CurrentQuery}}" />
     <meta property="og:title" content="Code Database" />
     <meta property="og:description"
         content="記事一覧ページ | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！" />
@@ -15,7 +15,7 @@
         content="https://s3-ap-northeast-1.amazonaws.com/code-database.com/images/code-database-ogp.png" />
     <meta name="robots" content="index, follow">
     <link rel='icon' href='/static/public/favicon.ico'>
-    <title>Code Database</title>
+    <title>{{ .QueryKeys }}の検索結果 | Code Database</title>
     <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
     <link rel='stylesheet' href='/static/css/user_knowledges.css/'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,6 +37,49 @@
 <body>
     {{ template "header" .Header }}
     <div class="display row">
+        <div class="row">
+            <nav class="col l3 transparent breadcrumb-countainer">
+                <div class="nav-wrapper">
+                    <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                    itemprop="name">トップ</span></a>
+                            <meta itemprop="position" content="1" />
+                        </span>
+                        >
+                        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" href="/search?{{.CurrentQuery}}" class="breadcrumb cyan-text text-darken-4"><span
+                                    itemprop="name">"{{ .QueryKeys }}"の検索結果</span></a>
+                            <meta itemprop="position" content="2" />
+                        </span>
+                    </div>
+                </div>
+            </nav>
+            <div class="col s12 m12 l9">
+                <div class='content_header'>
+                    <div class="content_title">"{{ .QueryKeys }}"の検索結果</div>
+                    <div class="content_description">"{{ .QueryKeys }}"の検索結果を表示しています。</div>
+                    {{ $currentSort := .IndexPage.CurrentSort }}
+                    {{ $currentQuery := .CurrentQuery }}
+                    {{ if .IsHit }}
+                    <select class="select-sort" onchange="location=this.value">
+                        {{ if eq $currentSort "update" }}
+                        <option value="/search?{{$currentQuery}}&sort=create">作成日順</option>
+                        <option value="/search?{{$currentQuery}}&sort=like">いいね数順</option>
+                        <option selected value="/search?{{$currentQuery}}&sort=update">更新日順</option>
+                        {{ else if eq $currentSort "like" }}
+                        <option value="/search?{{$currentQuery}}&sort=create">作成日順</option>
+                        <option selected value="/search?{{$currentQuery}}&sort=like">いいね数順</option>
+                        <option value="/search?{{$currentQuery}}&sort=update">更新日順</option>
+                        {{ else }}
+                        <option selected value="/search?{{$currentQuery}}&sort=create">作成日順</option>
+                        <option value="/search?{{$currentQuery}}&sort=like">いいね数順</option>
+                        <option value="/search?{{$currentQuery}}&sort=update">更新日順</option>
+                        {{ end }}
+                    </select>
+                    {{ end }}
+                </div>
+            </div>
         <div class="col s0 m0 l3 hide-on-med-and-down">
             <div class="tag_container">
                 <table class="tag_table striped ">
@@ -58,7 +101,7 @@
                         <input 
                           id="search_input" 
                           placeholder="キーワードを入力" 
-                          onkeydown="go();" 
+                          
                           type='text' 
                           value="{{.QueryKeys}}"
                         >
@@ -71,37 +114,21 @@
             </div>
         </div>
         <div class="col s12 m12 l9">
-            <div class='content_header'>
-                <h4 class="content_title">"{{ .QueryKeys }}"の検索結果</h4>
-                {{ $currentSort := .IndexPage.CurrentSort }}
-                {{ if .IsHit }}
-                <select class="select-sort" onchange="location=this.value">
-                    {{ if eq $currentSort "update" }}
-                    <option value="/knowledges/search?sort=create">作成日順</option>
-                    <option value="/knowledges/search?sort=like">いいね数順</option>
-                    <option selected value="/knowledges/search?sort=update">更新日順</option>
-                    {{ else if eq $currentSort "like" }}
-                    <option value="/knowledges/search?sort=create">作成日順</option>
-                    <option selected value="/knowledges/search?sort=like">いいね数順</option>
-                    <option value="/knowledges/search?sort=update">更新日順</option>
-                    {{ else }}
-                    <option selected value="/knowledges/search?sort=create">作成日順</option>
-                    <option value="/knowledges/search?sort=like">いいね数順</option>
-                    <option value="/knowledges/search?sort=update">更新日順</option>
-                    {{ end }}
-                </select>
-                {{ end }}
-            </div>
+
             {{ range .IndexPage.IndexElems }}
-            <div class="col s12 m6 card_wrapper" onclick="DivFrameClick('/knowledge/{{.Knowledge.ID |html|}}');">
+            <div class="col s12 m6 card_wrapper">
                 <div class="cp_card02">
+                   
                     <div class="photo">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <img class="photo1 responsive-img" src="{{ .Knowledge.EyecatchSrc }}">
                     </div>
                     <ul class="details">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <li class="date">最終更新日:<br />{{ .Knowledge.UpdatedAt }}</li>
                     </ul>
                     <div class="description">
+                        <a class="link_box" href="/knowledges/{{.Knowledge.ID |html|}}"></a>
                         <div class="knowledge_title">
                             <h1>{{ .Knowledge.Title }}</h1>
                         </div>
@@ -119,22 +146,22 @@
             <ul class="pagination col s12 center">
                 {{ if ne .IndexPage.PageNation.PageNum 1 }}
                 <li class="waves-effect">
-                    <a href="/knowledges/search?page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}"><i
+                    <a onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}'"><i
                             class="material-icons">chevron_left</i></a>
                 </li>
                 {{ end }}
                     {{ range .IndexPage.PageNation.PageElems }}
                         {{ if .IsSelect }}
-                        <li class="active cyan darken-1"><a href="">{{ .PageNum }}</a></li>
+                        <li class="active cyan darken-1"><a>{{ .PageNum }}</a></li>
                         {{ else }}
                         <li class="waves-effect grey lighten-1"><a class="white-text"
-                                href="/knowledges/search?page={{.PageNum}}&sort={{$currentSort}}">{{ .PageNum }}</a></li>
+                                onclick="location='/search?{{$currentQuery}}&page={{.PageNum}}&sort={{$currentSort}}'">{{ .PageNum }}</a></li>
                         {{ end }}
                     {{ end }}
                     {{ $length := len .IndexPage.PageNation.PageElems }}
                     {{ if ne .IndexPage.PageNation.PageNum $length  }}
                     <li class="waves-effect">
-                        <a href="/knowledges/search?page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}"><i
+                        <a onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}'"><i
                                 class="material-icons">chevron_right</i></a>
                     </li>
                     {{ end }}
@@ -159,6 +186,11 @@
                         {{ end }}
                     </tbody>
                 </table>
+                <div class="search_container">
+                    <h6>キーワード検索</h6>
+                    <input id="search_input" placeholder="キーワードを入力" type='text' value="{{.QueryKeys}}">
+                    <input id="search_submit" type='button' value="検索">
+                </div>
             </div>
         </div>
     </div>

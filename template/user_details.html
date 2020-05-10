@@ -14,7 +14,7 @@
         content="{{ .DetailPage.Knowledge.EyecatchSrc }}" />
     <meta name="robots" content="index, follow">
     <link rel='icon' href='/static/public/favicon.ico'>
-    <title>Code Database</title>
+    <title>{{ .DetailPage.Knowledge.Title }} | Code Database</title>
     <link rel='stylesheet' href='/node_modules/tinymce/skins/ui/oxide/content.min.css'>
     <link rel='stylesheet' href='/node_modules/tinymce/skins/content/default/content.min.css'>
     <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
@@ -35,11 +35,6 @@
 <body>
     {{ template "header" .Header }}
     <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
-  
-
-
-
-
     <div class="p_items_wrapper row">
         <div class= "p_action_item col s0 m0 l1 hide-on-med-and-down">
             <div class='display_like'>
@@ -49,9 +44,36 @@
                     <button class="like-button" id ="like_button_baloon" type='button' value="like" onclick="sendLikeFromBaloon()">LIKE</button>
                 </form>
                 <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
-                <div id='sns-area'></div>
+                <div class='sns-area'></div>
             </div>
         </div>
+        <nav class="col s12 m12 l8 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">カテゴリ一覧</span></a>
+                        <meta itemprop="position" content="2"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories/{{.SelectedCategory.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .SelectedCategory.Name }}カテゴリ</span></a>
+                            <meta itemprop="position" content="3"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges/{{.DetailPage.Knowledge.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .DetailPage.Knowledge.Title }}</span></a>
+                            <meta itemprop="position" content="4"/>
+                    </span>
+                </div>
+            </div>
+        </nav>
         <div class= "p_main_item col s12 m12 l8">
             <ul class="tags">   
                 {{ range .DetailPage.SelectedTags }}
@@ -60,8 +82,7 @@
             </ul>
             <div class= "title" id ='title'>{{ .DetailPage.Knowledge.Title }}</div>
             <div class='like-date-wrapper'>
-                <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
-                <div class='display_like hide-on-large-only'>
+                <div class='display_like'>
                     <div class='balloon'><span id='likes_inline' class='like_number'>{{ .DetailPage.Knowledge.Likes }}</span></div>
                     <form id="like_form_inline" class="like">
                         <input id="knowledge_id" type='hidden' name="id" value="{{ .DetailPage.Knowledge.ID }}">
@@ -69,13 +90,32 @@
                     </form>
                     <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
                 </div>
-                
+
+                <div class='sns-area'></div>
+              
+              
             </div>
+            <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
             <br>
             <hr>
+
             <div id="content" class="content"></div>
             <p></p>
+            <div class='like-date-wrapper'>
+               
             
+                <div class='display_like'>
+                  
+                    <div class='balloon'><span id='likes_inline' class='like_number'>{{ .DetailPage.Knowledge.Likes }}</span></div>
+                    <form id="like_form_inline" class="like">
+                        <input id="knowledge_id" type='hidden' name="id" value="{{ .DetailPage.Knowledge.ID }}">
+                        <button class="like-button" id="like_button_inline" type='button' value="like" onclick="sendLikeFromInline()">LIKE</button>
+                    </form>
+                    <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
+                </div>
+
+                <div class='sns-area'></div>
+            </div>
         </div>
     
         <div class= "p_table_items col s0 m0 l3 hide-on-med-and-down">

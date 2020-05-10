@@ -72,8 +72,8 @@ nav.breadcrumb-countainer {
     font-weight: bold;
 }
 
-.breadcrumb:before {
-    height: .875rem;
+.breadcrumb-wrapper {
+    height: auto;
     font-size: .875rem;
     font-weight: bold;
     margin: 0;

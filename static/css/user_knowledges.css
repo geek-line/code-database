@@ -57,7 +57,8 @@ nav.breadcrumb-countainer {
     font-weight: bold;
 }
 
-.breadcrumb:before {
+.breadcrumb-wrapper {
+    height: auto;
     height: .875rem;
     font-size: .875rem;
     font-weight: bold;

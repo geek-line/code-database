@@ -49,12 +49,28 @@
         </div>
         <nav class="col s12 m12 l8 transparent breadcrumb-countainer">
             <div class="nav-wrapper">
-                <div class="col s12">
-                    <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
-                    <a href="/categories" class="breadcrumb cyan-text text-darken-4">カテゴリ一覧</a>
-                    <a href="/categories/{{.SelectedCategory.ID}}"
-                        class="breadcrumb cyan-text text-darken-4">{{ .SelectedCategory.Name }}カテゴリ</a>
-                        <a href="/knowledges/{{.DetailPage.Knowledge.ID}}" class="breadcrumb cyan-text text-darken-4">{{ .DetailPage.Knowledge.Title }}</a>
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">カテゴリ一覧</span></a>
+                        <meta itemprop="position" content="2"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/categories/{{.SelectedCategory.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .SelectedCategory.Name }}カテゴリ</span></a>
+                            <meta itemprop="position" content="3"/>
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges/{{.DetailPage.Knowledge.ID}}"
+                            class="breadcrumb cyan-text text-darken-4"><span itemprop="name">{{ .DetailPage.Knowledge.Title }}</span></a>
+                            <meta itemprop="position" content="4"/>
+                    </span>
                 </div>
             </div>
         </nav>

@@ -35,8 +35,12 @@
     <div class="display row">
         <nav class="col l3 transparent breadcrumb-countainer">
             <div class="nav-wrapper">
-                <div class="col s12">
-                    <a href="/knowledges" class="breadcrumb cyan-text text-darken-4">トップ</a>
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
                 </div>
             </div>
         </nav>

@@ -28,7 +28,7 @@ h2 {
     font-weight: 700;
     padding: 1.0em 1.0em;/*文字の上下 左右の余白*/
     color: #494949;/*文字色*/
-    background: #f4f4f4;/*背景色*/
+    background: transparent;/*背景透明に*/
     border-left: solid 5px #7db4e6;/*左線*/
    
 }
@@ -52,8 +52,6 @@ h3 {
     padding-left: 25px;
 }
 
-
-  
 h3:before {
     font-size: 1.25rem;
     font-weight: 700;

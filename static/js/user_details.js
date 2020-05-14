@@ -5,10 +5,8 @@ const like_button_baloon = document.getElementById('like_button_baloon')
 const likes_inline = document.querySelectorAll('#likes_inline')
 const likes_baloon = document.getElementById('likes_baloon')
 const knowledge_id = document.getElementById('knowledge_id').value
-// SNSボタンを追加するエリア
 let snsArea = document.querySelectorAll('.sns-area');
 let title = document.getElementById('title').innerHTML;
-// シェア時に使用する値
 let shareUrl = location.href; // 現在のページURLを使用する場合 location.href;
 let shareText = title+'\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者'; // 現在のページタイトルを使用する場合 document.title;
 
@@ -32,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+
     content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
     var p_table_items = document.getElementById("p_table_items"); // 目次を追加する先(table of contents)
     var p_table_items_devise = document.getElementById("p_table_items_devise"); // 目次を追加する先(table of contents)
@@ -84,8 +83,44 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems,{draggable:true,edge:'right'});
     smoothScroll();
+    code_pen_init();
 }); 
  
+
+
+function code_pen_init() {
+    let code_pen = document.getElementsByTagName('a')
+    for (var i = 0; i < code_pen.length; i++) {
+      if (code_pen[i].href.indexOf('#')<0){
+      code_pen[i].target = "_blank";
+      }
+      const pattern = /https:\/\/codepen.io\/(.*?)/;
+      if (code_pen[i].href.match(pattern)) {
+      
+        const url = code_pen[i].href.match('https:\\/\\/codepen.io\\/(.*?)\\/', 'g');
+        let codePen = document.createElement('p');
+        codePen.className = "codepen";
+        codePen.setAttribute('data-height', "395");
+        codePen.setAttribute('style', 'height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em ;margin-top: 4rem;')
+        const userName = code_pen[i].href.match('https:\\/\\/codepen.io\\/(.*?)\\/', 'g').map((s)=>s.slice(19).slice(0,-1))[0];
+        const title = code_pen[i].href.slice(19 + userName.length + 5);
+        codePen.setAttribute('data-slug-hash', title);
+        codePen.setAttribute('data-user', userName);
+        codePen.setAttribute('data-default-tab', 'js,result');
+        let a = document.createElement('a')
+        a.href = code_pen[i].href;
+        codePen.appendChild(a);
+        code_pen[i].parentNode.replaceChild(codePen, code_pen[i]);
+        const script = document.createElement('script');
+        script.async = true;
+        script.type  = 'text/javascript';
+        script.src   = 'https://production-assets.codepen.io/assets/embed/ei.js';
+        document.head.appendChild(script);
+       
+      }
+    }
+  }
+
 // シェアボタンを生成する関数
 function generate_share_button(area, url, text,title) {
     // シェアボタンの作成

@@ -36,21 +36,12 @@ h2 {
 h3 {
     position: relative;
     padding: 0.25em 0;
-  }
-  h3:after {
-    content: "";
-    display: block;
-    height: 4px;
-    background: -webkit-linear-gradient(to right,rgb(119, 195, 223), transparent);
-    background: linear-gradient(to right, rgb(119, 195, 223), transparent);
-  }
-
-h3 {
     font-size: 1.25rem;
     font-weight: 700;
-    position: relative;
     padding-left: 25px;
-}
+  }
+
+
 
 h3:before {
     font-size: 1.25rem;
@@ -92,10 +83,20 @@ h3:after {
 }
 
 .menu {
-    position: fixed;
-    top: 2.5%;
+    position: sticky;
+    margin-top: 0 0 0 20vh;
+    top: 0.25vh;
+    will-change: transform;
+    padding: 1rem;
+ 
     right: 1vw;
     z-index: 6;
+}
+
+
+
+.menu:hover {
+    cursor: pointer;
 }
 
 nav.breadcrumb-countainer {
@@ -400,6 +401,11 @@ nav.breadcrumb-countainer {
     color: #827b7b;
 }
 
+.p_items_wrapper .p_table_items .item ul li a:hover {
+    color: #827b7b;
+    opacity: 0.5;
+   
+}
 .p_items_wrapper .p_main_item .tags li a {
     font-size: 0.8em;
     margin-left: 0.5rem;
@@ -417,6 +423,9 @@ nav.breadcrumb-countainer {
     margin-top: 20%;
     border-radius: 5px;
 }
+
+
+
 
 .item_devise {
     border-radius: 10px;

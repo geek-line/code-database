@@ -29,12 +29,12 @@
     gtag('js', new Date());
     gtag('config', 'UA-164168719-1');
     </script>
-
+    <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 </head>
 
 <body>
     {{ template "header" .Header }}
-    <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
+  
     <div class="p_items_wrapper row">
         <div class= "p_action_item col s0 m0 l1 hide-on-med-and-down">
             <div class='display_like'>
@@ -75,6 +75,7 @@
             </div>
         </nav>
         <div class= "p_main_item col s12 m12 l8">
+            <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
             <ul class="tags">   
                 {{ range .DetailPage.SelectedTags }}
                 <li><a href='/tags/{{.ID}}'>{{ .Name }}</a></li>
@@ -95,6 +96,7 @@
               
               
             </div>
+             
             <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
             <br>
             <hr>

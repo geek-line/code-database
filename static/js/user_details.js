@@ -5,10 +5,8 @@ const like_button_baloon = document.getElementById('like_button_baloon')
 const likes_inline = document.querySelectorAll('#likes_inline')
 const likes_baloon = document.getElementById('likes_baloon')
 const knowledge_id = document.getElementById('knowledge_id').value
-// SNSボタンを追加するエリア
 let snsArea = document.querySelectorAll('.sns-area');
 let title = document.getElementById('title').innerHTML;
-// シェア時に使用する値
 let shareUrl = location.href; // 現在のページURLを使用する場合 location.href;
 let shareText = title+'\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者'; // 現在のページタイトルを使用する場合 document.title;
 
@@ -32,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+
     content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
     var p_table_items = document.getElementById("p_table_items"); // 目次を追加する先(table of contents)
     var p_table_items_devise = document.getElementById("p_table_items_devise"); // 目次を追加する先(table of contents)
@@ -84,8 +83,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems,{draggable:true,edge:'right'});
     smoothScroll();
+    code_pen_init();
 }); 
  
+function code_pen_init(){
+    let code_pen = document.getElementsByTagName('a')
+    let code_pen_link= [];
+    for(let i =0;i<code_pen.length;i++){
+        if(code_pen[i].text=="codepen"){
+            code_pen_link[i] = code_pen[i].getAttribute("href"); 
+            code_pen[i].innerHTML = `<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,js,css,result" data-user="codedatabase" data-slug-hash="NWqpdOv" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="id_41">
+            <span>See the Pen <a href=`+code_pen_link[i]+`>
+            id_41</a> by Code Database team
+            on <a href="https://codepen.io">CodePen</a>.</span>
+            </p>`
+        }
+    }
+}
 // シェアボタンを生成する関数
 function generate_share_button(area, url, text,title) {
     // シェアボタンの作成

@@ -86,20 +86,41 @@ document.addEventListener('DOMContentLoaded', function () {
     code_pen_init();
 }); 
  
-function code_pen_init(){
+
+
+function code_pen_init() {
     let code_pen = document.getElementsByTagName('a')
-    let code_pen_link= [];
-    for(let i =0;i<code_pen.length;i++){
-        if(code_pen[i].text=="codepen"){
-            code_pen_link[i] = code_pen[i].getAttribute("href"); 
-            code_pen[i].innerHTML = `<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,js,css,result" data-user="codedatabase" data-slug-hash="NWqpdOv" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="id_41">
-            <span>See the Pen <a href=`+code_pen_link[i]+`>
-            id_41</a> by Code Database team
-            on <a href="https://codepen.io">CodePen</a>.</span>
-            </p>`
-        }
+    for (var i = 0; i < code_pen.length; i++) {
+      if (code_pen[i].href.indexOf('#')<0){
+      code_pen[i].target = "_blank";
+      }
+      const pattern = /https:\/\/codepen.io\/(.*?)/;
+      if (code_pen[i].href.match(pattern)) {
+      
+        const url = code_pen[i].href.match('https:\\/\\/codepen.io\\/(.*?)\\/', 'g');
+        let codePen = document.createElement('p');
+        codePen.className = "codepen";
+        codePen.setAttribute('data-height', "395");
+        codePen.setAttribute('style', 'height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em ;margin-top: 4rem;')
+        const userName = code_pen[i].href.match('https:\\/\\/codepen.io\\/(.*?)\\/', 'g').map((s)=>s.slice(19).slice(0,-1))[0];
+        const title = code_pen[i].href.slice(19 + userName.length + 5);
+        codePen.setAttribute('data-slug-hash', title);
+        codePen.setAttribute('data-user', userName);
+        codePen.setAttribute('data-default-tab', 'js,result');
+        let a = document.createElement('a')
+        a.href = code_pen[i].href;
+        codePen.appendChild(a);
+        code_pen[i].parentNode.replaceChild(codePen, code_pen[i]);
+        const script = document.createElement('script');
+        script.async = true;
+        script.type  = 'text/javascript';
+        script.src   = 'https://production-assets.codepen.io/assets/embed/ei.js';
+        document.head.appendChild(script);
+       
+      }
     }
-}
+  }
+
 // シェアボタンを生成する関数
 function generate_share_button(area, url, text,title) {
     // シェアボタンの作成

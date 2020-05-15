@@ -30,51 +30,39 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-
     content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
-    var p_table_items = document.getElementById("p_table_items"); // 目次を追加する先(table of contents)
-    var p_table_items_devise = document.getElementById("p_table_items_devise"); // 目次を追加する先(table of contents)
-    var div = document.createElement('div'); // 作成する目次のコンテナ要素
-    // .entry-content配下のh2、h3要素を全て取得する
+    var p_table_items = document.getElementById("p_table_items"); 
+    var p_table_items_devise = document.getElementById("p_table_items_devise");
+    var div = document.createElement('div'); 
     var matches = document.querySelectorAll('.content h2,.content h3');
-    // .entry-content配下のh2、h3要素を全て取得する
-    // 取得した見出しタグ要素の数だけ以下の操作を繰り返す
     matches.forEach(function (value, i) {
-        // 見出しタグ要素のidを取得し空の場合は内容をidにする
         var id = value.id;
         if (id === '') {
             id = value.textContent;
             value.id = id;
         }
-        // 要素がh2タグの場合
         if (value.tagName === 'H2') {
             var ul = document.createElement('ul');
             var li = document.createElement('li');
             var a = document.createElement('a');
-            // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
             a.innerHTML = value.textContent;
             a.href = '#' + value.id;
             a.className = "h2 sidenav-close"
             li.appendChild(a)
             ul.appendChild(li);
-            // コンテナ要素である<div>の中に要素を追加する
             div.appendChild(ul);
         }
-        // 要素がh3タグの場合
         if (value.tagName === 'H3') {
             var ul = document.createElement('ul');
             var li = document.createElement('li');
             var a = document.createElement('a');
-            // コンテナ要素である<div>の中から最後の<li>を取得する
             var lastUl = div.lastElementChild;
             var lastLi = lastUl.lastElementChild;
-            // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
             a.innerHTML = '&nbsp; ->' + value.textContent;
             a.href = '#' + value.id;
             a.className = "h3 sidenav-close"
             li.appendChild(a)
             ul.appendChild(li);
-            // 最後の<li>の中に要素を追加する
             lastLi.appendChild(ul);
         }
     });
@@ -116,12 +104,10 @@ function code_pen_init() {
         script.type  = 'text/javascript';
         script.src   = 'https://production-assets.codepen.io/assets/embed/ei.js';
         document.head.appendChild(script);
-       
       }
     }
-  }
-
-  function updateCodeSnippet() {
+}
+function updateCodeSnippet() {
     let attachments =  document.getElementsByTagName("pre");
     for (let attachment of attachments) {
         let pre = document.createElement('pre');
@@ -129,30 +115,19 @@ function code_pen_init() {
         pre.innerHTML = attachment.innerHTML; 
         if(attachment.textContent.match(/(^タイトル:)+.*/)){
           let title = attachment.textContent.match(/(^タイトル:)+.*/)[0];
-          
-          console.log(title)
           pre.textContent = pre.textContent.replace(title,"")
           attachment.innerHTML = "<span class='code_title'>"+ title.substr(5)+"</span>" + pre.innerHTML
         } 
-       
     }
 }
-
-
-// シェアボタンを生成する関数
 function generate_share_button(area, url, text,title) {
-    // シェアボタンの作成
     let twBtn = document.createElement('div');
     twBtn.className = 'twitter-btn';
-    // 各シェアボタンのリンク先
     let twHref = 'https://twitter.com/share?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-    // シェアボタンにリンクを追加
     let twLink = '<a href="' + twHref + '" ' + 'target="_blank"'+ ' class = "twitter"><img src="/static/public/twitter.png" ><div class="tweet-text hide-on-small-only">Tweet</div></a>';
     twBtn.innerHTML = twLink;
-    // シェアボタンを表示
     area.appendChild(twBtn);
 }
-
 const smoothScroll = () =>{
     let links = document.querySelectorAll('.item_devise a[href^="#"]');
     const speed = 3000;          // スクロールスピード   
@@ -176,8 +151,7 @@ const smoothScroll = () =>{
         }
       });
     }
-}
-  
+} 
 const doScroll = (minY,nowY,targetY,tolerance,interval) =>{
     let toY ;
     if( targetY < nowY ){
@@ -192,7 +166,6 @@ const doScroll = (minY,nowY,targetY,tolerance,interval) =>{
     return false;
     }
 }
-
 function sendLikeFromBaloon() {
     let values = []
     let value = ''

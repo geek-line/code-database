@@ -137,6 +137,7 @@ pre[class*=language-] {
 
 .content pre .code_displey {
     margin: 0;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
 .copy_clipboard {
@@ -154,6 +155,11 @@ pre[class*=language-] {
 
 .copy_clipboard:hover {
     opacity: 0.5;
+    cursor: pointer;
+}
+
+.copy_clipboard:focus {
+    background-color: #00acc1;
     cursor: pointer;
 }
 

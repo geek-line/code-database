@@ -113,10 +113,10 @@ function updateCodeSnippet() {
         let pre = document.createElement('pre');
         pre.className = attachment.className;
         pre.innerHTML = attachment.innerHTML; 
-        if(attachment.textContent.match(/(^タイトル:)+.*/)){
-          let title = attachment.textContent.match(/(^タイトル:)+.*/)[0];
-          pre.textContent = pre.textContent.replace(title,"")
-          attachment.innerHTML = "<span class='code_title'>"+ title.substr(5)+"</span>" + pre.innerHTML
+        if (attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)){
+            let title = attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)[0].substr(5)
+            attachment.innerHTML = "<span class='code_title'>" + title + "</span><br>" + pre.innerHTML
+            attachment.previousElementSibling.remove()
         } 
     }
 }

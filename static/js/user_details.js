@@ -133,7 +133,6 @@ function copy(e){
     }
     document.getSelection().selectAllChildren(pre);
     document.execCommand("copy");
-    
     document.getSelection().empty(pre); 
 }
 

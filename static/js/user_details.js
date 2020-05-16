@@ -123,13 +123,17 @@ function copy(e){
     let pre = document.createElement("pre")
     let text = (e.path[1].childNodes[0]).outerHTML
     if(text.match(/<span class="code_title">+.*/)){
+        iziToast.success({ title: 'Copied'});
+
         pre =  e.path[1].childNodes[3]
     }else if(text.match(/<span class="code_notitle">+.*/)){
         pre =  e.path[1].childNodes[2]
- 
+        iziToast.success({ title: 'Copied'});
+
     }
     document.getSelection().selectAllChildren(pre);
     document.execCommand("copy");
+    
     document.getSelection().empty(pre); 
 }
 

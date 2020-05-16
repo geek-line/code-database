@@ -105,18 +105,37 @@ function code_pen_init() {
     }
 }
 function updateCodeSnippet() {
-    let attachments = document.getElementsByTagName("pre");
+    let attachments = document.querySelectorAll("pre[class*=language-]");
     for (let attachment of attachments) {
         let pre = document.createElement('pre');
         pre.className = attachment.className;
         pre.innerHTML = attachment.innerHTML;
         if (attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)) {
             let title = attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)[0].substr(5)
-            attachment.innerHTML = "<span class='code_title'>" + title + "</span><br>" + pre.innerHTML
+            attachment.innerHTML = "<span class='code_title'>" + title + "</span><br/>" + `<button class='copy_clipboard' onclick='copy(event)'>copy</button>`+ "<pre class='code_displey'>"+pre.innerHTML+"</pre>"
             attachment.previousElementSibling.remove()
+        }else{
+            attachment.innerHTML =  "<span class='code_notitle'>" +"</span>" +`<button class='copy_clipboard' onclick='copy(event)'>copy</button>`+ "<pre class='code_displey'>"+attachment.innerHTML+"</pre>"
         }
     }
 }
+function copy(e){
+    let pre = document.createElement("pre")
+    console.log(e.path[1].childNodes[0])
+    let text = (e.path[1].childNodes[0]).outerHTML
+    console.log(String(text))
+    if(text.match(/<span class="code_title">+.*/)){
+        console.log("s")
+        pre =  e.path[1].childNodes[3]
+    }else if(text.match(/<span class="code_notitle">+.*/)){
+        pre =  e.path[1].childNodes[2]
+ 
+    }
+    document.getSelection().selectAllChildren(pre);
+    document.execCommand("copy");
+    document.getSelection().empty(pre); 
+}
+
 function generate_share_button(area, url, text, title) {
     let twBtn = document.createElement('div');
     twBtn.className = 'twitter-btn';

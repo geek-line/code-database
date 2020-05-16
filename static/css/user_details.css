@@ -115,20 +115,34 @@ nav.breadcrumb-countainer {
     font-size: .875rem;
     font-weight: bold;
 }
-pre[class*=language-]{
-  
+pre[class*=language-]{  
     position: relative;
-    }
+    margin-top: 1rem;
+}
 .content pre .code_title{
-   
-   position: absolute;
+    position: absolute;
     background-color: #777;
     left:1rem;
     top:0rem;
     color:white;
     padding:0.1rem 0.3rem 0.1rem 0.3rem;
+    font-size:0.9rem
+}
+.content pre .code_notitle{  
+display: none;
+}
+.content pre .code_displey{
+    margin:0;
+}
+
+.copy_clipboard{
+    position: absolute;
+    background-color: #777;
+    right:0;
+    top:0rem;
+    color:white;
+    padding:0.1rem 0.3rem 0.1rem 0.3rem;
     font-size:0.9rem;
-  
 }
 .breadcrumb-wrapper {
     height: auto;

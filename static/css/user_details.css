@@ -92,9 +92,6 @@ h3:after {
     right: 1vw;
     z-index: 6;
 }
-
-
-
 .menu:hover {
     cursor: pointer;
 }
@@ -118,7 +115,21 @@ nav.breadcrumb-countainer {
     font-size: .875rem;
     font-weight: bold;
 }
-
+pre[class*=language-]{
+  
+    position: relative;
+    }
+.content pre .code_title{
+   
+   position: absolute;
+    background-color: #777;
+    left:1rem;
+    top:0rem;
+    color:white;
+    padding:0.1rem 0.3rem 0.1rem 0.3rem;
+    font-size:0.9rem;
+  
+}
 .breadcrumb-wrapper {
     height: auto;
     font-size: .875rem;

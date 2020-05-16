@@ -82,6 +82,7 @@ function code_pen_init() {
         const pattern = /https:\/\/codepen.io\/(.*?)/;
         if (code_pen[i].href.match(pattern)) {
             code_pen[i].target = "_blank";
+            code_pen[i].rel = "noreferrer noopener"
             let codePen = document.createElement('p');
             codePen.className = "codepen";
             codePen.setAttribute('data-height', "395");
@@ -108,21 +109,12 @@ function updateCodeSnippet() {
     for (let attachment of attachments) {
         let pre = document.createElement('pre');
         pre.className = attachment.className;
-<<<<<<< Updated upstream
-        pre.innerHTML = attachment.innerHTML; 
-        if (attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)){
-            let title = attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)[0].substr(5)
-            attachment.innerHTML = "<span class='code_title'>" + title + "</span><br>" + pre.innerHTML
-            attachment.previousElementSibling.remove()
-        } 
-=======
         pre.innerHTML = attachment.innerHTML;
         if (attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)) {
             let title = attachment.previousElementSibling.textContent.match(/(^タイトル:)+.*/)[0].substr(5)
             attachment.innerHTML = "<span class='code_title'>" + title + "</span><br>" + pre.innerHTML
             attachment.previousElementSibling.remove()
         }
->>>>>>> Stashed changes
     }
 }
 function generate_share_button(area, url, text, title) {

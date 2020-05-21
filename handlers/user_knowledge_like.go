@@ -20,12 +20,13 @@ func KnowledgeLikeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		if err := models.IncrementLikes(id); err != nil {
 			log.Print(err.Error())
 			StatusInternalServerError(w, r, auth)
+			return
 		}
 	} else {
 		if err := models.DecrementLikes(id); err != nil {
 			log.Print(err.Error())
 			StatusInternalServerError(w, r, auth)
+			return
 		}
 	}
-	return
 }

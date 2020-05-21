@@ -33,13 +33,15 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		selectedCategory, err := models.GetCategoryFromKnowledgeID(id)
 		if err != nil {
 			log.Print(err.Error())
-			StatusInternalServerError(w, r, auth)
+			StatusNotFoundHandler(w, r, auth)
+			return
 		}
 		userDetailPage.Knowledge, err = models.GetKnowledgePublished(id)
 		switch {
 		case err == sql.ErrNoRows:
 			log.Println("レコードが存在しません")
 			StatusNotFoundHandler(w, r, auth)
+			return
 		case err != nil:
 			log.Print(err.Error())
 			StatusInternalServerError(w, r, auth)
@@ -66,9 +68,11 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			}); err != nil {
 				log.Print(err.Error())
 				StatusInternalServerError(w, r, auth)
+				return
 			}
 		}
 	} else {
 		KnowledgesHandler(w, r, auth)
+		return
 	}
 }

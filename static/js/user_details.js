@@ -11,6 +11,8 @@ let shareUrl = location.href; // 現在のページURLを使用する場合 loca
 let shareText = title + '\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者'; // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
+    content.innerHTML = content.innerHTML.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
+
     snsArea.forEach(function (Area) {
         generate_share_button(Area, shareUrl, shareText, title);
     })
@@ -30,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-    content.innerHTML = input.value.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, "</table></div>")
     var p_table_items = document.getElementById("p_table_items");
     var p_table_items_devise = document.getElementById("p_table_items_devise");
     var div = document.createElement('div');

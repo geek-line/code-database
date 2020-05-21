@@ -5,6 +5,19 @@ tinymce.init({
     tinycomments_mode: 'embedded',
     tinycomments_author: 'Author name',
     plugins: 'link image lists table codesample',
+    codesample_languages: [
+        { text: 'HTML/XML', value: 'markup' },
+        { text: 'JavaScript', value: 'javascript' },
+        { text: 'CSS', value: 'css' },
+        { text: 'PHP', value: 'php' },
+        { text: 'Ruby', value: 'ruby' },
+        { text: 'Python', value: 'python' },
+        { text: 'Java', value: 'java' },
+        { text: 'C', value: 'c' },
+        { text: 'C#', value: 'csharp' },
+        { text: 'C++', value: 'cpp' },
+        { text: 'Golang', value: 'go' },
+    ],
     toolbar: 'undo redo | styleselect | link bold italic | image codesample | numlist bullist | table tabledelete',
     images_upload_handler: function (blobInfo, success, failure) {
         setTimeout(function () {

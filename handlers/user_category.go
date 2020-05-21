@@ -48,7 +48,7 @@ func CategoryHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				break
 			default:
 				StatusNotFoundHandler(w, r, auth)
-				break
+				return
 			}
 		} else {
 			currentSort = "create"
@@ -111,8 +111,10 @@ func CategoryHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			SelectedCategory: selectedCategory,
 		}); err != nil {
 			StatusInternalServerError(w, r, auth)
+			return
 		}
 	} else {
 		CategoriesHandler(w, r, auth)
+		return
 	}
 }

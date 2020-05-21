@@ -44,7 +44,7 @@ func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			break
 		default:
 			StatusNotFoundHandler(w, r, auth)
-			break
+			return
 		}
 	} else {
 		currentSort = "create"
@@ -99,5 +99,6 @@ func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	}); err != nil {
 		log.Print(err.Error())
 		StatusInternalServerError(w, r, auth)
+		return
 	}
 }

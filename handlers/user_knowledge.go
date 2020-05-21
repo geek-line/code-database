@@ -51,7 +51,10 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				StatusInternalServerError(w, r, auth)
 				return
 			}
-			t := template.Must(template.ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
+			funcMap := template.FuncMap{
+				"safehtml": func(text string) template.HTML { return template.HTML(text) },
+			}
+			t := template.Must(template.New("user_details.html").Funcs(funcMap).ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
 			if err := t.Execute(w, struct {
 				Header           structs.Header
 				SelectedCategory structs.Category

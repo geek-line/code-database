@@ -33,13 +33,15 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		selectedCategory, err := models.GetCategoryFromKnowledgeID(id)
 		if err != nil {
 			log.Print(err.Error())
-			StatusInternalServerError(w, r, auth)
+			StatusNotFoundHandler(w, r, auth)
+			return
 		}
 		userDetailPage.Knowledge, err = models.GetKnowledgePublished(id)
 		switch {
 		case err == sql.ErrNoRows:
 			log.Println("レコードが存在しません")
 			StatusNotFoundHandler(w, r, auth)
+			return
 		case err != nil:
 			log.Print(err.Error())
 			StatusInternalServerError(w, r, auth)
@@ -51,7 +53,10 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				StatusInternalServerError(w, r, auth)
 				return
 			}
-			t := template.Must(template.ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
+			funcMap := template.FuncMap{
+				"safehtml": func(text string) template.HTML { return template.HTML(text) },
+			}
+			t := template.Must(template.New("user_details.html").Funcs(funcMap).ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
 			if err := t.Execute(w, struct {
 				Header           structs.Header
 				SelectedCategory structs.Category
@@ -63,9 +68,11 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			}); err != nil {
 				log.Print(err.Error())
 				StatusInternalServerError(w, r, auth)
+				return
 			}
 		}
 	} else {
 		KnowledgesHandler(w, r, auth)
+		return
 	}
 }

@@ -48,7 +48,7 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				break
 			default:
 				StatusNotFoundHandler(w, r, auth)
-				break
+				return
 			}
 		} else {
 			currentSort = "create"
@@ -111,8 +111,10 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			FilteredTag: filteredTag,
 		}); err != nil {
 			StatusInternalServerError(w, r, auth)
+			return
 		}
 	} else {
 		TagsHandler(w, r, auth)
+		return
 	}
 }

@@ -60,7 +60,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			break
 		default:
 			StatusNotFoundHandler(w, r, auth)
-			break
+			return
 		}
 	} else {
 		currentSort = "create"
@@ -129,5 +129,6 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		CurrentQuery: currentQuery,
 	}); err != nil {
 		StatusInternalServerError(w, r, auth)
+		return
 	}
 }

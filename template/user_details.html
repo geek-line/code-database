@@ -15,15 +15,14 @@
     <meta name="robots" content="index, follow">
     <link rel='icon' href='/static/public/favicon.ico'>
     <title>{{ .DetailPage.Knowledge.Title }} | Code Database</title>
-    <link rel='stylesheet' href='/node_modules/tinymce/skins/ui/oxide/content.min.css'>
-    <link rel='stylesheet' href='/node_modules/tinymce/skins/content/default/content.min.css'>
     <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
+    <link rel='stylesheet' href='/node_modules/prismjs/themes/prism.css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script  src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="/node_modules/izitoast/dist/js/iziToast.min.js"></script>
+    <link rel="stylesheet" href="/node_modules/izitoast/dist/css/iziToast.min.css">
+    <link rel='stylesheet' href='/node_modules/tinymce/skins/content/default/content.min.css'>
     <link rel='stylesheet' href='/static/css/user_details.css/'>
-    	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" crossorigin="anonymous">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164168719-1"></script>
     
@@ -37,7 +36,6 @@
 
 <body>
     {{ template "header" .Header }}
-  
     <div class="p_items_wrapper row">
         <div class= "p_action_item col s0 m0 l1 hide-on-med-and-down">
             <div class='display_like'>
@@ -46,7 +44,6 @@
                     <input id="knowledge_id" type='hidden' name="id" value="{{ .DetailPage.Knowledge.ID }}">
                     <button class="like-button" id ="like_button_baloon" type='button' value="like" onclick="sendLikeFromBaloon()">LIKE</button>
                 </form>
-                <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
                 <div class='sns-area'></div>
             </div>
         </div>
@@ -92,47 +89,33 @@
                         <input id="knowledge_id" type='hidden' name="id" value="{{ .DetailPage.Knowledge.ID }}">
                         <button class="like-button" id="like_button_inline" type='button' value="like" onclick="sendLikeFromInline()">LIKE</button>
                     </form>
-                    <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
                 </div>
-
                 <div class='sns-area'></div>
-              
-              
             </div>
-             
             <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
             <br>
             <hr>
-
-            <div id="content" class="content"></div>
-            <p></p>
+            <div id="content" class="content">{{ .DetailPage.Knowledge.Content | safehtml }}</div>
             <div class='like-date-wrapper'>
-               
-            
                 <div class='display_like'>
-                  
                     <div class='balloon'><span id='likes_inline' class='like_number'>{{ .DetailPage.Knowledge.Likes }}</span></div>
                     <form id="like_form_inline" class="like">
                         <input id="knowledge_id" type='hidden' name="id" value="{{ .DetailPage.Knowledge.ID }}">
                         <button class="like-button" id="like_button_inline" type='button' value="like" onclick="sendLikeFromInline()">LIKE</button>
                     </form>
-                    <input id="input" type='hidden' value="{{ .DetailPage.Knowledge.Content }}">
                 </div>
-
                 <div class='sns-area'></div>
             </div>
         </div>
-    
         <div class= "p_table_items col s0 m0 l3 hide-on-med-and-down">
             <div id="p_table_items" class= "item"></div>
         </div>
-
         <div class= "p_table_items_devise hide-on-large-only sidenav-close sidenav " id="slide-out">
             <div id="p_table_items_devise" class="item_devise"></div>
         </div>
-      
     </div>
     {{ template "footer" }}
+    <script src='/node_modules/prismjs/prism.js'></script>
     <script src='/static/js/user_details.js'></script>
 </body>
 </html>

@@ -74,5 +74,6 @@ func CategoriesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	}); err != nil {
 		log.Print(err)
 		StatusInternalServerError(w, r, auth)
+		return
 	}
 }

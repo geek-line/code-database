@@ -37,6 +37,7 @@ func main() {
 	http.HandleFunc(config.UserCategoriesPath, middleware.UserAuth(handlers.CategoriesHandler))
 	http.HandleFunc(config.UserCategoryPath, middleware.UserAuth(handlers.CategoryHandler))
 	http.HandleFunc(config.UserAboutPath, middleware.UserAuth(handlers.AboutHandler))
+	http.HandleFunc(config.UserPrivacyPath, middleware.UserAuth(handlers.PrivacyHandler))
 	http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
 	http.Handle(config.NodeModulesPath, http.StripPrefix(config.NodeModulesPath, http.FileServer(http.Dir(dir+config.NodeModulesPath))))
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))

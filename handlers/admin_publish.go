@@ -21,7 +21,7 @@ func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {
 			AdminKnowledgesHandler(w, r)
 		}
 		message := fmt.Sprintf("{\"text\":\"https://code-database.com/knowledges/%d が公開されました\"}", id)
-		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
+		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
 		if err != nil {
 			AdminKnowledgesHandler(w, r)
 		}
@@ -31,7 +31,7 @@ func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {
 			AdminKnowledgesHandler(w, r)
 		}
 		message := fmt.Sprintf("{\"text\":\"https://code-database.com/knowledges/%d が非公開になりました\"}", id)
-		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
+		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
 		if err != nil {
 			AdminKnowledgesHandler(w, r)
 		}

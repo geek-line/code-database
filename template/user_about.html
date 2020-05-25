@@ -4,11 +4,69 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
+    <link rel='stylesheet' href='/static/css/user_about.css/'>
     <title>Code Databaseとは？ | Code Database</title>
 </head>
 <body>
     {{ template "header" .Header }}
-    <div>aboutページ</div>
+    <div class="display row">
+        <nav class="col s12 m12 l2 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/knowledges" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                    >
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/about" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">About</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="col s12 m9 offset-m2 l8">
+            <div class='content_header'>
+                <div class="content_title">About</div>
+                <div class="content_description">Code Databaseとは</div>
+            </div>
+
+            <div class="display_about row">
+          
+                <div class="tokutyo_text">Code Databaseとは</div>
+                <div class="col s12 m4 l4 "><img class="image_about" src="https://s3-ap-northeast-1.amazonaws.com/code-database.com/images/code-database-ogp.png"></div>
+                <div class=" col s12 m8 l8">Code Databaseは、エンジニアを目指している人たちへのプログラミングに関する情報を発信しています。JavascriptのようなWEB系の言語からC++のような組み込み系の言語まで幅広く紹介していきます。</div>
+
+
+                <div class="tokutyo_text col s12 m12 l12">Code Databaseの特徴</div>
+                <div class="col s12 m12 l12">Code Databaseの特徴には次のような特徴があります。</div>
+                <div class="col s12 m12 l12">
+                    <div class="card white ">
+                    <div class="card-content black-text">
+                        <span class="card-title">多くの言語・ライブラリに関する記事のがある</span>
+                        <p>Code DatabaseにはJavaScript, Vue.js, React.js, Nuxt.js, Python, Go言語, Unity, C++, OpenCVなどあらゆるプログラミング言語やフレームワークの情報を発信しています。</p>
+                        <img class="image_about"  alt="JavaScript, Vue.js, React.js, Nuxt.js, Python, Go言語, Unity, C++, OpenCV" src="/static/public/about.png">
+                    </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="card white ">
+                    <div class="card-content black-text">
+                        <span class="card-title">ハンズオン形式で学べる記事がある</span>
+                        <p><a href="https://code-database.com/knowledges/89">GolangとVue.jsとChart.jsで小さなSPAアプリを作る方法について解説</a>の記事のように実際に学びながらアプリを作成することができます。このようなハンズオン形式で学べる記事をどんどんアップする予定です。</p>
+                        <p>(アプリの例)</p>
+                        <img src="https://knowledge-blog.s3-ap-northeast-1.amazonaws.com/uploads/file1588119331504golang_vue.gif" alt="GolangとVue.jsとChart.jsで小さなSPAアプリを作る方法について解説">
+                    </div>
+                    </div>
+                </div>
+           
+               
+            </div>
+           
+        </div>
+    </div>
     {{ template "footer" }}
 </body>
 </html>

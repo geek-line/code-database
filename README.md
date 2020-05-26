@@ -30,6 +30,8 @@ ISSUE-(番号) (作業名)
 | /search  | 記事のキーワード検索結果画面  |
 | /knowledges/[記事のid]  | 記事の内容画面  |
 | /tags/[タグのid]  | タグがついている記事の一覧画面  |
+| /caategories  | カテゴリ一覧画面  |
+| /caategories/[カテゴリのid]  | カテゴリ詳細画面  |
 | /admin/login/ | アドミンへのログイン画面 |
 | /admin/knowledges/ | 記事の一覧画面 |
 | /admin/knowledges/[記事のid] | 記事の編集画面 |

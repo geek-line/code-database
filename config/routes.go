@@ -21,6 +21,7 @@ const (
 	UserTagPath            = "/tags/"
 	UserCategoriesPath     = "/categories"
 	UserCategoryPath       = "/categories/"
+	UserAboutPath          = "/about"
 	StaticPath             = "/static/"
 	NodeModulesPath        = "/node_modules/"
 	GoogleSitemapPath      = "/google_sitemap/"

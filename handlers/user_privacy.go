@@ -7,13 +7,13 @@ import (
 	"net/http"
 )
 
-//AboutHandler /aboutに対するハンドラ
-func AboutHandler(w http.ResponseWriter, r *http.Request, auth bool) {
+//PrivacyHandler /privacyに対するハンドラ
+func PrivacyHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
 		header.IsLogin = true
 	}
-	t := template.Must(template.ParseFiles("template/user_about.html", "template/_header.html", "template/_footer.html"))
+	t := template.Must(template.ParseFiles("template/user_privacy.html", "template/_header.html", "template/_footer.html"))
 	if err := t.Execute(w, struct {
 		Header structs.Header
 	}{

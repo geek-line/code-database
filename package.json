@@ -21,7 +21,7 @@
     "dotenv": "^8.2.0",
     "izitoast": "^1.4.0",
     "materialize-css": "^1.0.0-rc.2",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.21.0",
     "tinymce": "^5.4.0"
   }
 }

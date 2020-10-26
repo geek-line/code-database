@@ -143,6 +143,17 @@ img {
     font-weight: bold;
 }
 
+.privacy-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+ul:not(.browser-default)>li.privacy-list {
+    list-style-type: circle;
+    list-style: circle;
+    margin-left: 2rem;
+}
+
 @media screen and (min-width:400px) {
     /* .card{
         height:15rem;

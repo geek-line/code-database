@@ -1,6 +1,9 @@
 package main
 
 import (
+	"io"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 
@@ -12,7 +15,19 @@ import (
 )
 
 func redirectHandler(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, config.UserKnowledgesPath, http.StatusFound)
+	if r.URL.Path == config.AdsTxtPath {
+		f, err := os.Open("ads.txt")
+		if err != nil {
+			log.Print(err.Error())
+		}
+		bs, err := ioutil.ReadAll(f)
+		if err != nil {
+			log.Print(err.Error())
+		}
+		io.WriteString(w, string(bs))
+	} else {
+		http.Redirect(w, r, config.UserKnowledgesPath, http.StatusFound)
+	}
 }
 
 func main() {

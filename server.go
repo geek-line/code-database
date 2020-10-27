@@ -26,6 +26,7 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Print(err.Error())
 		}
+		r.Header.Set("Content-Type", "text/plain")
 		io.WriteString(w, string(bs))
 	} else {
 		http.Redirect(w, r, config.UserKnowledgesPath, http.StatusFound)

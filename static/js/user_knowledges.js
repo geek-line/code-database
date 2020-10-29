@@ -1,10 +1,6 @@
 const search_input = document.querySelectorAll('#search_input')
 const search_submit = document.querySelectorAll('#search_submit')
 
-window.onload = function() {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-}
-
 for (let i = 0; i < search_submit.length; i++){
     search_input[i].addEventListener('keydown', function () {
         if (window.event.keyCode == 13) {

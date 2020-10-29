@@ -435,7 +435,7 @@ pre[class*=language-] {
 
 .p_items_wrapper .p_table_items {
     position: sticky;
-    margin-top: 20vh;
+    /* margin-top: 20vh; */
     top: 0vh;
     will-change: transform;
     padding: 1rem;

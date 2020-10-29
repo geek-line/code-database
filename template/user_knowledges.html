@@ -194,8 +194,10 @@
     {{ template "footer" }}
     <script src='/static/js/user_knowledges.js'></script>
     <script>
-    window.onload = function() {
-    　　 (adsbygoogle = window.adsbygoogle || []).push({});
+    window.onload = function () {
+        [].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
     }
     </script>
 </body>

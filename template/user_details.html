@@ -107,8 +107,8 @@
                 <div class='sns-area'></div>
             </div>
             <hr>
-            <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
-                data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
+                data-ad-format="auto" data-full-width-responsive="true"></ins>
         </div>
         <div class= "p_table_items col s0 m0 l3 hide-on-med-and-down">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
@@ -124,8 +124,10 @@
     <script src='/static/js/user_details.js'></script>
     <script async src="/node_modules/izitoast/dist/js/iziToast.min.js"></script>
     <script>
-    window.onload = function() {
-    　　 (adsbygoogle = window.adsbygoogle || []).push({});
+    window.onload = function () {
+        [].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
     }
     </script>
 </body>

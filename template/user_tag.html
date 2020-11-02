@@ -150,6 +150,18 @@
                 </div>
             </div>
             {{ end }}
+
+            <div class="col row s12 m12 card_wrapper">
+                <div class="col m6 cp_card_ad">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373"
+                        data-ad-slot="2399876013" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                </div>
+                <div class="col m6 cp_card_ad">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373"
+                        data-ad-slot="2399876013" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                </div>
+            </div>
+
             <ul class="pagination col s12 center">
                 {{ if ne .IndexPage.PageNation.PageNum 1 }}
                 <li class="waves-effect"><a href="/tags/{{.FilteredTag.ID}}?page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}"><i
@@ -201,9 +213,11 @@
     {{ template "footer" }}
     <script src='/static/js/user_knowledges.js'></script>
     <script>
-    window.onload = function() {
-    　　 (adsbygoogle = window.adsbygoogle || []).push({});
-    }
+        window.onload = function () {
+            [].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            });
+        }
     </script>
 </body>
 </html>

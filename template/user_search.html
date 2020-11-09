@@ -146,7 +146,7 @@
             <ul class="pagination col s12 center">
                 {{ if ne .IndexPage.PageNation.PageNum 1 }}
                 <li class="waves-effect">
-                    <a onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}'"><i
+                    <a rel="prev" onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}'"><i
                             class="material-icons">chevron_left</i></a>
                 </li>
                 {{ end }}
@@ -161,7 +161,7 @@
                     {{ $length := len .IndexPage.PageNation.PageElems }}
                     {{ if ne .IndexPage.PageNation.PageNum $length  }}
                     <li class="waves-effect">
-                        <a onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}'"><i
+                        <a rel="next" onclick="location='/search?{{$currentQuery}}&page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}'"><i
                                 class="material-icons">chevron_right</i></a>
                     </li>
                     {{ end }}

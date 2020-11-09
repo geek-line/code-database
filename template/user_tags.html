@@ -121,7 +121,7 @@
 
             <ul class="pagination col s12 m12 l12 center">
                 {{ if ne .TagsPage.PageNation.PageNum 1 }}
-                <li class="waves-effect"><a href="/tags?page={{.TagsPage.PageNation.PrevPageNum}}"><i
+                <li class="waves-effect"><a rel="prev" href="/tags?page={{.TagsPage.PageNation.PrevPageNum}}"><i
                             class="material-icons">chevron_left</i></a>
                 </li>
                 {{ end }}
@@ -134,7 +134,7 @@
                 {{ end }}
                 {{ $length := len .TagsPage.PageNation.PageElems }}
                 {{ if ne .TagsPage.PageNation.PageNum $length  }}
-                <li class="waves-effect"><a href="/tags?page={{.TagsPage.PageNation.NextPageNum}}"><i
+                <li class="waves-effect"><a rel="next" href="/tags?page={{.TagsPage.PageNation.NextPageNum}}"><i
                             class="material-icons">chevron_right</i></a></li>
                 {{ end }}
             </ul>

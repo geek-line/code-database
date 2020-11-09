@@ -159,7 +159,7 @@
             <ul class="pagination col s12 center">
                 {{ if ne .IndexPage.PageNation.PageNum 1 }}
                 <li class="waves-effect">
-                    <a href="/knowledges?page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}"><i class="material-icons">chevron_left</i></a>
+                    <a rel="prev" href="/knowledges?page={{.IndexPage.PageNation.PrevPageNum}}&sort={{$currentSort}}"><i class="material-icons">chevron_left</i></a>
                 </li>
                 {{ end }}
                 {{ range .IndexPage.PageNation.PageElems }}
@@ -172,7 +172,7 @@
                 {{ $length := len .IndexPage.PageNation.PageElems }}
                 {{ if ne .IndexPage.PageNation.PageNum $length  }}
                 <li class="waves-effect">
-                    <a href="/knowledges?page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}"><i class="material-icons">chevron_right</i></a>
+                    <a rel="next" href="/knowledges?page={{.IndexPage.PageNation.NextPageNum}}&sort={{$currentSort}}"><i class="material-icons">chevron_right</i></a>
                 </li>
                 {{ end }}
             </ul>

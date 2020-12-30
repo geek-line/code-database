@@ -52,6 +52,21 @@ func GetAllKnowledges() ([]structs.Knowledge, error) {
 	return knowledges, err
 }
 
+//GetAllPublishedKnowledges 公開されているknowledgeを全て取得する
+func GetAllPublishedKnowledges() ([]structs.Knowledge, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	var knowledges []structs.Knowledge
+	rows, err := db.Query("SELECT id, title, created_at, updated_at, is_published FROM knowledges WHERE is_published = true ORDER BY id")
+	defer rows.Close()
+	for rows.Next() {
+		var knowledge structs.Knowledge
+		err = rows.Scan(&knowledge.ID, &knowledge.Title, &knowledge.CreatedAt, &knowledge.UpdatedAt, &knowledge.IsPublished)
+		knowledges = append(knowledges, knowledge)
+	}
+	return knowledges, err
+}
+
 //PostKnowledge knowledgeを新規作成して作成したknowledgeのIDを取得する
 func PostKnowledge(title string, content string, rowContent string, createdAt time.Time, updatedAt time.Time, eyecatchSrc string, category string) (int64, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)

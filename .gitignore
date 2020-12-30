@@ -4,6 +4,7 @@ sql_env.txt
 node_modules
 aws_config.js
 .env
+*.sh
 code-database
 main
 google_sitemap/

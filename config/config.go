@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/joho/godotenv"
 )
@@ -11,7 +12,14 @@ import (
 var (
 	SessionKey = makeSessionKey()
 	SQLEnv     = makeSQLEnv()
+	ExecuteDir = getRootPath()
 )
+
+func getRootPath() string {
+	exe, _ := os.Executable()
+	path := filepath.Dir(exe)
+	return path
+}
 
 func envLoad() {
 	err := godotenv.Load()

@@ -4,8 +4,10 @@ sql_env.txt
 node_modules
 aws_config.js
 .env
+ads.txt
 *.sh
 code-database
 main
+buck_up/
 google_sitemap/
 nohup.out

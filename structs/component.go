@@ -71,3 +71,10 @@ type UserCategoriesPage struct {
 	TagRanking []TagRankingElem
 	PageNation PageNation
 }
+
+//UserTopPage トップページの要素
+type UserTopPage struct {
+	RecomendedKnowledges []IndexElem
+	LikedKnowledges      []IndexElem
+	RecentKnowledges     []IndexElem
+}

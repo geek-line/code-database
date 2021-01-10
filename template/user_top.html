@@ -22,6 +22,25 @@
             </div>
         </nav>
     </div>
+    <a href='/categories'>記事を探す</a>
+    <p>おすすめ記事</p>
+    <hr>
+    {{ range .UserTopPage.RecomendedKnowledges }}
+    <p>{{ .Knowledge.Title }}</p>
+    {{ end }}
+    <a href='/categories'>記事をもっとみる</a>
+    <p>いいねの多い記事</p>
+    <hr>
+    {{ range .UserTopPage.LikedKnowledges }}
+    <p>{{ .Knowledge.Title }}</p>
+    {{ end }}
+    <a href='/categories'>いいねの多い記事をもっとみる</a>
+    <p>新着記事</p>
+    <hr>
+    {{ range .UserTopPage.RecentKnowledges }}
+    <p>{{ .Knowledge.Title }}</p>
+    {{ end }}
+    <a href='/categories'>新着記事をもっとみる</a>
     {{ template "footer" }}
 </body>
 </html>

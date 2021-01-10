@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
+    <link rel='stylesheet' href='/static/css/user_top.css/'>
+    <title>トップ | Code Database</title>
+</head>
+<body>
+    {{ template "header" .Header }}
+    <div class="row">
+        <nav class="col l3 transparent breadcrumb-countainer">
+            <div class="nav-wrapper">
+                <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="/" class="breadcrumb cyan-text text-darken-4"><span
+                                itemprop="name">トップ</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {{ template "footer" }}
+</body>
+</html>

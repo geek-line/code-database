@@ -353,8 +353,6 @@ table>tbody>tr>td:nth-child(2) .tag {
     float: left;
     width: 40%;
     height: 100%;
-   
-   
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }

@@ -15,7 +15,7 @@ func TopHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		header.IsLogin = true
 	}
 	//ここでおすすめ記事の番号を指定
-	arg := []string{"70", "71", "77"}
+	arg := []string{"93", "96", "111"}
 	recomendedKnowledges, err := models.GetRecomendedElems(arg)
 	if err != nil {
 		log.Print(err.Error())

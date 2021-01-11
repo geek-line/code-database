@@ -35,7 +35,7 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	dir, _ := os.Getwd()
-	http.HandleFunc(config.RootPath, redirectHandler)
+	http.HandleFunc(config.RootPath, middleware.UserAuth(handlers.TopHandler))
 	http.HandleFunc(config.AdminLoginPath, middleware.UserAuth(handlers.AdminLoginHandler))
 	http.HandleFunc(config.AdminLogoutPath, middleware.AdminAuth(handlers.AdminLogoutHandler))
 	http.HandleFunc(config.AdminKnowledgesPath, middleware.AdminAuth(handlers.AdminKnowledgesHandler))

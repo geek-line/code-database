@@ -169,6 +169,34 @@ func Get20SortedElems(sortKey string, startIndex int, length int) ([]structs.Ind
 	return indexElems, err
 }
 
+//GetRecomendedElems 任意の配列の要素の該当する記事を恣意的に取得する関数
+func GetRecomendedElems(indexes []string) ([]structs.IndexElem, error) {
+	intext := strings.Join(indexes, ",")
+	qtext := fmt.Sprintf("SELECT id, title, updated_at, likes, eyecatch_src FROM knowledges WHERE is_published = true AND id IN(%s)", intext)
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	rows, err := db.Query(qtext)
+	defer rows.Close()
+	var indexElems []structs.IndexElem
+	for rows.Next() {
+		var indexElem structs.IndexElem
+		err = rows.Scan(&indexElem.Knowledge.ID, &indexElem.Knowledge.Title, &indexElem.Knowledge.UpdatedAt, &indexElem.Knowledge.Likes, &indexElem.Knowledge.EyecatchSrc)
+		var selectedTags []structs.Tag
+		var tagsRows *sql.Rows
+		tagsRows, err = db.Query("SELECT tag_id FROM knowledges_tags WHERE knowledge_id = ?", indexElem.Knowledge.ID)
+		defer tagsRows.Close()
+		for tagsRows.Next() {
+			var selectedTag structs.Tag
+			err = tagsRows.Scan(&selectedTag.ID)
+			db.QueryRow("SELECT name FROM tags WHERE id = ?", selectedTag.ID).Scan(&selectedTag.Name)
+			selectedTags = append(selectedTags, selectedTag)
+		}
+		indexElem.SelectedTags = selectedTags
+		indexElems = append(indexElems, indexElem)
+	}
+	return indexElems, err
+}
+
 //Get20SortedElemFilteredTagID 指定のsortKeyでソートされ、指定のtagIdでフィルターされた20のknowledgeの要素を取得する
 func Get20SortedElemFilteredTagID(sortKey string, tagID int, startIndex int, length int) ([]structs.IndexElem, string, error) {
 	db, err := sql.Open("mysql", config.SQLEnv)

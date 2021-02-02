@@ -1,9 +1,6 @@
 package main
 
 import (
-	"io"
-	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 
@@ -13,23 +10,6 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 )
-
-func redirectHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == config.AdsTxtPath {
-		f, err := os.Open("ads.txt")
-		if err != nil {
-			log.Print(err.Error())
-		}
-		bs, err := ioutil.ReadAll(f)
-		if err != nil {
-			log.Print(err.Error())
-		}
-		w.Header().Add("Content-Type", "text/plain")
-		io.WriteString(w, string(bs))
-	} else {
-		http.Redirect(w, r, config.UserKnowledgesPath, http.StatusFound)
-	}
-}
 
 func main() {
 	dir, _ := os.Getwd()

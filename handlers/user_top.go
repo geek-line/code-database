@@ -1,15 +1,32 @@
 package handlers
 
 import (
+	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 	"html/template"
+	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 //TopHandler トップページに関するハンドラ
 func TopHandler(w http.ResponseWriter, r *http.Request, auth bool) {
+	if r.URL.Path == config.AdsTxtPath {
+		f, err := os.Open("ads.txt")
+		if err != nil {
+			log.Print(err.Error())
+		}
+		bs, err := ioutil.ReadAll(f)
+		if err != nil {
+			log.Print(err.Error())
+		}
+		w.Header().Add("Content-Type", "text/plain")
+		io.WriteString(w, string(bs))
+		return
+	}
 	header := newHeader(false)
 	if auth {
 		header.IsLogin = true

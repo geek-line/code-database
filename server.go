@@ -1,9 +1,6 @@
 package main
 
 import (
-	"io"
-	"io/ioutil"
-	"log"
 	"net"
 	"net/http"
 	"net/http/fcgi"

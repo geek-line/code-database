@@ -30,6 +30,8 @@
     gtag('js', new Date());
     gtag('config', 'UA-164168719-1');
     </script>
+    <script data-ad-client="ca-pub-3445201371824373" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body>
@@ -93,6 +95,9 @@
             <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
             <br>
             <hr>
+            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"
+                data-ad-client="ca-pub-3445201371824373" data-ad-slot="2889619159"></ins>
+            <hr>
             <div id="content" class="content">{{ .DetailPage.Knowledge.Content | safehtml }}</div>
             <div class='like-date-wrapper'>
                 <div class='display_like'>
@@ -104,9 +109,14 @@
                 </div>
                 <div class='sns-area'></div>
             </div>
+            <hr>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
+                data-ad-format="auto" data-full-width-responsive="true"></ins>
         </div>
         <div class= "p_table_items col s0 m0 l3 hide-on-med-and-down">
             <div id="p_table_items" class= "item"></div>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
+                data-ad-format="auto" data-full-width-responsive="true"></ins>
         </div>
         <div class= "p_table_items_devise hide-on-large-only sidenav-close sidenav " id="slide-out">
             <div id="p_table_items_devise" class="item_devise"></div>
@@ -116,5 +126,12 @@
     <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src='/static/js/user_details.js'></script>
     <script async src="/node_modules/izitoast/dist/js/iziToast.min.js"></script>
+    <script>
+    window.onload = function () {
+        [].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
+    }
+    </script>
 </body>
 </html>

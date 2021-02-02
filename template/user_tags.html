@@ -32,6 +32,8 @@
             document.location.href = `${id}`;
         }
     </script>
+    <script data-ad-client="ca-pub-3445201371824373" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body>
@@ -91,6 +93,8 @@
                         value="検索"
                         >
                 </div>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
+                    data-ad-format="auto" data-full-width-responsive="true"></ins>
             </div>
         </div>
         <div class='col s12 m12 l9 tagpage_tags'>
@@ -103,6 +107,18 @@
                     </div>
                 </div>
             {{ end }}
+            
+            <div class="col row s12 m12 card_wrapper">
+                <div class="col m6 cp_card_ad">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373"
+                        data-ad-slot="2399876013" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                </div>
+                <div class="col m6 cp_card_ad">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373"
+                        data-ad-slot="2399876013" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                </div>
+            </div>
+
             <ul class="pagination col s12 m12 l12 center">
                 {{ if ne .TagsPage.PageNation.PageNum 1 }}
                 <li class="waves-effect"><a rel="prev" href="/tags?page={{.TagsPage.PageNation.PrevPageNum}}"><i
@@ -155,12 +171,21 @@
                           value="検索"
                         >
                 </div>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3445201371824373" data-ad-slot="2399876013"
+                    data-ad-format="auto" data-full-width-responsive="true"></ins>
             </div>
            
         </div>
     </div>
     {{ template "footer" }}
     <script src='/static/js/user_knowledges.js'></script>
+    <script>
+        window.onload = function () {
+            [].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            });
+        }
+    </script>
 </body>
 
 </html>

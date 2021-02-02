@@ -487,6 +487,17 @@ table>tbody>tr>td:nth-child(2) .tag {
     z-index: 1;
 }
 
+.cp_card_ad {
+    font-size: 14px;
+    line-height: 1.45em;
+    position: relative;
+    overflow: hidden;
+    height: 10em;
+    margin: 0 auto 1.6%;
+    background: #ffffff;
+    background-color: #e8f5f7;
+}
+
 @media screen and (max-width: 480px) {
     .cp_card02 .description h1 {
         font-size: 1.3em;

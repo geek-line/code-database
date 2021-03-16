@@ -1,12 +1,11 @@
 package main
 
 import (
-	"io"
-	"io/ioutil"
-	"log"
-	"net"
+	// "io"
+	// "io/ioutil"
+	// "log"
+
 	"net/http"
-	"net/http/fcgi"
 	"os"
 
 	"code-database/config"
@@ -42,9 +41,10 @@ func main() {
 	http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
 	http.Handle(config.NodeModulesPath, http.StripPrefix(config.NodeModulesPath, http.FileServer(http.Dir(dir+config.NodeModulesPath))))
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
-	l, err := net.Listen("tcp", "127.0.0.1:9000")
-	if err != nil {
-		return
-	}
-	fcgi.Serve(l, nil)
+	// l, err := net.Listen("tcp", "127.0.0.1:9000")
+	// if err != nil {
+	// 	return
+	// }
+	// fcgi.Serve(l, nil)
+	http.ListenAndServe(":3000", nil)
 }

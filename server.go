@@ -1,9 +1,9 @@
 package main
 
 import (
+
 	"net"
 	"net/http"
-	"net/http/fcgi"
 	"os"
 
 	"code-database/config"

@@ -84,7 +84,7 @@ h3:after {
 .menu {
     position: sticky;
     margin-top: 0 0 0 20vh;
-    top: 90vh;
+    top: 80vh;
     will-change: transform;
     padding: 1rem;
     right: 1vw;

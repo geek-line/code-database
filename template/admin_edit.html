@@ -66,7 +66,7 @@
                 </div>
                 <input type='hidden' name="id" value="{{ .EditPage.ID }}">
                 <input type='hidden' name='selectedTagsID' value="{{range .SelectedTagsID}}{{.}},{{end}}">
-                <input onclick="sendData()" type="button" value="Save">
+                <input id="submit_btn" type="button" value="Save">
             </form>
         </div>
         <script src='/static/js/admin_edit.js'></script>

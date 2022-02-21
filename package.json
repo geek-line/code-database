@@ -24,7 +24,7 @@
     "izitoast": "^1.4.0",
     "materialize-css": "^1.0.0-rc.2",
     "prismjs": "^1.25.0",
-    "tinymce": "^5.7.1"
+    "tinymce": "^5.10.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

@@ -26,7 +26,7 @@ tinymce.init({
       const filename = 'file' + timestamp + file.name
       s3.putObject({ Key: 'uploads/' + filename, ContentType: blobInfo.blob().type, Body: blobInfo.blob(), ACL: 'public-read' }, function (err, data) {
         if (data !== null) {
-          const srcHTML = 'https://knowledge-blog.s3-ap-northeast-1.amazonaws.com/' + 'uploads/' + filename
+          const srcHTML = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'uploads/' + filename
           success(srcHTML)
         } else {
           alert('アップロード失敗.')

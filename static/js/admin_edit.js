@@ -1,7 +1,9 @@
 const form = document.getElementById('form')
+const submit_btn = document.getElementById('submit_btn')
 const select_eyecatch = document.getElementById('select_eyecatch')
 const file_preview = document.getElementById('file_preview')
 const add_tag_button = document.getElementById('add_tag_button')
+const select_display = document.getElementById('select_display')
 window.addEventListener('DOMContentLoaded', function () {
   select_display.textContent = null
   let selectedTags = document.getElementsByName('selectedTagsID')[0].value
@@ -10,7 +12,7 @@ window.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < selectedTags.length; i++) {
     const selectElement = document.createElement('div')
     selectElement.innerHTML = add_tag_button.value
-    document.getElementById('select_display').appendChild(selectElement)
+    select_display.appendChild(selectElement)
     selectElement.childNodes[1].addEventListener('click', function () {
       selectElement.parentNode.removeChild(selectElement)
     })
@@ -33,7 +35,10 @@ add_tag_button.addEventListener('click', function () {
 select_eyecatch.addEventListener('change', function (e) {
   file_preview.src = e.target.value
 })
-function sendData() {
+submit_btn.addEventListener('click', function (e) {
+  sendData(e)
+})
+function sendData(e) {
   const content = document.getElementById('tinymce_body_ifr').contentWindow.document.getElementById('tinymce').innerHTML
   const rowContent = content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').replace(/\n/g, '')
   const elem_tags = document.getElementsByClassName('elem_tag')

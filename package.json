@@ -4,6 +4,8 @@
   "description": "## 作業環境  Go(1.14 darwin/amd64)   MySQL(8.0.19)",
   "main": "main.js",
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write 'static/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,11 +19,15 @@
   },
   "homepage": "https://github.com/geek-line/knowledge_page_blog#readme",
   "dependencies": {
-    "aws-sdk": "^2.657.0",
+    "aws-sdk": "^2.814.0",
     "dotenv": "^8.2.0",
     "izitoast": "^1.4.0",
     "materialize-css": "^1.0.0-rc.2",
-    "prismjs": "^1.23.0",
-    "tinymce": "^5.6.0"
+    "prismjs": "^1.25.0",
+    "tinymce": "^5.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "prettier": "2.3.2"
   }
 }

@@ -12,7 +12,7 @@ submit_btn_post.addEventListener('click', function () {
     { Key: 'eyecatches/' + filename, ContentType: file_uploader_post.files[0].type, Body: file_uploader_post.files[0], ACL: 'public-read' },
     function (err, data) {
       if (data !== null) {
-        document.getElementById('src_post').value = 'https://knowledge-blog.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
+        document.getElementById('src_post').value = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
         let formdata = new FormData(document.getElementById('form_post'))
         const XHR = new XMLHttpRequest()
         XHR.open('POST', '/admin/eyecatches/')
@@ -51,7 +51,7 @@ for (let i = 0; i < forms.length; i++) {
         { Key: 'eyecatches/' + filename, ContentType: file_uploader_put[i].files[0].type, Body: file_uploader_put[i].files[0], ACL: 'public-read' },
         function (err, data) {
           if (data !== null) {
-            document.querySelectorAll('#src_put')[i].value = 'https://knowledge-blog.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
+            document.querySelectorAll('#src_put')[i].value = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
             let formdata = new FormData(forms[i])
             const XHR = new XMLHttpRequest()
             XHR.open('PUT', '/admin/eyecatches/')

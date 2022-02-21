@@ -46,7 +46,7 @@ for (let i = 0; i < forms.length; i++) {
     if (file_uploader_put[i].files[0] != null) {
       const timestamp = new Date().getTime()
       const filename = 'file-' + timestamp + '-' + file_uploader_put[i].files[0].name
-      let key = document.querySelectorAll('#src_put')[i].value.replace(/^https:\/\/knowledge-blog\.s3-ap-northeast-1\.amazonaws\.com\//, '')
+      let key = document.querySelectorAll('#src_put')[i].value.replace(/^https:\/\/code-database-images\.s3-ap-northeast-1\.amazonaws\.com\//, '')
       s3.putObject(
         { Key: 'eyecatches/' + filename, ContentType: file_uploader_put[i].files[0].type, Body: file_uploader_put[i].files[0], ACL: 'public-read' },
         function (err, data) {
@@ -98,7 +98,7 @@ for (let i = 0; i < forms.length; i++) {
   submit_btn_delete[i].addEventListener('click', function () {
     const formdata = new FormData(forms[i])
     const XHR = new XMLHttpRequest()
-    let key = document.querySelectorAll('#src_put')[i].value.replace(/^https:\/\/knowledge-blog\.s3-ap-northeast-1\.amazonaws\.com\//, '')
+    let key = document.querySelectorAll('#src_put')[i].value.replace(/^https:\/\/code-database-images.s3-ap-northeast-1\.amazonaws\.com\//, '')
     s3.deleteObject({ Key: key }, function (err, data) {
       XHR.open('DELETE', '/admin/eyecatches/')
       XHR.send(formdata)

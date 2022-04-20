@@ -1,3 +1,4 @@
+import iziToast from 'izitoast'
 const content = document.getElementById('content') as HTMLDivElement
 const input = document.getElementById('input') as HTMLInputElement
 const like_button_inline = document.querySelectorAll<HTMLButtonElement>('#like_button_inline')
@@ -152,21 +153,23 @@ function updateCodeSnippet() {
   }
 }
 
-// function copy(e) {
-//   let pre = document.createElement('pre')
-//   let text = e.path[1].childNodes[0].outerHTML
-//   if (text.match(/<span class="code_title">+.*/)) {
-//     iziToast.success({ title: 'Copied' })
+function copy(e: MouseEvent) {
+  let pre = document.createElement('pre') as Node
+  const path = e.composedPath()[1] as HTMLElement
+  let text = (path.childNodes[0] as HTMLElement).outerHTML
+  if (text.match(/<span class="code_title">+.*/)) {
+    iziToast.success({ title: 'Copied' })
 
-//     pre = e.path[1].childNodes[3]
-//   } else if (text.match(/<span class="code_notitle">+.*/)) {
-//     pre = e.path[1].childNodes[2]
-//     iziToast.success({ title: 'Copied' })
-//   }
-//   document.getSelection().selectAllChildren(pre)
-//   document.execCommand('copy')
-//   document.getSelection().empty(pre)
-// }
+    pre = path.childNodes[3]
+  } else if (text.match(/<span class="code_notitle">+.*/)) {
+    pre = path.childNodes[2]
+    iziToast.success({ title: 'Copied' })
+  }
+  const selection = document.getSelection()
+  selection && selection.selectAllChildren(pre)
+  document.execCommand('copy')
+  selection && selection.empty()
+}
 
 function generate_share_button(area: Element, url: string, text: string, title: string) {
   let twBtn = document.createElement('div')

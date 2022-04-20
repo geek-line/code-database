@@ -1,4 +1,4 @@
-const forms = document.querySelectorAll('#form')
+const forms = document.querySelectorAll<HTMLFormElement>('#form')
 const update_buttons = document.querySelectorAll('#update_button')
 const delete_buttons = document.querySelectorAll('#delete_button')
 for (let i = 0; i < forms.length; i++) {
@@ -35,3 +35,5 @@ for (let i = 0; i < forms.length; i++) {
     }
   })
 }
+
+export {}

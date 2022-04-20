@@ -1,19 +1,19 @@
-const forms = document.querySelectorAll('#form')
+const forms = document.querySelectorAll<HTMLFormElement>('#form')
 const update_buttons = document.querySelectorAll('#update_button')
 const delete_buttons = document.querySelectorAll('#delete_button')
-const file_preview = document.querySelectorAll('#file_preview')
-const select_eyecatch = document.querySelectorAll('#select_eyecatch')
+const file_preview = document.querySelectorAll<HTMLImageElement>('#file_preview')
+const select_eyecatch = document.querySelectorAll<HTMLSelectElement>('#select_eyecatch')
 window.addEventListener('DOMContentLoaded', function () {
   file_preview[0].src = select_eyecatch[0].value
 })
 for (let i = 0; i < select_eyecatch.length; i++) {
   select_eyecatch[i].addEventListener('change', function (e) {
-    file_preview[i].src = e.target.value
+    file_preview[i].src = this.value
   })
 }
 for (let i = 0; i < forms.length; i++) {
   update_buttons[i].addEventListener('click', function (e) {
-    if (document.querySelectorAll('#form-name')[i].value == '') {
+    if (document.querySelectorAll<HTMLInputElement>('#form-name')[i].value == '') {
       alert('名前を入力してください')
       e.preventDefault()
       return
@@ -50,3 +50,5 @@ for (let i = 0; i < forms.length; i++) {
     }
   })
 }
+
+export {}

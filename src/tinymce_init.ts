@@ -1,3 +1,6 @@
+import tinymce from 'tinymce'
+import { s3, albumBucketName } from './aws_init'
+
 tinymce.init({
   selector: '#tinymce_body',
   branding: false, // クレジットの削除
@@ -23,15 +26,20 @@ tinymce.init({
     setTimeout(function () {
       const file = blobInfo.blob()
       const timestamp = new Date().getTime()
-      const filename = 'file' + timestamp + file.name
-      s3.putObject({ Key: 'uploads/' + filename, ContentType: blobInfo.blob().type, Body: blobInfo.blob(), ACL: 'public-read' }, function (err, data) {
-        if (data !== null) {
-          const srcHTML = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'uploads/' + filename
-          success(srcHTML)
-        } else {
-          alert('アップロード失敗.')
+      const filename = 'file' + timestamp + blobInfo.name
+      s3.putObject(
+        { Bucket: albumBucketName, Key: 'uploads/' + filename, ContentType: blobInfo.blob().type, Body: blobInfo.blob(), ACL: 'public-read' },
+        function (err, data) {
+          if (data !== null) {
+            const srcHTML = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'uploads/' + filename
+            success(srcHTML)
+          } else {
+            alert('アップロード失敗.')
+          }
         }
-      })
+      )
     }, 2000)
   },
 })
+
+export {}

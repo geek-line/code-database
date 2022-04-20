@@ -30,7 +30,7 @@ const getConfig = (name) => {
             fallback: { "util": false }
         },
         optimization: {
-            minimize: false,
+            minimize: true,
             minimizer: [
               new TerserPlugin({
                 parallel: true,

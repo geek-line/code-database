@@ -9,5 +9,6 @@
         "sourceType": "module"
     },
     "rules": {
-    }
+    },
+    "ignorePatterns": ["webpack.config.js", "static/"]
 }

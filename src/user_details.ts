@@ -1,6 +1,6 @@
 import iziToast from 'izitoast'
 const content = document.getElementById('content') as HTMLDivElement
-const like_button_inlines = document.querySelectorAll<HTMLButtonElement>('#like_button_inlines')
+const like_button_inlines = document.querySelectorAll<HTMLButtonElement>('#like_button_inline')
 const like_button_baloon = document.getElementById('like_button_baloon') as HTMLButtonElement
 const likes_inline = document.querySelectorAll<HTMLSpanElement>('#likes_inline')
 const likes_baloon = document.getElementById('likes_baloon') as HTMLSpanElement
@@ -135,7 +135,7 @@ function updateCodeSnippet() {
         "<span class='code_title'>" +
         title +
         '</span><br/>' +
-        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard' onclick='copy(event)'>copy</button>` +
         "<pre class='code_displey'>" +
         pre.innerHTML +
         '</pre>'
@@ -144,7 +144,7 @@ function updateCodeSnippet() {
       attachment.innerHTML =
         "<span class='code_notitle'>" +
         '</span>' +
-        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard' onclick='copy(event)'>copy</button>` +
         "<pre class='code_displey'>" +
         attachment.innerHTML +
         '</pre>'
@@ -290,23 +290,21 @@ like_button_inlines.forEach((button) => {
   button.addEventListener('click', sendLikeFromInline)
 })
 function sendLikeFromInline() {
-  let values: string[] = []
-  let value = localStorage.getItem('noLoginLike')
-  if (value) {
-    values = value.split(',')
-  }
+  const value = localStorage.getItem('noLoginLike')
+  const values = value ? value.split(',') : []
   let isFound = false
+  let newValue: string
   for (let i = 0; i < values.length; i++) {
     if (values[i] == knowledge_id) {
       values.splice(i, 1)
-      value = values.join()
+      newValue = values.join()
       isFound = true
       break
     }
   }
   if (!isFound) {
     values.push(knowledge_id)
-    value = values.join()
+    newValue = values.join()
   }
   const XHR = new XMLHttpRequest()
   const formdata = new FormData(document.getElementById('like_form_inline') as HTMLFormElement)
@@ -337,7 +335,7 @@ function sendLikeFromInline() {
           like_button_baloon.textContent = 'LIKED'
           like_button_baloon.classList.add('liked-button')
         }
-        value && localStorage.setItem('noLoginLike', value)
+        localStorage.setItem('noLoginLike', newValue)
       } else {
         alert('データが正常に送れませんでした')
       }

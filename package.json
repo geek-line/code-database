@@ -4,12 +4,12 @@
   "description": "## 作業環境  Go(1.14 darwin/amd64)   MySQL(8.0.19)",
   "main": "main.js",
   "scripts": {
-    "build": "NODE_OPTIONS='--max-old-space-size=8192' webpack --mode=production --progress",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' webpack --mode=production --progress --config webpack.prod.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write 'src/*.ts' 'template/*.html'",
+    "format": "prettier --write 'src/*.ts' 'template/*.html' 'webpack.*.js'",
     "format-check": "prettier --check 'src/*.ts' 'template/*.html'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "NODE_OPTIONS='--max-old-space-size=8192' webpack serve --mode=production --progress"
+    "serve": "NODE_OPTIONS='--max-old-space-size=8192' webpack serve --mode=development --progress --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "typescript": "^4.6.3",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.8.0"
   }
 }

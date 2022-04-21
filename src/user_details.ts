@@ -128,7 +128,7 @@ function updateCodeSnippet() {
     if (previousElementSibling === null) {
       return
     }
-    const matchedPattern = previousElementSibling.textContent || ''.match(/(^タイトル:)+.*/)
+    const matchedPattern = (previousElementSibling.textContent || '').match(/(^タイトル:)+.*/)
     if (matchedPattern) {
       const title = matchedPattern[0].substr(5)
       attachment.innerHTML =

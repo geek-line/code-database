@@ -1,64 +1,58 @@
 <!DOCTYPE html>
-<html lang='en'>
-
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='robots' content='noindex'>
-    <link rel='icon' href='/static/public/favicon.ico'>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/static/public/favicon.ico" />
     <title>Code Database</title>
-    <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
-    <link rel='stylesheet' href='/static/css/admin_categories.css'>
-</head>
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css" />
+    <link rel="stylesheet" href="/static/css/admin_categories.css" />
+  </head>
 
-<body>
+  <body>
     {{ template "header" .Header}}
-    <div class='container'>
-        <a href='/admin/knowledges/'>ナレッジ一覧へ</a>
-        <h4>新規作成</h4>
-        <form action='/admin/categories/' method="POST">
-            <span>カテゴリ名</span><input class="tag-input" type='text' name="name" required>
+    <div class="container">
+      <a href="/admin/knowledges/">ナレッジ一覧へ</a>
+      <h4>新規作成</h4>
+      <form action="/admin/categories/" method="POST">
+        <span>カテゴリ名</span><input class="tag-input" type="text" name="name" required />
+        <span>アイキャッチ</span>
+        <select id="select_eyecatch" class="select-eyecatch" name="eyecatch_src">
+          {{ range .Eyecatches }}
+          <option value="{{ .Src }}">{{ .Name }}</option>
+          {{ end }}
+        </select>
+        <img id="file_preview" class="responsive-img" width="100px" />
+        <p>カテゴリの要約(200文字まで)</p>
+        <input pattern=".{1,200}" name="summary" cols="30" rows="20" title="200文字まで記入できます" required />
+        <input type="submit" value="カテゴリを追加" />
+      </form>
+      <h4>categories一覧</h4>
+      <ul>
+        {{ $eyecathes := .Eyecatches }} {{ range .Categories }}
+        <li class="category-list">
+          <form id="form">
+            <input type="hidden" name="id" value="{{ .ID }}" />
+            <span>カテゴリ名</span><input id="form-name" class="tag-input" type="text" name="name" value="{{ .Name }}" required />
             <span>アイキャッチ</span>
-            <select id="select_eyecatch" class="select-eyecatch" name='eyecatch_src'>
-                {{ range .Eyecatches }}
-                <option value='{{ .Src }}'>{{ .Name }}</option>
-                {{ end }}
+            <select id="select_eyecatch" name="eyecatch_src">
+              {{ $src := .EyecatchSrc }} {{ range $eyecathes }} {{ if eq $src .Src }}
+              <option selected value="{{ .Src }}">{{ .Name }}</option>
+              {{ else }}
+              <option value="{{ .Src }}">{{ .Name }}</option>
+              {{ end }} {{ end }}
             </select>
-            <img id="file_preview" class="responsive-img" width="100px">
+            <img id="file_preview" class="responsive-img" src="{{ .EyecatchSrc }}" width="100px" />
             <p>カテゴリの要約(200文字まで)</p>
-            <input pattern=".{1,200}" name='summary' cols='30' rows='20' title="200文字まで記入できます" required></input>
-            <input type='submit' value="カテゴリを追加">
-        </form>
-        <h4>categories一覧</h4>
-        <ul>
-            {{ $eyecathes := .Eyecatches }}
-            {{ range .Categories }}
-            <li class="category-list">
-                <form id="form">
-                    <input type='hidden' name="id" value="{{ .ID }}">
-                    <span>カテゴリ名</span><input id="form-name" class="tag-input" type='text' name="name" value="{{ .Name }}" required>
-                    <span>アイキャッチ</span>
-                    <select id="select_eyecatch" name='eyecatch_src'>
-                        {{ $src := .EyecatchSrc }}
-                        {{ range $eyecathes }}
-                        {{ if eq $src .Src }}
-                        <option selected value='{{ .Src }}'>{{ .Name }}</option>
-                        {{ else }}
-                        <option value='{{ .Src }}'>{{ .Name }}</option>
-                        {{ end }}
-                        {{ end }}
-                    </select>
-                    <img id="file_preview" class="responsive-img" src="{{ .EyecatchSrc }}" width="100px">
-                    <p>カテゴリの要約(200文字まで)</p>
-                    <input pattern=".{1,200}" name='summary' cols='30' rows='20' value="{{ .Summary }}" title="200文字まで記入できます" required></input>
-                    <input id="update_button" type='button' value="カテゴリを更新">
-                    <input id="delete_button" type='button' value="カテゴリを削除">
-                </form>
-            </li>
-            {{ end }}
-        </ul>
+            <input pattern=".{1,200}" name="summary" cols="30" rows="20" value="{{ .Summary }}" title="200文字まで記入できます" required />
+            <input id="update_button" type="button" value="カテゴリを更新" />
+            <input id="delete_button" type="button" value="カテゴリを削除" />
+          </form>
+        </li>
+        {{ end }}
+      </ul>
     </div>
-    <script src='/static/js/admin_categories.js'></script>
-</body>
-
+    <script src="/static/js/admin_categories.js"></script>
+  </body>
 </html>

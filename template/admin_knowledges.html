@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name='robots' content='noindex'>
-    <link rel='icon' href='/static/public/favicon.ico'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/static/public/favicon.ico" />
     <title>Code Database</title>
-    <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
-    <link rel="stylesheet" type="text/css" href="/static/css/admin_knowledges.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/admin_knowledges.css" />
+  </head>
+  <body>
     {{ template "header" .Header}}
-    <div class='container'>
-        <a href='/admin/tags/'>タグ編集へ</a>
-        <a href='/admin/eyecatches/'>アイキャッチ編集へ</a>
-        <a href='/admin/categories/'>カテゴリ編集へ</a>
-        <h4>knowledges一覧</h4>
-        <table>
-            <tr>
-                <th>id</th>
-                <th>title</th>
-                <th>created_at</th>
-                <th>updated_at</th>
-                <th>編集</th>
-                <th>公開</th>
-                <th>削除</th>
-                <th>ユーザー画面</th>
-            </tr>
-            {{ range .IndexPage }}
-            <tr>
-                <td>{{ .ID }}</td>
-                <td>{{ .Title }}</td>
-                <td>{{ .CreatedAt }}</td>
-                <td>{{ .UpdatedAt }}</td>
-                <td><a href="/admin/knowledges/{{ .ID |html| }}">編集する</a></td>
-                {{ if .IsPublished }}
-                <td><button id="unpublish_button" value="{{ .ID }}">非公開にする</button></td>
-                {{ else }}
-                <td><button id='publish_button' value="{{ .ID }}">公開する</button></td>
-                {{ end }}
-                <td><button id="delete_button" value="{{ .ID }}">削除</button></td>
-                <td><a href="/knowledges/{{ .ID |html| }}">ユーザーページで表示</a></td>
-            </tr>
-            {{ end }}
-        </table>
-        <a href="/knowledges">ユーザーページで一覧を表示</a>
-        <script src='/static/js/admin_knowledges.js'></script>
+    <div class="container">
+      <a href="/admin/tags/">タグ編集へ</a>
+      <a href="/admin/eyecatches/">アイキャッチ編集へ</a>
+      <a href="/admin/categories/">カテゴリ編集へ</a>
+      <h4>knowledges一覧</h4>
+      <table>
+        <tr>
+          <th>id</th>
+          <th>title</th>
+          <th>created_at</th>
+          <th>updated_at</th>
+          <th>編集</th>
+          <th>公開</th>
+          <th>削除</th>
+          <th>ユーザー画面</th>
+        </tr>
+        {{ range .IndexPage }}
+        <tr>
+          <td>{{ .ID }}</td>
+          <td>{{ .Title }}</td>
+          <td>{{ .CreatedAt }}</td>
+          <td>{{ .UpdatedAt }}</td>
+          <td><a href="/admin/knowledges/{{ .ID |html| }}">編集する</a></td>
+          {{ if .IsPublished }}
+          <td><button id="unpublish_button" value="{{ .ID }}">非公開にする</button></td>
+          {{ else }}
+          <td><button id="publish_button" value="{{ .ID }}">公開する</button></td>
+          {{ end }}
+          <td><button id="delete_button" value="{{ .ID }}">削除</button></td>
+          <td><a href="/knowledges/{{ .ID |html| }}">ユーザーページで表示</a></td>
+        </tr>
+        {{ end }}
+      </table>
+      <a href="/knowledges">ユーザーページで一覧を表示</a>
+      <script src="/static/js/admin_knowledges.js"></script>
     </div>
-</body>
+  </body>
 </html>

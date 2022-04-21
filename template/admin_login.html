@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='robots' content='noindex'>
-    <link rel='icon' href='/static/public/favicon.ico'>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/static/public/favicon.ico" />
     <title>Code Database</title>
-    <link rel='stylesheet' href='/node_modules/materialize-css/dist/css/materialize.min.css'>
-</head>
-<body>
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css" />
+  </head>
+  <body>
     {{ template "header" .Header }}
-    <form action='/admin/login/' method="POST">
-        <input type='email' name="email">
-        <input type='password' name="password">
-        <input type='submit'>
+    <form action="/admin/login/" method="POST">
+      <input type="email" name="email" />
+      <input type="password" name="password" />
+      <input type="submit" />
     </form>
-</body>
+  </body>
 </html>

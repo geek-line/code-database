@@ -1,6 +1,5 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const TerserPlugin = require('terser-webpack-plugin')
 const common = require('./webpack.common.js')
 
 const getConfig = (name) =>
@@ -16,14 +15,6 @@ const getConfig = (name) =>
       path: path.resolve(__dirname, 'static/js'), //バンドルしたファイルの出力先のパスを指定
       filename: '[name].js', //出力時のファイル名の指定
     },
-    //   optimization: {
-    //     minimize: false,
-    //     minimizer: [
-    //       new TerserPlugin({
-    //         parallel: true,
-    //       }),
-    //     ],
-    //   },
   })
 
 module.exports = [

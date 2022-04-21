@@ -135,7 +135,7 @@ function updateCodeSnippet() {
         "<span class='code_title'>" +
         title +
         '</span><br/>' +
-        `<button id="copy_button" class='copy_clipboard' onclick='copy(event)'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
         "<pre class='code_displey'>" +
         pre.innerHTML +
         '</pre>'
@@ -144,18 +144,18 @@ function updateCodeSnippet() {
       attachment.innerHTML =
         "<span class='code_notitle'>" +
         '</span>' +
-        `<button id="copy_button" class='copy_clipboard' onclick='copy(event)'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
         "<pre class='code_displey'>" +
         attachment.innerHTML +
         '</pre>'
     }
   }
+  const copy_buttons = document.querySelectorAll<HTMLButtonElement>('#copy_button')
+  copy_buttons.forEach((button) => {
+    button.addEventListener('click', copy)
+  })
 }
 
-const copy_buttons = document.querySelectorAll<HTMLButtonElement>('#copy_button')
-copy_buttons.forEach((button) => {
-  button.addEventListener('click', copy)
-})
 function copy(e: MouseEvent) {
   let pre = document.createElement('pre') as Node
   const path = e.composedPath()[1] as HTMLElement

@@ -34,7 +34,7 @@ add_tag_button.addEventListener('click', function () {
     selectElement.parentNode && selectElement.parentNode.removeChild(selectElement)
   })
 })
-select_eyecatch.addEventListener('change', function (e) {
+select_eyecatch.addEventListener('change', function () {
   file_preview.src = this.value
 })
 submit_btn.addEventListener('click', function (e) {
@@ -53,7 +53,7 @@ function sendData(e: MouseEvent) {
     e.preventDefault()
     return
   }
-  let arr: { [key: string]: boolean } = {}
+  const arr: { [key: string]: boolean } = {}
   let tags = ''
   for (let i = 0; i < elem_tags.length; i++) {
     if (arr[elem_tags[i].value]) {
@@ -66,7 +66,7 @@ function sendData(e: MouseEvent) {
     tags += ','
   }
   tags = tags.slice(0, -1)
-  let formdata = new FormData(form)
+  const formdata = new FormData(form)
   formdata.append('content', content)
   formdata.append('row_content', rowContent)
   formdata.append('tags', tags)

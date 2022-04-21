@@ -22,9 +22,8 @@ tinymce.init({
     { text: 'Golang', value: 'go' },
   ],
   toolbar: 'undo redo | styleselect | link bold italic | image codesample | numlist bullist | table tabledelete',
-  images_upload_handler: function (blobInfo, success, failure) {
+  images_upload_handler: function (blobInfo, success) {
     setTimeout(function () {
-      const file = blobInfo.blob()
       const timestamp = new Date().getTime()
       const filename = 'file' + timestamp + blobInfo.name
       s3.putObject(

@@ -1,34 +1,33 @@
 import iziToast from 'izitoast'
 const content = document.getElementById('content') as HTMLDivElement
-const input = document.getElementById('input') as HTMLInputElement
-const like_button_inline = document.querySelectorAll<HTMLButtonElement>('#like_button_inline')
+const like_button_inlines = document.querySelectorAll<HTMLButtonElement>('#like_button_inlines')
 const like_button_baloon = document.getElementById('like_button_baloon') as HTMLButtonElement
 const likes_inline = document.querySelectorAll<HTMLSpanElement>('#likes_inline')
 const likes_baloon = document.getElementById('likes_baloon') as HTMLSpanElement
 const knowledge_id = (document.getElementById('knowledge_id') as HTMLInputElement).value
-let snsArea = document.querySelectorAll('.sns-area')
-let title = (document.getElementById('title') as HTMLDivElement).innerHTML
-let shareUrl = location.href // 現在のページURLを使用する場合 location.href;
-let shareText = title + '\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者' // 現在のページタイトルを使用する場合 document.title;
+const snsArea = document.querySelectorAll('.sns-area')
+const title = (document.getElementById('title') as HTMLDivElement).innerHTML
+const shareUrl = location.href // 現在のページURLを使用する場合 location.href;
+const shareText = title + '\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者' // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
   content.innerHTML = content.innerHTML.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, '</table></div>')
 
   snsArea.forEach(function (Area) {
-    generate_share_button(Area, shareUrl, shareText, title)
+    generate_share_button(Area, shareUrl, shareText)
   })
 
   if (localStorage.getItem('noLoginLike')) {
-    let value = localStorage.getItem('noLoginLike')
+    const value = localStorage.getItem('noLoginLike')
     if (value === null) {
       return
     }
-    let values = value.split(',')
+    const values = value.split(',')
     for (let i = 0; i < values.length; i++) {
       if (values[i] == knowledge_id) {
-        for (let j = 0; j < like_button_inline.length; j++) {
-          like_button_inline[j].textContent = 'LIKED'
-          like_button_inline[j].classList.add('liked-button')
+        for (let j = 0; j < like_button_inlines.length; j++) {
+          like_button_inlines[j].textContent = 'LIKED'
+          like_button_inlines[j].classList.add('liked-button')
         }
         like_button_baloon.textContent = 'LIKED'
         like_button_baloon.classList.add('liked-button')
@@ -36,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   }
-  let p_table_items = document.getElementById('p_table_items') as HTMLDivElement
-  let p_table_items_devise = document.getElementById('p_table_items_devise') as HTMLDivElement
-  let div = document.createElement('div')
-  let matches = document.querySelectorAll<HTMLElement>('.content h2,.content h3')
+  const p_table_items = document.getElementById('p_table_items') as HTMLDivElement
+  const p_table_items_devise = document.getElementById('p_table_items_devise') as HTMLDivElement
+  const div = document.createElement('div')
+  const matches = document.querySelectorAll<HTMLElement>('.content h2,.content h3')
   matches.forEach(function (value) {
     let id = value.id
     if (id === '') {
@@ -47,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
       value.id = id
     }
     if (value.tagName === 'H2') {
-      let ul = document.createElement('ul')
-      let li = document.createElement('li')
-      let a = document.createElement('a')
+      const ul = document.createElement('ul')
+      const li = document.createElement('li')
+      const a = document.createElement('a')
       a.innerHTML = value.textContent || ''
       a.href = '#' + value.id
       a.className = 'h2 sidenav-close'
@@ -58,14 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
       div.appendChild(ul)
     }
     if (value.tagName === 'H3') {
-      let ul = document.createElement('ul')
-      let li = document.createElement('li')
-      let a = document.createElement('a')
-      let lastUl = div.lastElementChild
+      const ul = document.createElement('ul')
+      const li = document.createElement('li')
+      const a = document.createElement('a')
+      const lastUl = div.lastElementChild
       if (lastUl === null) {
         return
       }
-      let lastLi = lastUl.lastElementChild
+      const lastLi = lastUl.lastElementChild
       if (lastLi === null) {
         return
       }
@@ -85,13 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function code_pen_init() {
-  let code_pen = document.getElementsByTagName('a')
+  const code_pen = document.getElementsByTagName('a')
   for (let i = 0; i < code_pen.length; i++) {
     const pattern = /https:\/\/codepen.io\/(.*?)/
     if (code_pen[i].href.match(pattern)) {
       code_pen[i].target = '_blank'
       code_pen[i].rel = 'noreferrer noopener'
-      let codePen = document.createElement('p')
+      const codePen = document.createElement('p')
       codePen.className = 'codepen'
       codePen.setAttribute('data-height', '395')
       codePen.setAttribute(
@@ -105,7 +104,7 @@ function code_pen_init() {
         codePen.setAttribute('data-slug-hash', title)
         codePen.setAttribute('data-user', userName)
         codePen.setAttribute('data-default-tab', 'js,result')
-        let a = document.createElement('a')
+        const a = document.createElement('a')
         a.href = code_pen[i].href
         codePen.appendChild(a)
         const parentNode = code_pen[i].parentNode
@@ -120,9 +119,9 @@ function code_pen_init() {
   }
 }
 function updateCodeSnippet() {
-  let attachments = document.querySelectorAll<HTMLElement>('pre[class*=language-]')
-  for (let attachment of attachments) {
-    let pre = document.createElement('pre')
+  const attachments = document.querySelectorAll<HTMLElement>('pre[class*=language-]')
+  for (const attachment of attachments) {
+    const pre = document.createElement('pre')
     pre.className = attachment.className
     pre.innerHTML = attachment.innerHTML
     const previousElementSibling = attachment.previousElementSibling
@@ -131,12 +130,12 @@ function updateCodeSnippet() {
     }
     const matchedPattern = previousElementSibling.textContent || ''.match(/(^タイトル:)+.*/)
     if (matchedPattern) {
-      let title = matchedPattern[0].substr(5)
+      const title = matchedPattern[0].substr(5)
       attachment.innerHTML =
         "<span class='code_title'>" +
         title +
         '</span><br/>' +
-        `<button class='copy_clipboard' onclick='copy(event)'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
         "<pre class='code_displey'>" +
         pre.innerHTML +
         '</pre>'
@@ -145,7 +144,7 @@ function updateCodeSnippet() {
       attachment.innerHTML =
         "<span class='code_notitle'>" +
         '</span>' +
-        `<button class='copy_clipboard' onclick='copy(event)'>copy</button>` +
+        `<button id="copy_button" class='copy_clipboard'>copy</button>` +
         "<pre class='code_displey'>" +
         attachment.innerHTML +
         '</pre>'
@@ -153,10 +152,14 @@ function updateCodeSnippet() {
   }
 }
 
+const copy_buttons = document.querySelectorAll<HTMLButtonElement>('#copy_button')
+copy_buttons.forEach((button) => {
+  button.addEventListener('click', copy)
+})
 function copy(e: MouseEvent) {
   let pre = document.createElement('pre') as Node
   const path = e.composedPath()[1] as HTMLElement
-  let text = (path.childNodes[0] as HTMLElement).outerHTML
+  const text = (path.childNodes[0] as HTMLElement).outerHTML
   if (text.match(/<span class="code_title">+.*/)) {
     iziToast.success({ title: 'Copied' })
 
@@ -171,11 +174,11 @@ function copy(e: MouseEvent) {
   selection && selection.empty()
 }
 
-function generate_share_button(area: Element, url: string, text: string, title: string) {
-  let twBtn = document.createElement('div')
+function generate_share_button(area: Element, url: string, text: string) {
+  const twBtn = document.createElement('div')
   twBtn.className = 'twitter-btn'
-  let twHref = 'https://twitter.com/share?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url)
-  let twLink =
+  const twHref = 'https://twitter.com/share?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url)
+  const twLink =
     '<a href="' +
     twHref +
     '" ' +
@@ -185,7 +188,7 @@ function generate_share_button(area: Element, url: string, text: string, title: 
   area.appendChild(twBtn)
 }
 const smoothScroll = () => {
-  let links = document.querySelectorAll('.item_devise a[href^="#"]')
+  const links = document.querySelectorAll('.item_devise a[href^="#"]')
   const speed = 3000 // スクロールスピード
   const divisor = 100 // 分割数
   const tolerance = 5 // 許容誤差
@@ -194,7 +197,7 @@ const smoothScroll = () => {
   for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('click', (e) => {
       e.preventDefault()
-      let nowY = window.pageYOffset
+      const nowY = window.pageYOffset
       const href = links[i].getAttribute('href') //href取得
       if (href) {
         const splitHref = href.split('#')
@@ -224,6 +227,8 @@ const doScroll = (minY: number, nowY: number, targetY: number, tolerance: number
     return false
   }
 }
+
+like_button_baloon.addEventListener('click', sendLikeFromBaloon)
 function sendLikeFromBaloon() {
   let values: string[] = []
   let value = localStorage.getItem('noLoginLike')
@@ -244,7 +249,7 @@ function sendLikeFromBaloon() {
     value = values.join()
   }
   const XHR = new XMLHttpRequest()
-  let formdata = new FormData(document.getElementById('like_form_baloon') as HTMLFormElement)
+  const formdata = new FormData(document.getElementById('like_form_baloon') as HTMLFormElement)
   if (isFound) {
     XHR.open('PUT', '/knowledges/like')
   } else {
@@ -256,8 +261,8 @@ function sendLikeFromBaloon() {
         if (isFound) {
           for (let i = 0; i < likes_inline.length; i++) {
             likes_inline[i].textContent = `${Number(likes_inline[i].textContent) - 1}`
-            like_button_inline[i].textContent = 'LIKE'
-            like_button_inline[i].classList.remove('liked-button')
+            like_button_inlines[i].textContent = 'LIKE'
+            like_button_inlines[i].classList.remove('liked-button')
           }
           likes_baloon.textContent = `${Number(likes_baloon.textContent) - 1}`
           like_button_baloon.textContent = 'LIKE'
@@ -265,8 +270,8 @@ function sendLikeFromBaloon() {
         } else {
           for (let i = 0; i < likes_inline.length; i++) {
             likes_inline[i].textContent = `${Number(likes_inline[i].textContent) + 1}`
-            like_button_inline[i].textContent = 'LIKED'
-            like_button_inline[i].classList.add('liked-button')
+            like_button_inlines[i].textContent = 'LIKED'
+            like_button_inlines[i].classList.add('liked-button')
           }
           likes_baloon.textContent = `${Number(likes_baloon.textContent) + 1}`
           like_button_baloon.textContent = 'LIKED'
@@ -280,6 +285,10 @@ function sendLikeFromBaloon() {
   }
   XHR.send(formdata)
 }
+
+like_button_inlines.forEach((button) => {
+  button.addEventListener('click', sendLikeFromInline)
+})
 function sendLikeFromInline() {
   let values: string[] = []
   let value = localStorage.getItem('noLoginLike')
@@ -300,7 +309,7 @@ function sendLikeFromInline() {
     value = values.join()
   }
   const XHR = new XMLHttpRequest()
-  let formdata = new FormData(document.getElementById('like_form_inline') as HTMLFormElement)
+  const formdata = new FormData(document.getElementById('like_form_inline') as HTMLFormElement)
   if (isFound) {
     XHR.open('PUT', '/knowledges/like')
   } else {
@@ -312,8 +321,8 @@ function sendLikeFromInline() {
         if (isFound) {
           for (let i = 0; i < likes_inline.length; i++) {
             likes_inline[i].textContent = `${Number(likes_inline[i].textContent) - 1}`
-            like_button_inline[i].textContent = 'LIKE'
-            like_button_inline[i].classList.remove('liked-button')
+            like_button_inlines[i].textContent = 'LIKE'
+            like_button_inlines[i].classList.remove('liked-button')
           }
           likes_baloon.textContent = `${Number(likes_baloon.textContent) - 1}`
           like_button_baloon.textContent = 'LIKE'
@@ -321,8 +330,8 @@ function sendLikeFromInline() {
         } else {
           for (let i = 0; i < likes_inline.length; i++) {
             likes_inline[i].textContent = `${Number(likes_inline[i].textContent) + 1}`
-            like_button_inline[i].textContent = 'LIKED'
-            like_button_inline[i].classList.add('liked-button')
+            like_button_inlines[i].textContent = 'LIKED'
+            like_button_inlines[i].classList.add('liked-button')
           }
           likes_baloon.textContent = `${Number(likes_baloon.textContent) + 1}`
           like_button_baloon.textContent = 'LIKED'

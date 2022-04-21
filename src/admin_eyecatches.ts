@@ -25,7 +25,7 @@ submit_btn_post.addEventListener('click', function () {
       if (data !== null) {
         ;(document.getElementById('src_post') as HTMLInputElement).value =
           'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
-        let formdata = new FormData(document.getElementById('form_post') as HTMLFormElement)
+        const formdata = new FormData(document.getElementById('form_post') as HTMLFormElement)
         const XHR = new XMLHttpRequest()
         XHR.open('POST', '/admin/eyecatches/')
         XHR.send(formdata)
@@ -46,7 +46,7 @@ submit_btn_post.addEventListener('click', function () {
   )
 })
 for (let i = 0; i < file_uploader_put.length; i++) {
-  file_uploader_put[i].addEventListener('change', function (e) {
+  file_uploader_put[i].addEventListener('change', function () {
     if (this.files === null) {
       return
     }
@@ -62,7 +62,7 @@ for (let i = 0; i < forms.length; i++) {
     if (files && files[0] !== null) {
       const timestamp = new Date().getTime()
       const filename = 'file-' + timestamp + '-' + files[0].name
-      let key = document
+      const key = document
         .querySelectorAll<HTMLInputElement>('#src_put')
         [i].value.replace(/^https:\/\/code-database-images\.s3-ap-northeast-1\.amazonaws\.com\//, '')
       s3.putObject(
@@ -71,14 +71,14 @@ for (let i = 0; i < forms.length; i++) {
           if (data !== null) {
             document.querySelectorAll<HTMLInputElement>('#src_put')[i].value =
               'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
-            let formdata = new FormData(forms[i])
+            const formdata = new FormData(forms[i])
             const XHR = new XMLHttpRequest()
             XHR.open('PUT', '/admin/eyecatches/')
             XHR.send(formdata)
             XHR.onreadystatechange = function () {
               if (XHR.readyState === 4) {
                 if (XHR.status === 200) {
-                  s3.deleteObject({ Bucket: albumBucketName, Key: key }, function (err, data) {
+                  s3.deleteObject({ Bucket: albumBucketName, Key: key }, function (err) {
                     if (err != null) {
                       alert('データの削除に失敗しました')
                       return
@@ -117,10 +117,10 @@ for (let i = 0; i < forms.length; i++) {
   submit_btn_delete[i].addEventListener('click', function () {
     const formdata = new FormData(forms[i])
     const XHR = new XMLHttpRequest()
-    let key = document
+    const key = document
       .querySelectorAll<HTMLInputElement>('#src_put')
       [i].value.replace(/^https:\/\/code-database-images.s3-ap-northeast-1\.amazonaws\.com\//, '')
-    s3.deleteObject({ Bucket: albumBucketName, Key: key }, function (err, data) {
+    s3.deleteObject({ Bucket: albumBucketName, Key: key }, function () {
       XHR.open('DELETE', '/admin/eyecatches/')
       XHR.send(formdata)
       XHR.onreadystatechange = function () {

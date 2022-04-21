@@ -14,7 +14,7 @@ for (let i = 0; i < search_submit.length; i++) {
       return
     }
     const XHR = new XMLHttpRequest()
-    let queries = search_input[i].value.split(/\s+/g)
+    const queries = search_input[i].value.split(/\s+/g)
     for (let j = 0; j < queries.length; j++) {
       queries[j] = encodeURIComponent(queries[j])
     }

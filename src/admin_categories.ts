@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', function () {
   file_preview[0].src = select_eyecatch[0].value
 })
 for (let i = 0; i < select_eyecatch.length; i++) {
-  select_eyecatch[i].addEventListener('change', function (e) {
+  select_eyecatch[i].addEventListener('change', function () {
     file_preview[i].src = this.value
   })
 }

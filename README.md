@@ -5,6 +5,7 @@ https://code-database.com/
 
 ## 作業環境 
 Go(1.14 darwin/amd64)  
+Air
 MySQL(8.0.19)
 
 ## 使用ライブラリ

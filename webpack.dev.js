@@ -10,7 +10,7 @@ const getConfig = (name) =>
     },
     output: {
       library: {
-        type: 'commonjs2',
+        type: 'window',
       },
       path: path.resolve(__dirname, 'static/js'), //バンドルしたファイルの出力先のパスを指定
       filename: '[name].js', //出力時のファイル名の指定

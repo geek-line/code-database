@@ -13,6 +13,7 @@ var (
 	SessionKey = makeSessionKey()
 	SQLEnv     = makeSQLEnv()
 	ExecuteDir = getRootPath()
+	BuildMode  = makeBuildEnv()
 )
 
 func getRootPath() string {
@@ -36,4 +37,13 @@ func makeSessionKey() string {
 func makeSQLEnv() string {
 	envLoad()
 	return os.Getenv("SQL_ENV")
+}
+
+func makeBuildEnv() string {
+	envLoad()
+	if buildEnv := os.Getenv("BUILD_MODE"); buildEnv == "" {
+		return "dev"
+	} else {
+		return buildEnv
+	}
 }

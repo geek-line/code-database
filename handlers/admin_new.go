@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 )
@@ -37,11 +38,13 @@ func AdminNewHandler(w http.ResponseWriter, r *http.Request) {
 		Tags       []structs.Tag
 		Eyecatches []structs.Eyecatch
 		Categories []structs.Category
+		BuildMode  string
 	}{
 		Header:     header,
 		Tags:       tags,
 		Eyecatches: eyecatches,
 		Categories: categories,
+		BuildMode:  config.BuildMode,
 	}); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

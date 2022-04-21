@@ -30,10 +30,12 @@ func AdminCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 			Header     structs.Header
 			Categories []structs.Category
 			Eyecatches []structs.Eyecatch
+			BuildMode  string
 		}{
 			Header:     header,
 			Categories: categories,
 			Eyecatches: eyecatches,
+			BuildMode:  config.BuildMode,
 		}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}

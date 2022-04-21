@@ -6,13 +6,8 @@
     <meta name="robots" content="noindex" />
     <link rel="icon" href="/static/public/favicon.ico" />
     <title>Code Database</title>
-    <script src="/node_modules/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="/static/js/tinymce_init.js"></script>
     <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/admin_new.css" />
-    <script src="/node_modules/aws-sdk/dist/aws-sdk.min.js"></script>
-    <script src="/static/js/aws_config.js"></script>
-    <script src="/static/js/aws_init.js"></script>
   </head>
   <body>
     {{ template "header" .Header }}
@@ -66,6 +61,10 @@
         <input id="submit_btn" type="button" value="Save" />
       </form>
     </div>
+    {{ if eq .BuildMode "dev" }}
+    <script src="http://localhost:8080/admin_edit.js"></script>
+    {{ else }}
     <script src="/static/js/admin_edit.js"></script>
+    {{ end }}
   </body>
 </html>

@@ -45,7 +45,11 @@
         {{ end }}
       </table>
       <a href="/knowledges">ユーザーページで一覧を表示</a>
-      <script src="/static/js/admin_knowledges.js"></script>
     </div>
   </body>
+  {{ if eq .BuildMode "dev" }}
+  <script src="http://localhost:8080/admin_knowledges.js"></script>
+  {{ else }}
+  <script src="/static/js/admin_knowledges.js"></script>
+  {{ end }}
 </html>

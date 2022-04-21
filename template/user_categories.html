@@ -175,13 +175,17 @@
       </div>
     </div>
     {{ template "footer" }}
-    <script src="/static/js/user_knowledges.js"></script>
-    <script>
-      window.onload = function () {
-        ;[].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
-          ;(adsbygoogle = window.adsbygoogle || []).push({})
-        })
-      }
-    </script>
   </body>
+  {{ if eq .BuildMode "dev" }}
+  <script src="http://localhost:8080/user_knowledges.js"></script>
+  {{ else }}
+  <script src="/static/js/user_knowledges.js"></script>
+  {{ end }}
+  <script>
+    window.onload = function () {
+      ;[].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+        ;(adsbygoogle = window.adsbygoogle || []).push({})
+      })
+    }
+  </script>
 </html>

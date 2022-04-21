@@ -148,9 +148,8 @@
       </div>
     </div>
     {{ template "footer" }}
-    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="/static/js/user_details.js"></script>
-    <script async src="/node_modules/izitoast/dist/js/iziToast.min.js"></script>
+    <!-- <script src="/static/js/user_details.js"></script> -->
+    <script src="http://localhost:8080/user_details.js"></script>
     <script>
       window.onload = function () {
         ;[].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
@@ -159,4 +158,7 @@
       }
     </script>
   </body>
+  {{ if eq .BuildMode "dev" }}
+  {{ else }}
+  {{ end }}
 </html>

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 )
@@ -67,11 +68,13 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	}
 	t := template.Must(template.ParseFiles("template/user_tags.html", "template/_header.html", "template/_footer.html"))
 	if err = t.Execute(w, struct {
-		Header   structs.Header
-		TagsPage structs.UserTagsPage
+		Header    structs.Header
+		TagsPage  structs.UserTagsPage
+		BuildMode string
 	}{
-		Header:   header,
-		TagsPage: userTagsPage,
+		Header:    header,
+		TagsPage:  userTagsPage,
+		BuildMode: config.BuildMode,
 	}); err != nil {
 		log.Print(err)
 		StatusInternalServerError(w, r, auth)

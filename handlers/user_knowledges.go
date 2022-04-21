@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 )
@@ -93,9 +94,11 @@ func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	if err = t.Execute(w, struct {
 		Header    structs.Header
 		IndexPage structs.UserIndexPage
+		BuildMode string
 	}{
 		Header:    header,
 		IndexPage: indexPage,
+		BuildMode: config.BuildMode,
 	}); err != nil {
 		log.Print(err.Error())
 		StatusInternalServerError(w, r, auth)

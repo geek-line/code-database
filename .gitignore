@@ -11,4 +11,8 @@ main
 buck_up/
 google_sitemap/
 nohup.out
+
+# buildで作成する
 static/js/
+
+.vscode/

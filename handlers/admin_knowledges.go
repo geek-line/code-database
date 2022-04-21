@@ -54,6 +54,7 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 				Eyecatches     []structs.Eyecatch
 				Categories     []structs.Category
 				SelectedTagsID []int
+				BuildMode      string
 			}{
 				Header:         header,
 				EditPage:       editPage,
@@ -61,6 +62,7 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 				Eyecatches:     eyecatches,
 				Categories:     categories,
 				SelectedTagsID: selectedTagsID,
+				BuildMode:      config.BuildMode,
 			}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
@@ -76,9 +78,11 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 		if err = t.Execute(w, struct {
 			Header    structs.Header
 			IndexPage []structs.Knowledge
+			BuildMode string
 		}{
 			Header:    header,
 			IndexPage: knowledges,
+			BuildMode: config.BuildMode,
 		}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}

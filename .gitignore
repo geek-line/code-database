@@ -13,6 +13,9 @@ google_sitemap/
 nohup.out
 
 # buildで作成する
-static/js/
+dist/
+
+#airで作成される一時フォルダ
+tmp/
 
 .vscode/

@@ -17,7 +17,7 @@ func AdminLoginHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	store := sessions.NewCookieStore([]byte(config.SessionKey))
 	if r.Method == "GET" {
 		if !auth {
-			t := template.Must(template.ParseFiles("template/admin_login.html", "template/_header.html"))
+			t := template.Must(getTemplate("dist/template/admin_login.html", "dist/template/_header.html"))
 			header := newHeader(false)
 			if err := t.Execute(w, struct {
 				Header structs.Header

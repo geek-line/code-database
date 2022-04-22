@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"code-database/config"
+	"code-database/development"
 	"code-database/handlers"
 	"code-database/middleware"
 
@@ -37,8 +38,12 @@ func main() {
 	http.HandleFunc(config.UserCategoryPath, middleware.UserAuth(handlers.CategoryHandler))
 	http.HandleFunc(config.UserAboutPath, middleware.UserAuth(handlers.AboutHandler))
 	http.HandleFunc(config.UserPrivacyPath, middleware.UserAuth(handlers.PrivacyHandler))
-	http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
-	http.Handle(config.NodeModulesPath, http.StripPrefix(config.NodeModulesPath, http.FileServer(http.Dir(dir+config.NodeModulesPath))))
+	if config.BuildMode == "prod" {
+		http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
+	} else {
+		http.HandleFunc(config.StaticPath, development.GetStaticFileFromDevServer)
+	}
+	http.Handle(config.PublicPath, http.StripPrefix(config.PublicPath, http.FileServer(http.Dir(dir+config.PublicPath))))
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
 	fmt.Printf("Success starting backend server (%s build)\n", config.BuildMode)
 	if config.BuildMode == "prod" {

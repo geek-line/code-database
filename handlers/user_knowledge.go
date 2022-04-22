@@ -56,7 +56,7 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			funcMap := template.FuncMap{
 				"safehtml": func(text string) template.HTML { return template.HTML(text) },
 			}
-			t := template.Must(template.New("user_details.html").Funcs(funcMap).ParseFiles("template/user_details.html", "template/_header.html", "template/_footer.html"))
+			t := template.Must(getTemplateWithFuncs(funcMap, "dist/template/user_details.html", "dist/template/_header.html", "dist/template/_footer.html"))
 			if err := t.Execute(w, struct {
 				Header           structs.Header
 				SelectedCategory structs.Category

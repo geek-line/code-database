@@ -7,7 +7,7 @@
     "build": "NODE_OPTIONS='--max-old-space-size=8192' webpack --mode=production --progress --config webpack.prod.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write 'src/**/*.ts' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
-    "format-check": "prettier --check 'src/*.ts' 'template/*.html'",
+    "format-check": "prettier --check 'src/**/*.ts' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_OPTIONS='--max-old-space-size=8192' webpack serve --mode=development --progress --config webpack.dev.js"
   },

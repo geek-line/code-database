@@ -12,7 +12,6 @@ const select_display = document.getElementById('select_display') as HTMLDivEleme
 
 window.addEventListener('DOMContentLoaded', function () {
   initTinyMce()
-  console.log('call')
   select_display.textContent = null
   file_preview.src = select_eyecatch.value
 })

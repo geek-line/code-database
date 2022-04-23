@@ -15,14 +15,12 @@ import 'tinymce/plugins/table'
 import 'tinymce/plugins/image'
 
 // TODO: requireでなくともimportできるようにする
-/* Import content css */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const contentUiCss = require('tinymce/skins/ui/oxide/content.css').default
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const contentCss = require('tinymce/skins/content/default/content.css').default
 
 export const initTinyMce = () => {
-  console.log('called')
   tinymce.init({
     selector: '#tinymce_body',
     branding: false, // クレジットの削除

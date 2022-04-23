@@ -1,0 +1,22 @@
+name: CI
+on: [push]
+jobs:
+  frontend-lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nodenv/actions/node-version@main
+        id: nodenv
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Install node packeages
+        run: |
+          npm install
+      - name: Check format
+        run: npm run format-check
+      - name: Run lint
+        run: |
+          npm run lint
+      - name: Build
+        run: npm run build

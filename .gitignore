@@ -18,4 +18,7 @@ dist/
 #airで作成される一時フォルダ
 tmp/
 
+#macos
+.DS_Store
+
 .vscode/

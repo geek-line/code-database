@@ -35,5 +35,3 @@ for (let i = 0; i < search_submit.length; i++) {
     XHR.send()
   })
 }
-
-export {}

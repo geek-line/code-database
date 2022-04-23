@@ -348,5 +348,3 @@ function sendLikeFromInline() {
   }
   XHR.send(formdata)
 }
-
-export {}

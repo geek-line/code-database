@@ -90,5 +90,3 @@ function sendData(e: MouseEvent) {
     }
   }
 }
-
-export {}

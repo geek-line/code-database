@@ -69,5 +69,3 @@ submit_button.addEventListener('click', function (e) {
     }
   }
 })
-
-export {}

@@ -53,5 +53,3 @@ for (let i = 0; i < forms.length; i++) {
     }
   })
 }
-
-export {}

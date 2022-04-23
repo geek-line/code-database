@@ -1,5 +1,5 @@
 # code-database
-
+[![CI](https://github.com/geek-line/code-database/actions/workflows/ci.yml/badge.svg)](https://github.com/geek-line/code-database/actions/workflows/ci.yml)
 ## デプロイ先
 https://code-database.com/
 

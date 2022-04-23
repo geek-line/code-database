@@ -1,10 +1,10 @@
 package handlers
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"strconv"
-	"text/template"
 	"time"
 
 	"code-database/config"
@@ -22,7 +22,7 @@ func AdminTagsHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		t := template.Must(template.ParseFiles("template/admin_tags.html", "template/_header.html"))
+		t := template.Must(getTemplate("dist/template/admin_tags.html", "dist/template/_header.html"))
 		if err := t.Execute(w, struct {
 			Header structs.Header
 			Tags   []structs.Tag

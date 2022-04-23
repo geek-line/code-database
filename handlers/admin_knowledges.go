@@ -46,7 +46,7 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 				log.Print(err.Error())
 				return
 			}
-			t := template.Must(template.ParseFiles("template/admin_edit.html", "template/_header.html"))
+			t := template.Must(getTemplate("dist/template/admin_edit.html", "dist/template/_header.html"))
 			if err := t.Execute(w, struct {
 				Header         structs.Header
 				EditPage       structs.Knowledge
@@ -71,7 +71,7 @@ func AdminKnowledgesHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		t := template.Must(template.ParseFiles("template/admin_knowledges.html", "template/_header.html"))
+		t := template.Must(getTemplate("dist/template/admin_knowledges.html", "dist/template/_header.html"))
 		header := newHeader(true)
 		if err = t.Execute(w, struct {
 			Header    structs.Header

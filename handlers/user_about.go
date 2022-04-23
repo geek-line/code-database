@@ -13,7 +13,7 @@ func AboutHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	if auth {
 		header.IsLogin = true
 	}
-	t := template.Must(template.ParseFiles("template/user_about.html", "template/_header.html", "template/_footer.html"))
+	t := template.Must(getTemplate("dist/template/user_about.html", "dist/template/_header.html", "dist/template/_footer.html"))
 	if err := t.Execute(w, struct {
 		Header structs.Header
 	}{

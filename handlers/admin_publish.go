@@ -3,7 +3,6 @@ package handlers
 import (
 	"encoding/xml"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -61,7 +60,7 @@ func updateXMLSitemap(urlSet URLSet) error {
 	}
 	outputfile, err := os.Create(filename)
 	if err != nil {
-		log.Fatal(err) //ファイルが開けなかったときエラー出力
+		fmt.Printf("error: %v\n", err) //ファイルが開けなかったときエラー出力
 		return err
 	}
 	defer outputfile.Close()
@@ -89,14 +88,16 @@ func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {
 		message = fmt.Sprintf("{\"text\":\"https://code-database.com/knowledges/%d が非公開になりました!\nサイトマップにも反映済みです。\"}", id)
 
 	}
-	publishedKnowledges, err := models.GetAllPublishedKnowledges()
-	urlSet := makeXMLSitemap(publishedKnowledges)
-	if err = updateXMLSitemap(urlSet); err != nil {
-		AdminKnowledgesHandler(w, r)
+	if config.BuildMode == "prod" {
+		publishedKnowledges, err := models.GetAllPublishedKnowledges()
+		urlSet := makeXMLSitemap(publishedKnowledges)
+		if err = updateXMLSitemap(urlSet); err != nil {
+			AdminKnowledgesHandler(w, r)
+		}
+		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
+		if err != nil {
+			AdminKnowledgesHandler(w, r)
+		}
+		defer resp.Body.Close()
 	}
-	resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))
-	if err != nil {
-		AdminKnowledgesHandler(w, r)
-	}
-	defer resp.Body.Close()
 }

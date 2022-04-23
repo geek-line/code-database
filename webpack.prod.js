@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const common = require('./webpack.common.js')
 
 const componentNames = fs.readdirSync(path.resolve(__dirname, 'src/components'))
@@ -74,6 +75,9 @@ const getComponentConfig = (componentNames) => {
       minimize: true,
       minimizer: [
         new TerserPlugin({
+          parallel: true,
+        }),
+        new CssMinimizerPlugin({
           parallel: true,
         }),
       ],

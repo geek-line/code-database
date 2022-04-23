@@ -25,7 +25,7 @@ func AdminCategoriesHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		t := template.Must(template.ParseFiles("template/admin_categories.html", "template/_header.html"))
+		t := template.Must(getTemplate("dist/template/admin_categories.html", "dist/template/_header.html"))
 		if err := t.Execute(w, struct {
 			Header     structs.Header
 			Categories []structs.Category

@@ -14,5 +14,5 @@
     ],
     "rules": {
     },
-    "ignorePatterns": ["webpack.*.js", "static/"]
+    "ignorePatterns": ["webpack.*.js", "dist/"]
 }

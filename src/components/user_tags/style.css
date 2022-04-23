@@ -1,0 +1,203 @@
+html {
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+body {
+  background-color: #e8f5f7;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: static;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+footer {
+  position: relative;
+  margin-top: 0;
+  padding: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+nav.breadcrumb-countainer {
+  margin-top: 2rem;
+  height: auto;
+  line-height: 0.875rem;
+}
+
+.nav-wrapper {
+  height: 3rem;
+}
+
+.breadcrumb-countainer {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.breadcrumb-wrapper {
+  height: auto;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 0;
+  color: #827b7b;
+}
+
+.tagpage_title {
+  margin-top: 2rem;
+  font-size: 2.28rem;
+}
+
+.tagpage_description {
+  border-top: solid 1px #ccc;
+  margin-bottom: 3rem;
+}
+
+.row .col.tagpage_tags {
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tag_tables {
+  margin-bottom: 0.8rem;
+}
+
+.tag_tables:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.tag {
+  font-size: 0.8em;
+  padding: 0.2em 0.6em;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+  background-color: #827b7b;
+  line-height: 1.45em;
+}
+
+.pagination {
+  margin-top: 3rem;
+}
+
+select.select-sort {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  width: 8rem;
+  border-style: solid;
+  border-color: #00acc1;
+}
+
+.tag_container {
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  background-color: white;
+}
+
+table {
+  counter-reset: rowCount;
+  text-align: center;
+}
+
+table > thead > .tag_title {
+  margin: 8rem 0rem;
+}
+
+table > tbody > tr {
+  counter-increment: rowCount;
+  text-align: center;
+}
+
+table > tbody > tr:nth-child(even) {
+  counter-increment: rowCount;
+  text-align: center;
+  background: #cde2e8;
+}
+
+table > tbody > tr > td {
+  margin: 0px 0px;
+}
+
+table > tbody > tr > td:first-child::before {
+  content: counter(rowCount);
+  height: auto;
+  margin: 0 5px 0 0;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background: #30b0d8;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+}
+
+table > tbody > tr:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+table > tbody > tr > td:nth-child(2) .tag {
+  font-size: 0.8em;
+  padding: 0.2em 0.6em;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+  background-color: #827b7b;
+  line-height: 1.45em;
+}
+
+.row .col .card_wrapper {
+  padding: 0rem 1.5rem 0rem 0rem;
+}
+
+@media screen and (max-width: 480px) {
+  select.select-sort {
+    bottom: 0.5rem;
+    right: 0;
+  }
+}
+
+.search_container {
+  position: relative;
+  background-color: white;
+  margin-top: 2rem;
+}
+
+#search_input {
+  display: inline-block;
+  padding-left: 0.5rem;
+  outline: 0;
+  height: 3rem;
+  width: 70%;
+  border-radius: 2px;
+  background: #eee;
+}
+
+#search_submit {
+  display: inline-block;
+  margin-left: 0.5rem;
+  width: 20%;
+  outline: 0;
+  border-radius: 2px;
+  background: #00acc1;
+  color: #fff;
+  text-align: center;
+  border: none;
+  line-height: 2.5rem;
+}
+
+#search_submit:hover {
+  opacity: 0.5;
+}

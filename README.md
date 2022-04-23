@@ -5,6 +5,7 @@ https://code-database.com/
 
 ## 作業環境 
 Go(1.14 darwin/amd64)  
+Air
 MySQL(8.0.19)
 
 ## 使用ライブラリ
@@ -12,16 +13,36 @@ MySQL(8.0.19)
  - gorilla/sessions
  - go-sql-driver/mysql
 
+## 本番ビルド/サーバ立ち上げ
+フロントエンドのビルド
+```
+npm run build
+```
+バックエンドのビルド・サーバー立ち上げ
+```
+make start
+```
+(option)バックエンドのビルドのみ
+```
+make build
+```
+
+## 開発用ビルド/サーバー立ち上げ方法
+バックエンドサーバー立ち上げ
+```
+make dev
+```
+フロントエンドサーバー立ち上げ
+```
+npm run dev
+```
+
 ## 作業ルール  
- - 作業はISSUEを立ててからISSUE名の入ったブランチをdevelopから切って作業する  
  - 作業を始める前にdevelopをpullする  
  - 作業が完了したらdevelopにpull requestを送る  
  - margeが終わったら、作業用ブランチは削除する
  - productブランチはamazonLinux環境での動作確認用
  - masterブランチは本番用ブランチ
-
-## ISSUEの命名ルール  
-ISSUE-(番号) (作業名)
 
 ## URLのガイド
 | URL | 表示される画面 |
@@ -43,7 +64,7 @@ ISSUE-(番号) (作業名)
 | /admin/eyecatches/ | アイキャッチの編集画面 |
 
 ## フォルダの説明
-### goファイル
+### バックエンド
 | PATH | フォルダの中身 |
 | ------------- | ------------- |
 | /config/ | .envファイルを用いた環境変数の初期化 |
@@ -52,11 +73,19 @@ ISSUE-(番号) (作業名)
 | /models/ | データベースとのやりとりを行う |
 | /routes/  | サイト内に存在するPATHを管理する |
 | /structs/  | 構造体の宣言用 |
+| /development/ | 開発用に使う関数のパッケージ |
 | server.go | サーバーの立ち上げとリクエストに対するハンドラの振り分け |
-### 静的ファイル(html/css/js/その他) 
+### フロントエンド
+
+- typescript + webpackでhtml(goのテンプレート)/css/jsファイルを生成
+- `src/`ディレクトリにファイルを格納
+  - componentsディレクトリ: htmlを含むページごとのhtml/css/tsファイルの組を記述。(ディレクトリ名がhtmlのファイル名としてビルドされる)
+  - helpersディレクトリ: componentsディレクトリにてimportされる共通化ファイル
+- 画像は`public/`ディレクトリに格納
+
+### ビルドされた後の静的ファイル(ファイルは原則編集禁止)
 | PATH | フォルダの中身 |
 | ------------- | ------------- |
-| /static/css | cssファイルの作成 |
-| /static/js | jsファイルの作成 |
-| /static/public | 画像の作成 |
-| /template/ | htmlファイルの作成(goファイルのtemplateパッケージで使用) |
+| /dist/css | cssファイルの作成 |
+| /dist/js | jsファイルの作成 |
+| /dist/template/ | htmlファイルの作成(goファイルのtemplateパッケージで使用) |

@@ -89,7 +89,7 @@ func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		CurrentSort: currentSort,
 		TagRanking:  tagRankingElem,
 	}
-	t := template.Must(template.ParseFiles("template/user_knowledges.html", "template/_header.html", "template/_footer.html"))
+	t := template.Must(getTemplate("dist/template/user_knowledges.html", "dist/template/_header.html", "dist/template/_footer.html"))
 	if err = t.Execute(w, struct {
 		Header    structs.Header
 		IndexPage structs.UserIndexPage

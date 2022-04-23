@@ -20,7 +20,7 @@ func AdminEyecatchesHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Print(err.Error())
 		}
-		t := template.Must(template.ParseFiles("template/admin_eyecatches.html", "template/_header.html"))
+		t := template.Must(getTemplate("dist/template/admin_eyecatches.html", "dist/template/_header.html"))
 		if err := t.Execute(w, struct {
 			Header     structs.Header
 			Eyecatches []structs.Eyecatch

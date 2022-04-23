@@ -65,7 +65,7 @@ func TagsHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		TagRanking: tagRanking,
 		PageNation: pageNation,
 	}
-	t := template.Must(template.ParseFiles("template/user_tags.html", "template/_header.html", "template/_footer.html"))
+	t := template.Must(getTemplate("dist/template/user_tags.html", "dist/template/_header.html", "dist/template/_footer.html"))
 	if err = t.Execute(w, struct {
 		Header   structs.Header
 		TagsPage structs.UserTagsPage

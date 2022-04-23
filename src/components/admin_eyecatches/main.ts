@@ -1,3 +1,6 @@
+import 'materialize-css/dist/css/materialize.min.css'
+import './style.css'
+
 const submit_btn_post = document.getElementById('submit_btn_post') as HTMLInputElement
 const submit_btn_put = document.querySelectorAll<HTMLInputElement>('#submit_btn_put')
 const submit_btn_delete = document.querySelectorAll<HTMLInputElement>('#submit_btn_delete')
@@ -5,7 +8,7 @@ const file_uploader_post = document.getElementById('file_uploader_post') as HTML
 const file_uploader_put = document.querySelectorAll<HTMLInputElement>('#file_uploader_put')
 const file_previews = document.querySelectorAll<HTMLImageElement>('#file_preview')
 const forms = document.querySelectorAll<HTMLFormElement>('#form')
-import { s3, albumBucketName } from './aws_init'
+import { s3, albumBucketName } from '../../helpers/aws_init'
 
 submit_btn_post.addEventListener('click', function () {
   const timestamp = new Date().getTime()
@@ -59,7 +62,7 @@ for (let i = 0; i < file_uploader_put.length; i++) {
 for (let i = 0; i < forms.length; i++) {
   submit_btn_put[i].addEventListener('click', function () {
     const files = file_uploader_put[i].files
-    if (files && files[0] !== null) {
+    if (files && files[0]) {
       const timestamp = new Date().getTime()
       const filename = 'file-' + timestamp + '-' + files[0].name
       const key = document

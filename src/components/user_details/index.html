@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="{{ .DetailPage.Knowledge.Title }} | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！"
+    />
+    <meta property="og:site_name" content="Code Database" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://code-database.com/knowledges/{{.DetailPage.Knowledge.ID}}" />
+    <meta property="og:title" content="Code Database" />
+    <meta
+      property="og:description"
+      content="{{ .DetailPage.Knowledge.Title }} | Code Databaseはプログラミングに関する情報を発信しているサイトです。毎週記事をアップしているので是非チェックしてみてください！"
+    />
+    <meta property="og:image" content="{{ .DetailPage.Knowledge.EyecatchSrc }}" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="/public/favicon.ico" />
+    <title>{{ .DetailPage.Knowledge.Title }} | Code Database</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164168719-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-164168719-1')
+    </script>
+    <script data-ad-client="ca-pub-3445201371824373" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <body>
+    {{ template "header" .Header }}
+    <div class="p_items_wrapper row">
+      <div class="p_action_item col s0 m0 l1 hide-on-med-and-down">
+        <div class="display_like">
+          <div class="balloon"><span id="likes_baloon" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
+          <form id="like_form_baloon" class="like">
+            <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
+            <button class="like-button" id="like_button_baloon" type="button" value="like">LIKE</button>
+          </form>
+          <div class="sns-area"></div>
+        </div>
+      </div>
+      <nav class="col s12 m12 l8 transparent breadcrumb-countainer">
+        <div class="nav-wrapper">
+          <div itemscope itemtype="https://schema.org/BreadcrumbList" class="col s12 breadcrumb-wrapper">
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="/" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">トップ</span></a>
+              <meta itemprop="position" content="1" />
+            </span>
+            >
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="/categories" class="breadcrumb cyan-text text-darken-4"><span itemprop="name">カテゴリ一覧</span></a>
+              <meta itemprop="position" content="2" />
+            </span>
+            >
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="/categories/{{.SelectedCategory.ID}}" class="breadcrumb cyan-text text-darken-4"
+                ><span itemprop="name">{{ .SelectedCategory.Name }}カテゴリ</span></a
+              >
+              <meta itemprop="position" content="3" />
+            </span>
+            >
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="/knowledges/{{.DetailPage.Knowledge.ID}}" class="breadcrumb cyan-text text-darken-4"
+                ><span itemprop="name">{{ .DetailPage.Knowledge.Title }}</span></a
+              >
+              <meta itemprop="position" content="4" />
+            </span>
+          </div>
+        </div>
+      </nav>
+      <div class="p_main_item col s12 m12 l8">
+        <a data-target="slide-out" class="menu sidenav-trigger right hide-on-large-only"><i class="material-icons black-text">format_list_bulleted</i></a>
+        <ul class="tags">
+          {{ range .DetailPage.SelectedTags }}
+          <li><a href="/tags/{{.ID}}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+        <div class="title" id="title">{{ .DetailPage.Knowledge.Title }}</div>
+        <div class="like-date-wrapper">
+          <div class="display_like">
+            <div class="balloon"><span id="likes_inline" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
+            <form id="like_form_inline" class="like">
+              <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
+              <button class="like-button" id="like_button_inline" type="button" value="like">LIKE</button>
+            </form>
+          </div>
+          <div class="sns-area"></div>
+        </div>
+        <div class="update_time">最終更新日時:{{ .DetailPage.Knowledge.UpdatedAt }}</div>
+        <br />
+        <hr />
+        <ins
+          class="adsbygoogle"
+          style="display: block; text-align: center"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client="ca-pub-3445201371824373"
+          data-ad-slot="2889619159"
+        ></ins>
+        <hr />
+        <div id="content" class="content">{{ .DetailPage.Knowledge.Content | safehtml }}</div>
+        <div class="like-date-wrapper">
+          <div class="display_like">
+            <div class="balloon"><span id="likes_inline" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
+            <form id="like_form_inline" class="like">
+              <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
+              <button class="like-button" id="like_button_inline" type="button" value="like">LIKE</button>
+            </form>
+          </div>
+          <div class="sns-area"></div>
+        </div>
+        <hr />
+        <ins
+          class="adsbygoogle"
+          style="display: block"
+          data-ad-client="ca-pub-3445201371824373"
+          data-ad-slot="2399876013"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+      </div>
+      <div class="p_table_items col s0 m0 l3 hide-on-med-and-down">
+        <div id="p_table_items" class="item"></div>
+        <ins
+          class="adsbygoogle"
+          style="display: block"
+          data-ad-client="ca-pub-3445201371824373"
+          data-ad-slot="2399876013"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+      </div>
+      <div class="p_table_items_devise hide-on-large-only sidenav-close sidenav" id="slide-out">
+        <div id="p_table_items_devise" class="item_devise"></div>
+      </div>
+    </div>
+    {{ template "footer" }}
+  </body>
+
+  <script>
+    window.onload = function () {
+      ;[].forEach.call(document.querySelectorAll('.adsbygoogle'), function () {
+        ;(adsbygoogle = window.adsbygoogle || []).push({})
+      })
+    }
+  </script>
+</html>

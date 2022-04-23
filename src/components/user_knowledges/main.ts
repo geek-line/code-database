@@ -1,3 +1,6 @@
+import 'materialize-css/dist/css/materialize.min.css'
+import './style.css'
+
 const search_input = document.querySelectorAll<HTMLInputElement>('#search_input')
 const search_submit = document.querySelectorAll<HTMLInputElement>('#search_submit')
 

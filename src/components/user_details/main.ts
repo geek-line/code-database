@@ -1,4 +1,9 @@
 import iziToast from 'izitoast'
+import './style.css'
+import 'materialize-css/dist/css/materialize.min.css'
+import 'prismjs/themes/prism.css'
+import 'izitoast/dist/css/iziToast.min.css'
+
 const content = document.getElementById('content') as HTMLDivElement
 const like_button_inlines = document.querySelectorAll<HTMLButtonElement>('#like_button_inline')
 const like_button_baloon = document.getElementById('like_button_baloon') as HTMLButtonElement
@@ -183,7 +188,7 @@ function generate_share_button(area: Element, url: string, text: string) {
     twHref +
     '" ' +
     'target="_blank"' +
-    ' class = "twitter"><img src="/static/public/twitter.png" ><div class="tweet-text hide-on-small-only">Tweet</div></a>'
+    ' class = "twitter"><img src="/public/twitter.png" ><div class="tweet-text hide-on-small-only">Tweet</div></a>'
   twBtn.innerHTML = twLink
   area.appendChild(twBtn)
 }

@@ -1,3 +1,6 @@
+import './style.css'
+import 'materialize-css/dist/css/materialize.min.css'
+
 const forms = document.querySelectorAll<HTMLFormElement>('#form')
 const update_buttons = document.querySelectorAll('#update_button')
 const delete_buttons = document.querySelectorAll('#delete_button')

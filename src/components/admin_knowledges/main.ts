@@ -1,3 +1,6 @@
+import 'materialize-css/dist/css/materialize.min.css'
+import './style.css'
+
 const delete_buttons = document.querySelectorAll<HTMLButtonElement>('#delete_button')
 const publish_button = document.querySelectorAll<HTMLButtonElement>('#publish_button')
 const unpublish_button = document.querySelectorAll<HTMLButtonElement>('#unpublish_button')
@@ -69,5 +72,3 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   }
 })
-
-export {}

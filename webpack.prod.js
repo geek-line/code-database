@@ -47,6 +47,14 @@ const getComponentConfig = (componentNames) => {
           test: /materialize\.min\.css$/i,
           use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
+        {
+          test: /prism\.css$/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+          test: /iziToast\.min\.css/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
       ],
     },
     optimization: {

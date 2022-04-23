@@ -24,13 +24,11 @@ func AdminTagsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		t := template.Must(getTemplate("dist/template/admin_tags.html", "dist/template/_header.html"))
 		if err := t.Execute(w, struct {
-			Header    structs.Header
-			Tags      []structs.Tag
-			BuildMode string
+			Header structs.Header
+			Tags   []structs.Tag
 		}{
-			Header:    header,
-			Tags:      tags,
-			BuildMode: config.BuildMode,
+			Header: header,
+			Tags:   tags,
 		}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}

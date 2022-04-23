@@ -105,12 +105,10 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			Header      structs.Header
 			IndexPage   structs.UserIndexPage
 			FilteredTag structs.Tag
-			BuildMode   string
 		}{
 			Header:      header,
 			IndexPage:   indexPage,
 			FilteredTag: filteredTag,
-			BuildMode:   config.BuildMode,
 		}); err != nil {
 			StatusInternalServerError(w, r, auth)
 			return

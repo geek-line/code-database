@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 	"html/template"
@@ -69,11 +68,9 @@ func CategoriesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	if err = t.Execute(w, struct {
 		Header         structs.Header
 		CategoriesPage structs.UserCategoriesPage
-		BuildMode      string
 	}{
 		Header:         header,
 		CategoriesPage: userCategoriesPage,
-		BuildMode:      config.BuildMode,
 	}); err != nil {
 		log.Print(err)
 		StatusInternalServerError(w, r, auth)

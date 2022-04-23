@@ -105,12 +105,10 @@ func CategoryHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			Header           structs.Header
 			IndexPage        structs.UserIndexPage
 			SelectedCategory structs.Category
-			BuildMode        string
 		}{
 			Header:           header,
 			IndexPage:        indexPage,
 			SelectedCategory: selectedCategory,
-			BuildMode:        config.BuildMode,
 		}); err != nil {
 			StatusInternalServerError(w, r, auth)
 			return

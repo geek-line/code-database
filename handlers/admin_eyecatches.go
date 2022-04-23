@@ -24,11 +24,9 @@ func AdminEyecatchesHandler(w http.ResponseWriter, r *http.Request) {
 		if err := t.Execute(w, struct {
 			Header     structs.Header
 			Eyecatches []structs.Eyecatch
-			BuildMode  string
 		}{
 			Header:     header,
 			Eyecatches: eyecatches,
-			BuildMode:  config.BuildMode,
 		}); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}

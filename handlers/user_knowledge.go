@@ -61,12 +61,10 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				Header           structs.Header
 				SelectedCategory structs.Category
 				DetailPage       structs.UserDetailPage
-				BuildMode        string
 			}{
 				Header:           header,
 				SelectedCategory: selectedCategory,
 				DetailPage:       userDetailPage,
-				BuildMode:        config.BuildMode,
 			}); err != nil {
 				log.Print(err.Error())
 				StatusInternalServerError(w, r, auth)

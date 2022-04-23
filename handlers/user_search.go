@@ -121,14 +121,12 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		IsHit        bool
 		QueryKeys    string
 		CurrentQuery string
-		BuildMode    string
 	}{
 		Header:       header,
 		IndexPage:    indexPage,
 		IsHit:        isHit,
 		QueryKeys:    queryKeys,
 		CurrentQuery: currentQuery,
-		BuildMode:    config.BuildMode,
 	}); err != nil {
 		StatusInternalServerError(w, r, auth)
 		return

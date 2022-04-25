@@ -59,10 +59,8 @@ const TagRanking = () => {
 
   return (
     <div className="tag_container">
+      <h6 className="tag_title">タグランキング</h6>
       <table className="tag_table striped">
-        <thead>
-          <h6 className="tag_title">タグランキング</h6>
-        </thead>
         <tbody>{tableRows}</tbody>
       </table>
       <form className="search_container">

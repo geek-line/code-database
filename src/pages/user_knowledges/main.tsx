@@ -4,8 +4,10 @@ import TagRanking from '../../components/TagRanking'
 import 'materialize-css/dist/css/materialize.min.css'
 import './style.css'
 
-const container = document.getElementById('tag_ranking')
-if (container) {
-  const root = createRoot(container)
-  root.render(<TagRanking />)
-}
+const containers = document.querySelectorAll('#tag_ranking')
+containers.forEach((container) => {
+  if (container) {
+    const root = createRoot(container)
+    root.render(<TagRanking />)
+  }
+})

@@ -30,11 +30,7 @@
       gtag('js', new Date())
       gtag('config', 'UA-164168719-1')
     </script>
-    <script type="text/javascript">
-      function DivFrameClick(id) {
-        document.location.href = `${id}`
-      }
-    </script>
+
     <script data-ad-client="ca-pub-3445201371824373" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
 
@@ -63,43 +59,7 @@
         </div>
       </div>
       <div class="col s0 m0 l3 hide-on-med-and-down">
-        <div class="tag_container">
-          <table class="tag_table striped">
-            <thead>
-              <h6 class="tag_title">タグランキング</h6>
-            </thead>
-            <tbody>
-              {{ range .CategoriesPage.TagRanking }}
-              <tr onclick="DivFrameClick('/tags/{{.TagID |html|}}');">
-                <td class="center"></td>
-                <td><a href="/tags/{{.TagID}}" class="tag">{{ .TagName }}</a></td>
-                <td class="center">記事数:{{ .CountOfRefferenced }}</td>
-              </tr>
-              {{ end }}
-            </tbody>
-          </table>
-          <div class="search_container">
-            <h6>キーワード検索</h6>
-            <input id="search_input" placeholder="キーワードを入力" type="text" value="" />
-            <input id="search_submit" type="button" value="検索" />
-          </div>
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-client="ca-pub-3445201371824373"
-            data-ad-slot="2399876013"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-client="ca-pub-3445201371824373"
-            data-ad-slot="2399876013"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-        </div>
+        <div id="tag_ranking"></div>
       </div>
       <div>
         <div class="col s12 l9 row card_wrapper">
@@ -141,35 +101,7 @@
       </div>
 
       <div class="col s12 m12 l0 hide-on-large-only">
-        <div class="tag_container">
-          <table class="tag_table striped">
-            <thead>
-              <h6 class="tag_title">タグランキング</h6>
-            </thead>
-            <tbody>
-              {{ range .CategoriesPage.TagRanking }}
-              <tr onclick="DivFrameClick('/tags/{{.TagID |html|}}');">
-                <td class="center"></td>
-                <td><a href="/tags/{{.TagID}}" class="tag">{{ .TagName }}</a></td>
-                <td class="center">記事数:{{ .CountOfRefferenced }}</td>
-              </tr>
-              {{ end }}
-            </tbody>
-          </table>
-          <div class="search_container">
-            <h6>キーワード検索</h6>
-            <input id="search_input" placeholder="キーワードを入力" type="text" value="" />
-            <input id="search_submit" type="button" value="検索" />
-          </div>
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-client="ca-pub-3445201371824373"
-            data-ad-slot="2399876013"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-        </div>
+        <div id="tag_ranking"></div>
       </div>
     </div>
     {{ template "footer" }}

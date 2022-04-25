@@ -163,10 +163,6 @@ table {
   text-align: center;
 }
 
-table > thead > .tag_title {
-  margin: 8rem 0rem;
-}
-
 table > tbody > tr {
   counter-increment: rowCount;
   text-align: center;

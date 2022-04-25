@@ -3,16 +3,32 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "react"
     ],
-    "rules": {
-    },
-    "ignorePatterns": ["webpack.*.js", "dist/"]
+    "rules": {},
+    "ignorePatterns": [
+        "webpack.*.js",
+        "dist/"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
 }

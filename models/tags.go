@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"fmt"
 	"time"
 
 	"code-database/config"
@@ -99,6 +100,21 @@ func GetTop10ReferencedTags() ([]structs.TagRankingElem, error) {
 	for rows.Next() {
 		var tag structs.TagRankingElem
 		err = rows.Scan(&tag.TagID, &tag.TagName, &tag.CountOfRefferenced)
+		tags = append(tags, tag)
+	}
+	return tags, err
+}
+
+func GetTagsAsJson(offset int, size int, sortKey string) ([]structs.TagJson, error) {
+	db, err := sql.Open("mysql", config.SQLEnv)
+	defer db.Close()
+	qtext := fmt.Sprintf("SELECT tags.id, tags.name, count(knowledges_tags.id) AS count FROM tags INNER JOIN knowledges_tags ON knowledges_tags.tag_id = tags.id INNER JOIN knowledges ON knowledges.id = knowledges_tags.knowledge_id WHERE is_published = true GROUP BY knowledges_tags.tag_id ORDER BY %s DESC LIMIT ?, ?;", sortKey)
+	rows, err := db.Query(qtext, offset, size)
+	defer rows.Close()
+	var tags []structs.TagJson
+	for rows.Next() {
+		var tag structs.TagJson
+		err = rows.Scan(&tag.Id, &tag.Name, &tag.NumberOfRefernce)
 		tags = append(tags, tag)
 	}
 	return tags, err

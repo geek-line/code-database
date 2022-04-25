@@ -6,8 +6,8 @@
   "scripts": {
     "build": "NODE_OPTIONS='--max-old-space-size=8192' webpack --mode=production --progress --config webpack.prod.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write 'src/**/*.ts' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
-    "format-check": "prettier --check 'src/**/*.ts' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
+    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
+    "format-check": "prettier --check 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.html' 'src/**/*.css' 'webpack.*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_OPTIONS='--max-old-space-size=8192' webpack serve --mode=development --progress --config webpack.dev.js"
   },
@@ -23,18 +23,25 @@
   "homepage": "https://github.com/geek-line/knowledge_page_blog#readme",
   "dependencies": {
     "aws-sdk": "^2.1117.0",
+    "axios": "^0.26.1",
     "dotenv": "^8.2.0",
     "izitoast": "^1.4.0",
     "materialize-css": "^1.0.0-rc.2",
     "prismjs": "^1.27.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
     "tinymce": "^5.10.3"
   },
   "devDependencies": {
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.2",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "2.3.2",

@@ -4,8 +4,15 @@ info:
   version: '1.0'
   summary: code-databaseのapiサーバー用のドキュメント
   description: code-databaseのapiサーバー用のドキュメント
+  contact:
+    url: 'https://code-database.com'
+    email: r.sugiura@code-database.info
+    name: Rei Sugiura
 servers:
   - url: 'http://localhost:3000'
+    description: 開発用バックエンドサーバー
+  - url: 'https://code-database.com'
+    description: 本番用ドメイン
 paths:
   /api/tags:
     parameters: []

@@ -38,6 +38,7 @@ func main() {
 	http.HandleFunc(config.UserCategoryPath, middleware.UserAuth(handlers.CategoryHandler))
 	http.HandleFunc(config.UserAboutPath, middleware.UserAuth(handlers.AboutHandler))
 	http.HandleFunc(config.UserPrivacyPath, middleware.UserAuth(handlers.PrivacyHandler))
+	http.HandleFunc(config.ApiTagsPath, middleware.UserAuth(handlers.ApiTagsHandler))
 	if config.BuildMode == "prod" {
 		http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
 	} else {

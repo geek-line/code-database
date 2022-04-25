@@ -23,6 +23,7 @@ const (
 	UserCategoryPath       = "/categories/"
 	UserAboutPath          = "/about"
 	UserPrivacyPath        = "/privacy"
+	ApiTagsPath            = "/api/tags"
 	StaticPath             = "/dist/"
 	PublicPath             = "/public/"
 	NodeModulesPath        = "/node_modules/"

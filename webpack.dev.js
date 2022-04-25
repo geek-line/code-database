@@ -5,12 +5,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const common = require('./webpack.common.js')
 
-const componentNames = fs.readdirSync(path.resolve(__dirname, 'src/components'))
+const componentNames = fs.readdirSync(path.resolve(__dirname, 'src/pages'))
 
 const getComponentConfig = (componentNames) => {
   const entries = {}
   componentNames.forEach((name) => {
-    entries[name] = path.resolve(__dirname, `./src/components/${name}/main.ts`)
+    entries[name] = path.resolve(__dirname, `./src/pages/${name}/main.ts`)
   })
   return merge(common, {
     mode: 'development',
@@ -22,7 +22,7 @@ const getComponentConfig = (componentNames) => {
           new HtmlWebpackPlugin({
             inject: /^_/.test(componentName) ? false : 'body',
             chunks: [componentName],
-            template: path.resolve(__dirname, `src/components/${componentName}/index.html`),
+            template: path.resolve(__dirname, `src/pages/${componentName}/index.html`),
             filename: path.resolve(__dirname, `dist/template/${componentName}.html`),
           })
       ),

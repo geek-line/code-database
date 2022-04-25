@@ -12,7 +12,7 @@ const componentNames = fs.readdirSync(path.resolve(__dirname, 'src/pages'))
 const getComponentConfig = (componentNames) => {
   const entries = {}
   componentNames.forEach((name) => {
-    entries[name] = path.resolve(__dirname, `./src/pages/${name}/main.ts`)
+    entries[name] = path.resolve(__dirname, `./src/pages/${name}/main.tsx`)
   })
   return merge(common, {
     mode: 'production',

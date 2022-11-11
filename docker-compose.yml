@@ -1,0 +1,42 @@
+version: '2'
+services:
+  db:
+    image: mysql:8.0.29
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: code_database
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_HOST: '%'
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./database/seed:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: backend
+    env_file: ./backend/.env
+    ports:
+      - "8080:8080"
+    command: bash -c "
+      /scripts/wait-for-it.sh db:3306 --timeout=60 --strict &&
+      BUILD_MODE=dev air"
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /backend
+    extra_hosts:
+      - localhost:host-gateway
+    depends_on:
+      - db
+      - frontend
+  
+  frontend:
+    build: frontend
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /frontend

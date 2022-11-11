@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: code-database-api
+  version: '1.0'
+  summary: code-databaseのapiサーバー用のドキュメント
+  description: code-databaseのapiサーバー用のドキュメント
+  contact:
+    url: 'https://code-database.com'
+    email: r.sugiura@code-database.info
+    name: Rei Sugiura
+servers:
+  - url: 'http://localhost:3000'
+    description: 開発用バックエンドサーバー
+  - url: 'https://code-database.com'
+    description: 本番用ドメイン
+paths:
+  /api/tags:
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-api-tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tag'
+              examples: {}
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+            multipart/form-data:
+              schema:
+                type: object
+                properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '':
+                  type: string
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: 取得するタグのオフセット
+        - schema:
+            type: integer
+          in: query
+          name: size
+          description: 取得するタグの数
+        - schema:
+            type: string
+            enum:
+              - reference
+          in: query
+          name: sort
+          description: タグのソートの種類
+      description: ''
+components:
+  schemas:
+    Tag:
+      title: Tag
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        numberOfReferences:
+          type: integer
+      examples:
+        - id: string
+          name: string
+          numberOfReferences: 0

@@ -1,5 +1,8 @@
 .env
 
+# buildのバイナリ
+code-datbase
+
 # airで用いるtmpファイル
 tmp
 

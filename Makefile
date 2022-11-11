@@ -7,4 +7,4 @@ backend:
 	docker compose run backend go build
 
 frontend:
-	docker compose run frontend npm run build
+	docker compose run frontend bash -c "npm install && npm run build"

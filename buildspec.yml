@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  git-credential-helper: yes
+
+phases:
+  install:
+    commands:
+      - apt update -y
+      - apt install make-y
+  build:
+    commands:
+      - make frontend
+      - make backend
+
+artifacts:
+  files:
+    - backend

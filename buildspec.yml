@@ -10,8 +10,8 @@ phases:
       - apt install make -y
   build:
     commands:
-      - make frontend
-      - make backend
+      - docker-compose run frontend bash -c "npm install && npm run build"
+      - docker-compose run backend go build
 
 artifacts:
   files:

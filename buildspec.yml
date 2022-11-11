@@ -8,6 +8,8 @@ phases:
     commands:
       - apt update -y
       - apt install make -y
+    runtime-versions:
+      docker: 19
   build:
     commands:
       - docker-compose run frontend bash -c "npm install && npm run build"

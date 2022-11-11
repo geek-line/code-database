@@ -80,10 +80,10 @@ const getComponentConfig = (componentNames) => {
       port: 3000,
       static: {
         directory: path.join(__dirname, 'public'),
-        publicPath: "/public"
+        publicPath: '/public',
       },
-      allowedHosts: "all",
-    }
+      allowedHosts: 'all',
+    },
   })
 }
 

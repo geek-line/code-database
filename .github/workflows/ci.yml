@@ -1,0 +1,33 @@
+name: CI
+on: [push]
+jobs:
+  frontend-lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nodenv/actions/node-version@main
+        id: nodenv
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - run: cd frontend
+      - name: Install node packeages
+        run: |
+          npm install
+      - name: Check format
+        run: npm run format-check
+      - name: Run lint
+        run: |
+          npm run lint
+      - name: Build
+        run: npm run build
+  backend-build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18.0' # The Go version to download (if necessary) and use.
+      - run: cd backend
+      - name: Build
+        run: make build

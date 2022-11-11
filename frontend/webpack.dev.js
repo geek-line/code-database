@@ -76,6 +76,14 @@ const getComponentConfig = (componentNames) => {
       path: path.resolve(__dirname, 'dist'), //バンドルしたファイルの出力先のパスを指定
       filename: 'js/[name].js', //出力時のファイル名の指定
     },
+    devServer: {
+      port: 3000,
+      static: {
+        directory: path.join(__dirname, 'public'),
+        publicPath: "/public"
+      },
+      allowedHosts: "all",
+    }
   })
 }
 

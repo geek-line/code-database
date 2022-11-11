@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-const devServerOrigin = "http://localhost:8080"
+const devServerOrigin = "http://localhost:3000"
 
 func GetStaticFileFromDevServer(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, devServerOrigin+r.RequestURI, 301)

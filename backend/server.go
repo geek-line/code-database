@@ -40,10 +40,12 @@ func main() {
 	http.HandleFunc(config.UserPrivacyPath, middleware.UserAuth(handlers.PrivacyHandler))
 	if config.BuildMode == "prod" {
 		http.Handle(config.StaticPath, http.StripPrefix(config.StaticPath, http.FileServer(http.Dir(dir+config.StaticPath))))
+		http.Handle(config.PublicPath, http.StripPrefix(config.PublicPath, http.FileServer(http.Dir(dir+config.PublicPath))))
 	} else {
 		http.HandleFunc(config.StaticPath, development.GetStaticFileFromDevServer)
+		http.HandleFunc(config.PublicPath, development.GetStaticFileFromDevServer)
 	}
-	http.Handle(config.PublicPath, http.StripPrefix(config.PublicPath, http.FileServer(http.Dir(dir+config.PublicPath))))
+
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
 	fmt.Printf("Success starting backend server (%s build)\n", config.BuildMode)
 	if config.BuildMode == "prod" {
@@ -53,6 +55,6 @@ func main() {
 		}
 		fcgi.Serve(l, nil)
 	} else {
-		http.ListenAndServe(":3000", nil)
+		http.ListenAndServe(":8080", nil)
 	}
 }

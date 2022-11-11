@@ -4,9 +4,7 @@
 https://code-database.com/
 
 ## 作業環境 
-Go(1.14 darwin/amd64)  
-Air
-MySQL(8.0.19)
+Docker
 
 ## 使用ライブラリ
  - joho/godotenv
@@ -28,13 +26,9 @@ make build
 ```
 
 ## 開発用ビルド/サーバー立ち上げ方法
-バックエンドサーバー立ち上げ
+開発用サーバー立ち上げ
 ```
-make dev
-```
-フロントエンドサーバー立ち上げ
-```
-npm run dev
+make app
 ```
 
 ## 作業ルール  

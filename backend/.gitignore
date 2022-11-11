@@ -1,0 +1,8 @@
+.env
+
+# airで用いるtmpファイル
+tmp
+
+# 本番サーバーで使用するgoogleインデックス関連
+ads.txt
+google_sitemap/

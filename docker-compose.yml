@@ -40,3 +40,12 @@ services:
       - type: bind
         source: ./frontend
         target: /frontend
+
+  terraform:
+    build: infrastructure
+    platform: linux/amd64 # For M1 mac...
+    working_dir: /work
+    volumes:
+      - type: bind
+        source: ./infrastructure
+        target: /work

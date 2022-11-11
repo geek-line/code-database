@@ -1,0 +1,1 @@
+FROM --platform=linux/amd64 hashicorp/terraform:1.2.8

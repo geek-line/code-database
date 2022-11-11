@@ -83,6 +83,16 @@ resource "aws_codebuild_project" "code-database" {
     image_pull_credentials_type = "CODEBUILD"
   }
 
+  environment_variable {
+      name  = "SQL_ENV"
+      value = "root:password@tcp(127.0.0.1:3306)/code_database"
+    }
+
+    environment_variable {
+      name  = "SOME_KEY1"
+      value = "SOME_VALUE1"
+    }
+
   source {
     type = "CODEPIPELINE"
   }

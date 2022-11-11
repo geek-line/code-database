@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: build/main.out
+    destination: /home/ubuntu/r_adres
+  - source: scripts/
+    destination: /home/ubuntu/r_adres/scripts
+hooks:
+  AfterInstall:
+    - location: scripts/change_owner.sh
+      timeout: 300
+      runas: root
+    - location: scripts/start_osrm.sh
+      timeout: 300
+      runas: root

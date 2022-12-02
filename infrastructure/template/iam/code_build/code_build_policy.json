@@ -58,6 +58,13 @@
                 "codestar-connections:UseConnection"
             ],
             "Resource": "${connection}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameters"
+            ],
+            "Resource": "arn:aws:ssm:ap-northeast-1:793527092498:parameter/dockerhub-token"
         }
     ]
 }

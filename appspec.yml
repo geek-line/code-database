@@ -7,6 +7,8 @@ files:
     destination: /home/ubuntu/code-database/build
   - source: backend/dist
     destination: /home/ubuntu/code-database/build/dist
+  - source: frontend/public
+    destination: /home/ubuntu/code-database/build/public
 permissions:
   - object: /home/ubuntu/code-database
     owner: ubuntu

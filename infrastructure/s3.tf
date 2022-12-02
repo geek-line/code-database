@@ -3,8 +3,17 @@ resource "aws_s3_bucket" "code_pipeline_bucket" {
   force_destroy = false
 }
 
-
 resource "aws_s3_bucket_acl" "code_pipeline_bucket" {
   bucket = aws_s3_bucket.code_pipeline_bucket.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket" "code-database_secondary" {
+  bucket        = "code-database-secondary"
+  force_destroy = false
+}
+
+resource "aws_s3_bucket_acl" "code-database_secondary" {
+  bucket = aws_s3_bucket.code-database_secondary.id
   acl    = "private"
 }

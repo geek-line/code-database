@@ -79,8 +79,24 @@ resource "aws_codebuild_project" "code-database" {
   environment {
     compute_type                = "BUILD_GENERAL1_LARGE"
     type                        = "LINUX_CONTAINER"
-    image                       = "aws/codebuild/standard:4.0"
+    image                       = "aws/codebuild/standard:6.0"
     image_pull_credentials_type = "CODEBUILD"
+    privileged_mode             = true
+
+    environment_variable {
+      name  = "SQL_ENV"
+      value = "${local.db_username}:${local.db_password}@(${aws_db_instance.code-database_db.address})/${local.db_name}"
+    }
+
+    environment_variable {
+      name  = "SESSION_KEY"
+      value = "code-database-devs"
+    }
+
+    environment_variable {
+      name  = "BUILD_MODE"
+      value = "prod"
+    }
   }
 
   source {

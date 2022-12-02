@@ -12,12 +12,18 @@ resource "aws_eip" "code-database_backend" {
   vpc      = true
 }
 
+resource "aws_iam_instance_profile" "code-database_backend" {
+  name = "code-database-backend"
+  role = aws_iam_role.code-database_backend_role.name
+}
+
 resource "aws_instance" "code-database_backend" {
   ami                         = local.UBUNTU_20_AMI
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.code-database_public_a.id
   key_name                    = aws_key_pair.code-database.id
   associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.code-database_backend.id
 
   root_block_device {
     volume_type = "gp2"

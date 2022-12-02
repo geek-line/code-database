@@ -39,3 +39,19 @@ resource "aws_iam_role_policy_attachment" "aws_code_deploy_role" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
   role       = aws_iam_role.code_deploy_role.name
 }
+
+resource "aws_iam_role" "code-database_backend_role" {
+  name = "code-database-backend"
+
+  assume_role_policy = file("${path.module}/template/iam/ec2/assume_policy.json")
+}
+
+resource "aws_iam_role_policy" "code-database_backend_policy" {
+  name = "code-database-backend-policy"
+  role = aws_iam_role.code-database_backend_role.id
+
+  policy = templatefile("${path.module}/template/iam/ec2/code_database_backend.json", {
+    bucket = aws_s3_bucket.code_pipeline_bucket.arn
+    }
+  )
+}

@@ -26,7 +26,7 @@ resource "aws_codepipeline" "code-database" {
       configuration = {
         ConnectionArn        = aws_codestarconnections_connection.github.arn
         FullRepositoryId     = "geek-line/code-database"
-        BranchName           = "feature/terraform"
+        BranchName           = "product"
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"
       }
     }

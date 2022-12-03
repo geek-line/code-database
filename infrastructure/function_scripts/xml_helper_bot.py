@@ -35,7 +35,7 @@ def command(ssm, instance, commands):
 def main(event, context):
     client = boto3.client('ssm', region_name='ap-northeast-1')
     res = command(client, instance_id, [
-                  "cd /home/ubuntu/code-database", "./update_xml"])
+                  "cd /home/ubuntu/code-database", "./xml_update"])
     statusCode = 500
     if res:
         statusCode = 200

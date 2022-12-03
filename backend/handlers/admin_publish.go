@@ -33,8 +33,9 @@ func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	if config.BuildMode == "prod" {
 		publishedKnowledges, err := models.GetAllPublishedKnowledges()
-		urlSet := helpers.MakeXMLSitemap(publishedKnowledges)
+		urlSet := helpers.MakeKnowledgesXMLSitemap(publishedKnowledges)
 		if err = urlSet.UpdateXMLSitemap("knowledges.xml"); err != nil {
+
 			AdminKnowledgesHandler(w, r)
 		}
 		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))

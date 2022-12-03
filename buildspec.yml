@@ -12,16 +12,14 @@ phases:
   pre_build:
     commands:
       - echo $DOCKER_TOKEN | docker login -u reibomaru --password-stdin
+      - echo SQL_ENV=$SQL_ENV >> backend/.env
+      - echo SESSION_KEY=$SESSION_KEY >> backend/.env
+      - echo BUILD_MODE=$BUILD_MODE >> backend/.env
   build:
     commands:
       - make frontend
       - make backend
       - make backend/xml_update/xml_update
-  post_build:
-    commands:
-      - echo SQL_ENV=$SQL_ENV >> backend/.env
-      - echo SESSION_KEY=$SESSION_KEY >> backend/.env
-      - echo BUILD_MODE=$BUILD_MODE >> backend/.env
 
 artifacts:
   files:

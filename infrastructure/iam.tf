@@ -55,3 +55,19 @@ resource "aws_iam_role_policy" "code-database_backend_policy" {
     }
   )
 }
+
+resource "aws_iam_role" "admin" {
+  name = "code-database-admin"
+  assume_role_policy = templatefile("${path.module}/template/iam/cognito/assume_role_policy.json", {
+    aud = aws_cognito_identity_pool.file_upload.id
+  })
+}
+
+resource "aws_iam_role_policy" "upload_images" {
+  name = "upload-image"
+  role = aws_iam_role.admin.id
+
+  policy = templatefile("${path.module}/template/iam/cognito/admin_policy.json", {
+    resource = aws_s3_bucket.code-database_images.arn
+  })
+}

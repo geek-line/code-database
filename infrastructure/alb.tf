@@ -46,6 +46,19 @@ resource "aws_lb_listener" "code-database_backend" {
   }
 }
 
+resource "aws_lb_listener" "code-database_backend_https" {
+  load_balancer_arn = aws_lb.code-database_backend.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = aws_acm_certificate.code-database-ap.arn
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.code-database_backend.arn
+  }
+}
+
 resource "aws_security_group" "code-database_backend_alb" {
   name   = "code-database-backend-alb"
   vpc_id = aws_vpc.code-database.id

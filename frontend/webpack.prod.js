@@ -25,7 +25,7 @@ const getComponentConfig = (componentNames) => {
             inject: /^_/.test(componentName) ? false : 'body',
             chunks: [componentName],
             template: path.resolve(__dirname, `src/components/${componentName}/index.html`),
-            filename: path.resolve(__dirname, `dist/template/${componentName}.html`),
+            filename: path.resolve(__dirname, `../backend/dist/template/${componentName}.html`),
           })
       ),
     ],
@@ -84,7 +84,7 @@ const getComponentConfig = (componentNames) => {
     },
     output: {
       publicPath: '/dist',
-      path: path.resolve(__dirname, 'dist'), //バンドルしたファイルの出力先のパスを指定
+      path: path.resolve(__dirname, '../backend/dist'), //バンドルしたファイルの出力先のパスを指定
       filename: 'js/[name].js', //出力時のファイル名の指定
     },
   })

@@ -54,7 +54,7 @@ export const initTinyMce = () => {
           { Bucket: albumBucketName, Key: 'uploads/' + filename, ContentType: blobInfo.blob().type, Body: blobInfo.blob(), ACL: 'public-read' },
           function (err, data) {
             if (data !== null) {
-              const srcURL = 'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'uploads/' + filename
+              const srcURL = 'https://image.code-database.com/' + 'uploads/' + filename
               success(srcURL)
             } else {
               failure('アップロード失敗.')

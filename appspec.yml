@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: backend/code-database
+    destination: /home/ubuntu/code-database/build
+  - source: backend/.env
+    destination: /home/ubuntu/code-database/build
+  - source: backend/dist
+    destination: /home/ubuntu/code-database/build/dist
+  - source: frontend/public
+    destination: /home/ubuntu/code-database/build/public
+permissions:
+  - object: /home/ubuntu/code-database
+    owner: ubuntu
+    group: ubuntu
+    type:
+      - directory
+
+hooks:
+  ApplicationStop:
+    - location: infrastructure/deploy/scripts/stop.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: infrastructure/deploy/scripts/start.sh
+      timeout: 300
+      runas: ubuntu

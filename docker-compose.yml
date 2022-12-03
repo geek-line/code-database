@@ -15,7 +15,8 @@ services:
 
   backend:
     build: backend
-    env_file: ./backend/.env
+    env_file:
+      - ./backend/.env
     ports:
       - "8080:8080"
     command: bash -c "
@@ -35,8 +36,22 @@ services:
     build: frontend
     ports:
       - "3000:3000"
-    command: npm run dev
+    command: bash -c "
+      npm install &&
+      npm run dev"
     volumes:
       - type: bind
         source: ./frontend
         target: /frontend
+      - type: bind
+        source: ./backend/dist
+        target: /backend/dist
+
+  terraform:
+    build: infrastructure
+    platform: linux/amd64 # For M1 mac...
+    working_dir: /work
+    volumes:
+      - type: bind
+        source: ./infrastructure
+        target: /work

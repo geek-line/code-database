@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"net"
 	"net/http"
-	"net/http/fcgi"
 	"os"
 
 	"code-database/config"
@@ -48,13 +46,5 @@ func main() {
 
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
 	fmt.Printf("Success starting backend server (%s build)\n", config.BuildMode)
-	if config.BuildMode == "prod" {
-		l, err := net.Listen("tcp", "127.0.0.1:9000")
-		if err != nil {
-			return
-		}
-		fcgi.Serve(l, nil)
-	} else {
-		http.ListenAndServe(":8080", nil)
-	}
+	http.ListenAndServe(":8080", nil)
 }

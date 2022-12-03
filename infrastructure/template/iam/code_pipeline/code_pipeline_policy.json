@@ -1,0 +1,46 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketVersioning",
+                "s3:PutObjectAcl",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "${bucket}",
+                "${bucket}/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codestar-connections:UseConnection"
+            ],
+            "Resource": "${connection}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codedeploy:CreateDeployment",
+                "codedeploy:GetApplication",
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:GetDeploymentConfig",
+                "codedeploy:RegisterApplicationRevision"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

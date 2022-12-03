@@ -51,7 +51,7 @@ func makeXMLSitemap(publishedKnowledges []structs.Knowledge) URLSet {
 	return urlSet
 }
 
-func updateXMLSitemap(urlSet URLSet) error {
+func (urlSet URLSet) updateXMLSitemap() error {
 	filename := config.ExecuteDir + "/google_sitemap/knowledges.xml"
 	output, err := xml.MarshalIndent(urlSet, "  ", "	")
 	if err != nil {
@@ -91,7 +91,7 @@ func AdminPublishHandler(w http.ResponseWriter, r *http.Request) {
 	if config.BuildMode == "prod" {
 		publishedKnowledges, err := models.GetAllPublishedKnowledges()
 		urlSet := makeXMLSitemap(publishedKnowledges)
-		if err = updateXMLSitemap(urlSet); err != nil {
+		if err = urlSet.updateXMLSitemap(); err != nil {
 			AdminKnowledgesHandler(w, r)
 		}
 		resp, err := http.Post("https://hooks.slack.com/services/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", "applicotion/json", strings.NewReader(message))

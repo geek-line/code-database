@@ -9,6 +9,11 @@ files:
     destination: /home/ubuntu/code-database/build/dist
   - source: frontend/public
     destination: /home/ubuntu/code-database/build/public
+  - source: backend/xml_update
+    destination: /home/ubuntu/code-database/build
+  - source: infrastructure/deploy/google_sitemap
+    destination: /home/ubuntu/code-database/build/google_sitemap
+
 permissions:
   - object: /home/ubuntu/code-database
     owner: ubuntu

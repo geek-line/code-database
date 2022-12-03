@@ -16,6 +16,7 @@ phases:
     commands:
       - make frontend
       - make backend
+      - make backend/xml_update/xml_update
   post_build:
     commands:
       - echo SQL_ENV=$SQL_ENV >> backend/.env

@@ -8,3 +8,6 @@ backend:
 
 frontend:
 	docker-compose run frontend bash -c "npm install && npm run build"
+
+backend/xml_update/xml_update: backend/xml_update/main.go
+	docker-compose run backend bash -c "cd xml_update && go build"

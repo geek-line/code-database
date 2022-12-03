@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
-export const albumBucketName = 'code-database-images'
+export const albumBucketName = 'code-database-images-ver2'
 const bucketRegion = 'ap-northeast-1'
-const IdentityPoolId = 'ap-northeast-1:0b902eb4-467e-4141-ada6-7e41b6742ba5'
+const IdentityPoolId = 'ap-northeast-1:732737cb-e31c-4318-ae61-a8bf0ab12299'
 
 AWS.config.update({
   region: bucketRegion,

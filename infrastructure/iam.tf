@@ -56,6 +56,10 @@ resource "aws_iam_role_policy" "code-database_backend_policy" {
   )
 }
 
+resource "aws_iam_role_policy_attachment" "backend_ssm" {
+  role       = aws_iam_role.code-database_backend_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
 resource "aws_iam_role" "admin" {
   name = "code-database-admin"
   assume_role_policy = templatefile("${path.module}/template/iam/cognito/assume_role_policy.json", {
@@ -70,4 +74,29 @@ resource "aws_iam_role_policy" "upload_images" {
   policy = templatefile("${path.module}/template/iam/cognito/admin_policy.json", {
     resource = aws_s3_bucket.code-database_images.arn
   })
+}
+
+resource "aws_iam_role" "xml_helper_bot" {
+  name               = "xml-helper-bot"
+  assume_role_policy = file("${path.module}/template/iam/lambda/assume_role_policy.json")
+}
+
+resource "aws_iam_policy" "basic_lambda" {
+  name   = "basic-lambda"
+  policy = file("${path.module}/template/iam/lambda/basic_lambda.json")
+}
+
+resource "aws_iam_role_policy_attachment" "helper_basic" {
+  role       = aws_iam_role.xml_helper_bot.name
+  policy_arn = aws_iam_policy.basic_lambda.arn
+}
+
+resource "aws_iam_role_policy_attachment" "helper_ec2_read" {
+  role       = aws_iam_role.xml_helper_bot.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "helper_ssm" {
+  role       = aws_iam_role.xml_helper_bot.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }

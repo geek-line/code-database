@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	fmt.Println(config.SQLEnv)
 	db, err := sql.Open("mysql", config.SQLEnv)
 	if err != nil {
 		fmt.Println(err)

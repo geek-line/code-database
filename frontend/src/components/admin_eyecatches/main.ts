@@ -27,7 +27,7 @@ submit_btn_post.addEventListener('click', function () {
     function (err, data) {
       if (data !== null) {
         ;(document.getElementById('src_post') as HTMLInputElement).value =
-          'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
+          'https://image.code-database.com/' + 'eyecatches/' + filename
         const formdata = new FormData(document.getElementById('form_post') as HTMLFormElement)
         const XHR = new XMLHttpRequest()
         XHR.open('POST', '/admin/eyecatches/')
@@ -73,7 +73,7 @@ for (let i = 0; i < forms.length; i++) {
         function (err, data) {
           if (data !== null) {
             document.querySelectorAll<HTMLInputElement>('#src_put')[i].value =
-              'https://code-database-images.s3-ap-northeast-1.amazonaws.com/' + 'eyecatches/' + filename
+              'https://image.code-database.com/' + 'eyecatches/' + filename
             const formdata = new FormData(forms[i])
             const XHR = new XMLHttpRequest()
             XHR.open('PUT', '/admin/eyecatches/')

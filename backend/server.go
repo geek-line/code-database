@@ -11,10 +11,13 @@ import (
 	"code-database/middleware"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/csrf"
 )
 
 func main() {
 	dir, _ := os.Getwd()
+	key := make([]byte, 32)
+	CSRF := csrf.Protect([]byte(key))
 	http.HandleFunc(config.RootPath, middleware.UserAuth(handlers.TopHandler))
 	http.HandleFunc(config.AdminLoginPath, middleware.UserAuth(handlers.AdminLoginHandler))
 	http.HandleFunc(config.AdminLogoutPath, middleware.AdminAuth(handlers.AdminLogoutHandler))
@@ -46,5 +49,5 @@ func main() {
 
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
 	fmt.Printf("Success starting backend server (%s build)\n", config.BuildMode)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", CSRF(http.DefaultServeMux))
 }

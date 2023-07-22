@@ -20,6 +20,11 @@ permissions:
     group: ubuntu
     type:
       - directory
+  - object: /home/ubuntu/code-database/build/xml_update
+    owner: ubuntu
+    group: ubuntu
+    type:
+      - file
 
 hooks:
   ApplicationStop:

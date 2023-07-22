@@ -9,7 +9,7 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-//AdminAuth アドミン画面への認証用ミドルウェア
+// AdminAuth アドミン画面への認証用ミドルウェア
 func AdminAuth(fn func(w http.ResponseWriter, r *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		store := sessions.NewCookieStore([]byte(config.SessionKey))
@@ -28,7 +28,7 @@ func AdminAuth(fn func(w http.ResponseWriter, r *http.Request)) http.HandlerFunc
 	}
 }
 
-//UserAuth ユーザー画面への認証用ミドルウェア
+// UserAuth ユーザー画面への認証用ミドルウェア
 func UserAuth(fn func(w http.ResponseWriter, r *http.Request, auth bool)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		store := sessions.NewCookieStore([]byte(config.SessionKey))

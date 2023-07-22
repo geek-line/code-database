@@ -10,11 +10,13 @@ import (
 	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
+
+	"github.com/gorilla/csrf"
 )
 
 const lenPathKnowledge = len(config.UserKnowledgePath)
 
-//KnowledgeHandler /knowledgesに対するハンドラ
+// KnowledgeHandler /knowledgesに対するハンドラ
 func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
@@ -61,10 +63,14 @@ func KnowledgeHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 				Header           structs.Header
 				SelectedCategory structs.Category
 				DetailPage       structs.UserDetailPage
+				CsrfTag          string
+				CsrfToken        string
 			}{
 				Header:           header,
 				SelectedCategory: selectedCategory,
 				DetailPage:       userDetailPage,
+				CsrfTag:          "csrfField",
+				CsrfToken:        csrf.Token(r),
 			}); err != nil {
 				log.Print(err.Error())
 				StatusInternalServerError(w, r, auth)

@@ -16,6 +16,8 @@ const shareUrl = location.href // 現在のページURLを使用する場合 loc
 const shareText = title + '\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者' // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('called')
+
   content.innerHTML = content.innerHTML.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, '</table></div>')
 
   snsArea.forEach(function (Area) {
@@ -235,23 +237,21 @@ const doScroll = (minY: number, nowY: number, targetY: number, tolerance: number
 
 like_button_baloon.addEventListener('click', sendLikeFromBaloon)
 function sendLikeFromBaloon() {
-  let values: string[] = []
-  let value = localStorage.getItem('noLoginLike')
-  if (value) {
-    values = value.split(',')
-  }
+  const value = localStorage.getItem('noLoginLike')
+  const values = value ? value.split(',') : []
+  let newValue: string
   let isFound = false
   for (let i = 0; i < values.length; i++) {
     if (values[i] == knowledge_id) {
       values.splice(i, 1)
-      value = values.join()
+      newValue = values.join()
       isFound = true
       break
     }
   }
   if (!isFound) {
     values.push(knowledge_id)
-    value = values.join()
+    newValue = values.join()
   }
   const XHR = new XMLHttpRequest()
   const formdata = new FormData(document.getElementById('like_form_baloon') as HTMLFormElement)
@@ -260,6 +260,7 @@ function sendLikeFromBaloon() {
   } else {
     XHR.open('POST', '/knowledges/like')
   }
+  XHR.setRequestHeader('X-CSRF-Token', formdata.get('csrfField')?.toString() || '')
   XHR.onreadystatechange = function () {
     if (XHR.readyState === 4) {
       if (XHR.status === 200) {
@@ -282,7 +283,7 @@ function sendLikeFromBaloon() {
           like_button_baloon.textContent = 'LIKED'
           like_button_baloon.classList.add('liked-button')
         }
-        value && localStorage.setItem('noLoginLike', value)
+        localStorage.setItem('noLoginLike', newValue)
       } else {
         alert('データが正常に送れませんでした')
       }
@@ -318,6 +319,7 @@ function sendLikeFromInline() {
   } else {
     XHR.open('POST', '/knowledges/like')
   }
+  XHR.setRequestHeader('X-CSRF-Token', formdata.get('csrfField')?.toString() || '')
   XHR.onreadystatechange = function () {
     if (XHR.readyState === 4) {
       if (XHR.status === 200) {

@@ -41,6 +41,7 @@
         <div class="display_like">
           <div class="balloon"><span id="likes_baloon" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
           <form id="like_form_baloon" class="like">
+            <input type="hidden" name="{{ .CsrfTag }}" value="{{ .CsrfToken }}" />
             <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
             <button class="like-button" id="like_button_baloon" type="button" value="like">LIKE</button>
           </form>
@@ -88,6 +89,7 @@
           <div class="display_like">
             <div class="balloon"><span id="likes_inline" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
             <form id="like_form_inline" class="like">
+              <input type="hidden" name="{{ .CsrfTag }}" value="{{ .CsrfToken }}" />
               <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
               <button class="like-button" id="like_button_inline" type="button" value="like">LIKE</button>
             </form>
@@ -111,6 +113,7 @@
           <div class="display_like">
             <div class="balloon"><span id="likes_inline" class="like_number">{{ .DetailPage.Knowledge.Likes }}</span></div>
             <form id="like_form_inline" class="like">
+              <input type="hidden" name="{{ .CsrfTag }}" value="{{ .CsrfToken }}" />
               <input id="knowledge_id" type="hidden" name="id" value="{{ .DetailPage.Knowledge.ID }}" />
               <button class="like-button" id="like_button_inline" type="button" value="like">LIKE</button>
             </form>

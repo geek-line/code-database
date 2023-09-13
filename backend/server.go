@@ -31,8 +31,8 @@ func main() {
 	http.HandleFunc(config.AdminCategoriesPath, middleware.AdminAuth(handlers.AdminCategoriesHandler))
 	http.HandleFunc(config.UserKnowledgesPath, middleware.UserAuth(handlers.KnowledgesHandler))
 	http.HandleFunc(config.UserSearchPath, middleware.UserAuth(handlers.SearchHandler))
-	http.HandleFunc(config.UserKnowledgePath, middleware.UserAuth(handlers.KnowledgeHandler))
-	http.HandleFunc(config.UserKnowledgesLikePath, middleware.UserAuth(handlers.KnowledgeLikeHandler))
+	http.Handle(config.UserKnowledgePath, CSRF(middleware.UserAuth(handlers.KnowledgeHandler)))
+	http.Handle(config.UserKnowledgesLikePath, CSRF(middleware.UserAuth(handlers.KnowledgeLikeHandler)))
 	http.HandleFunc(config.UserTagsPath, middleware.UserAuth(handlers.TagsHandler))
 	http.HandleFunc(config.UserTagPath, middleware.UserAuth(handlers.TagHandler))
 	http.HandleFunc(config.UserCategoriesPath, middleware.UserAuth(handlers.CategoriesHandler))
@@ -49,5 +49,5 @@ func main() {
 
 	http.Handle(config.GoogleSitemapPath, http.StripPrefix(config.GoogleSitemapPath, http.FileServer(http.Dir(dir+config.GoogleSitemapPath))))
 	fmt.Printf("Success starting backend server (%s build)\n", config.BuildMode)
-	http.ListenAndServe(":8080", CSRF(http.DefaultServeMux))
+	http.ListenAndServe(":8080", nil)
 }

@@ -16,8 +16,6 @@ const shareUrl = location.href // 現在のページURLを使用する場合 loc
 const shareText = title + '\n#駆け出しエンジニアと繋がりたい\n#プログラミング初心者' // 現在のページタイトルを使用する場合 document.title;
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('called')
-
   content.innerHTML = content.innerHTML.replace(/<table/g, "<div class='scroll-table'><table").replace(/<\/table>/g, '</table></div>')
 
   snsArea.forEach(function (Area) {

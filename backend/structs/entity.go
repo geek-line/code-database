@@ -1,6 +1,6 @@
 package structs
 
-//Knowledge knowledgesテーブルのエンティティ
+// Knowledge knowledgesテーブルのエンティティ
 type Knowledge struct {
 	ID          int
 	Title       string
@@ -13,7 +13,7 @@ type Knowledge struct {
 	Category    string
 }
 
-//Tag tagsテーブルのエンティティ
+// Tag tagsテーブルのエンティティ
 type Tag struct {
 	ID        int
 	Name      string
@@ -21,7 +21,7 @@ type Tag struct {
 	UpdatedAt string
 }
 
-//KnowledgesTags knowledges_tagsテーブルのエンティティ
+// KnowledgesTags knowledges_tagsテーブルのエンティティ
 type KnowledgesTags struct {
 	ID          int
 	KnowledgeID int
@@ -30,21 +30,21 @@ type KnowledgesTags struct {
 	UpdatedAt   string
 }
 
-//Eyecatch eyecatchesテーブルのエンティティ
+// Eyecatch eyecatchesテーブルのエンティティ
 type Eyecatch struct {
 	ID   int
 	Name string
 	Src  string
 }
 
-//AdminUser admin_userテーブルのエンティティ
+// AdminUser admin_userテーブルのエンティティ
 type AdminUser struct {
 	ID       int
 	Email    string
 	Password string
 }
 
-//Category categoriesテーブルのエンティティ
+// Category categoriesテーブルのエンティティ
 type Category struct {
 	ID          int
 	Name        string

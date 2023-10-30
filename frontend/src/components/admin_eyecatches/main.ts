@@ -26,8 +26,7 @@ submit_btn_post.addEventListener('click', function () {
     },
     function (err, data) {
       if (data !== null) {
-        ;(document.getElementById('src_post') as HTMLInputElement).value =
-          'https://image.code-database.com/' + 'eyecatches/' + filename
+        ;(document.getElementById('src_post') as HTMLInputElement).value = 'https://image.code-database.com/' + 'eyecatches/' + filename
         const formdata = new FormData(document.getElementById('form_post') as HTMLFormElement)
         const XHR = new XMLHttpRequest()
         XHR.open('POST', '/admin/eyecatches/')
@@ -72,8 +71,7 @@ for (let i = 0; i < forms.length; i++) {
         { Bucket: albumBucketName, Key: 'eyecatches/' + filename, ContentType: files[0].type, Body: files[0], ACL: 'public-read' },
         function (err, data) {
           if (data !== null) {
-            document.querySelectorAll<HTMLInputElement>('#src_put')[i].value =
-              'https://image.code-database.com/' + 'eyecatches/' + filename
+            document.querySelectorAll<HTMLInputElement>('#src_put')[i].value = 'https://image.code-database.com/' + 'eyecatches/' + filename
             const formdata = new FormData(forms[i])
             const XHR = new XMLHttpRequest()
             XHR.open('PUT', '/admin/eyecatches/')

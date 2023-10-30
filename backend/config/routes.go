@@ -1,6 +1,6 @@
 package config
 
-//パスをまとめたもの
+// パスをまとめたもの
 const (
 	RootPath               = "/"
 	AdminLoginPath         = "/admin/login/"
@@ -28,4 +28,5 @@ const (
 	NodeModulesPath        = "/node_modules/"
 	GoogleSitemapPath      = "/google_sitemap/"
 	AdsTxtPath             = "/ads.txt"
+	RssPath                = "/rss"
 )

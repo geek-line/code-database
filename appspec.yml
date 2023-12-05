@@ -15,7 +15,8 @@ files:
     destination: /home/ubuntu/code-database/build/google_sitemap
 
 permissions:
-  - object: /home/ubuntu/code-database
+  - object: /home/ubuntu
+    pattern: "code-database"
     owner: ubuntu
     group: ubuntu
     type:

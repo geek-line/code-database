@@ -1,1 +1,1 @@
-FROM --platform=linux/amd64 hashicorp/terraform:1.2.8
+FROM --platform=linux/amd64 hashicorp/terraform:1.6.5

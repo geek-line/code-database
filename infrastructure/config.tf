@@ -8,7 +8,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket                  = "code-database-terraform"
+    bucket                  = "code-database-terraform-2024"
     key                     = "alpha/terraform.tfstate"
     region                  = "ap-northeast-1"
     profile                 = "code-database"

@@ -1,5 +1,6 @@
 import 'materialize-css/dist/css/materialize.min.css'
 import './style.css'
+import { textToQueryValue } from '../../helpers/shared_logic'
 
 const search_input = document.querySelectorAll<HTMLInputElement>('#search_input')
 const search_submit = document.querySelectorAll<HTMLInputElement>('#search_submit')
@@ -17,12 +18,7 @@ for (let i = 0; i < search_submit.length; i++) {
       return
     }
     const XHR = new XMLHttpRequest()
-    const queries = search_input[i].value.split(/\s+/g)
-    for (let j = 0; j < queries.length; j++) {
-      queries[j] = encodeURIComponent(queries[j])
-    }
-    const qvalue = queries.join('+')
-    XHR.open('GET', '/search?q=' + qvalue)
+    const qvalue = textToQueryValue(search_input[i].value)
     XHR.onreadystatechange = function () {
       if (XHR.readyState === 4) {
         if (XHR.status === 200) {

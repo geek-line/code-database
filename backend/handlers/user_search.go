@@ -8,13 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 )
-
-// const lenPathUserSearch = len(config.UserSearchPath)
-const lenPathUserSearch = len(config.UserSearchPath)
 
 // SearchHandler /searchに対するハンドラ
 func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
@@ -49,15 +45,12 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		case query.Get("sort") == "create":
 			sortKey = "created_at"
 			currentSort = "create"
-			break
 		case query.Get("sort") == "update":
 			sortKey = "updated_at"
 			currentSort = "update"
-			break
 		case query.Get("sort") == "like":
 			sortKey = "likes"
 			currentSort = "like"
-			break
 		default:
 			StatusNotFoundHandler(w, r, auth)
 			return

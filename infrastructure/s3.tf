@@ -1,21 +1,12 @@
 resource "aws_s3_bucket" "code_pipeline_bucket" {
-  bucket        = "code-database-pipeline"
+  bucket        = "code-database-pipeline-2024"
   force_destroy = false
 }
 
-resource "aws_s3_bucket_acl" "code_pipeline_bucket" {
-  bucket = aws_s3_bucket.code_pipeline_bucket.id
-  acl    = "private"
-}
 
 resource "aws_s3_bucket" "code-database_secondary" {
-  bucket        = "code-database-secondary"
+  bucket        = "code-database-secondary-2024"
   force_destroy = false
-}
-
-resource "aws_s3_bucket_acl" "code-database_secondary" {
-  bucket = aws_s3_bucket.code-database_secondary.id
-  acl    = "private"
 }
 
 resource "aws_s3_bucket_policy" "secondary" {
@@ -27,13 +18,8 @@ resource "aws_s3_bucket_policy" "secondary" {
 }
 
 resource "aws_s3_bucket" "code-database_images" {
-  bucket        = "code-database-images-ver2"
+  bucket        = "code-database-images-2024"
   force_destroy = false
-}
-
-resource "aws_s3_bucket_acl" "code-database_images" {
-  bucket = aws_s3_bucket.code-database_images.id
-  acl    = "private"
 }
 
 resource "aws_s3_bucket_policy" "images" {

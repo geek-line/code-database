@@ -11,7 +11,7 @@ import (
 	"code-database/structs"
 )
 
-//KnowledgesHandler /knowledges/のリクエストに対するハンドラ
+// KnowledgesHandler /knowledges/のリクエストに対するハンドラ
 func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
@@ -33,15 +33,12 @@ func KnowledgesHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		case query.Get("sort") == "create":
 			sortKey = "created_at"
 			currentSort = "create"
-			break
 		case query.Get("sort") == "update":
 			sortKey = "updated_at"
 			currentSort = "update"
-			break
 		case query.Get("sort") == "like":
 			sortKey = "likes"
 			currentSort = "like"
-			break
 		default:
 			StatusNotFoundHandler(w, r, auth)
 			return

@@ -17,17 +17,7 @@ for (let i = 0; i < search_submit.length; i++) {
       e.preventDefault()
       return
     }
-    const XHR = new XMLHttpRequest()
     const qvalue = textToQueryValue(search_input[i].value)
-    XHR.onreadystatechange = function () {
-      if (XHR.readyState === 4) {
-        if (XHR.status === 200) {
-          location.href = '/search?q=' + qvalue
-        } else {
-          alert('キーワードを正常に送信できませんでした。')
-        }
-      }
-    }
-    XHR.send()
+    location.href = '/search?q=' + qvalue
   })
 }

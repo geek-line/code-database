@@ -11,7 +11,7 @@ import (
 	"code-database/models"
 )
 
-//AdminSaveHandler /admin/saveに対するハンドラ
+// AdminSaveHandler /admin/saveに対するハンドラ
 func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.FormValue("title")
 	category := r.FormValue("category")
@@ -46,7 +46,10 @@ func AdminSaveHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err.Error())
 			return
 		}
-		err = models.DeleteKnowledgesTagsFromKnowledgeID(knowledgeID)
+		if err := models.DeleteKnowledgesTagsFromKnowledgeID(knowledgeID); err != nil {
+			log.Print(err.Error())
+			return
+		}
 		if r.FormValue("tags") != "" {
 			tags := strings.Split(r.FormValue("tags"), ",")
 			createdAt := time.Now()

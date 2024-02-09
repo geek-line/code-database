@@ -13,7 +13,7 @@ import (
 
 const lenPathTag = len(config.UserTagPath)
 
-//TagHandler /tags/に対するハンドラ
+// TagHandler /tags/に対するハンドラ
 func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
@@ -37,15 +37,12 @@ func TagHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 			case query.Get("sort") == "create":
 				sortKey = "created_at"
 				currentSort = "create"
-				break
 			case query.Get("sort") == "update":
 				sortKey = "updated_at"
 				currentSort = "update"
-				break
 			case query.Get("sort") == "like":
 				sortKey = "likes"
 				currentSort = "like"
-				break
 			default:
 				StatusNotFoundHandler(w, r, auth)
 				return

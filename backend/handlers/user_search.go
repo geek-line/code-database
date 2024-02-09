@@ -8,15 +8,11 @@ import (
 	"strconv"
 	"strings"
 
-	"code-database/config"
 	"code-database/models"
 	"code-database/structs"
 )
 
-// const lenPathUserSearch = len(config.UserSearchPath)
-const lenPathUserSearch = len(config.UserSearchPath)
-
-//SearchHandler /searchに対するハンドラ
+// SearchHandler /searchに対するハンドラ
 func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 	header := newHeader(false)
 	if auth {
@@ -34,10 +30,10 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		}
 	}
 	var queryKeys string
-	var currentQuery string
+	var currentQuery template.URL
 	if query["q"] != nil {
 		queryKeys = query.Get("q")
-		currentQuery = strings.Split(r.URL.RawQuery, "&")[0]
+		currentQuery = template.URL(strings.Split(r.URL.RawQuery, "&")[0])
 	} else {
 		StatusNotFoundHandler(w, r, auth)
 		return
@@ -49,15 +45,12 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		case query.Get("sort") == "create":
 			sortKey = "created_at"
 			currentSort = "create"
-			break
 		case query.Get("sort") == "update":
 			sortKey = "updated_at"
 			currentSort = "update"
-			break
 		case query.Get("sort") == "like":
 			sortKey = "likes"
 			currentSort = "like"
-			break
 		default:
 			StatusNotFoundHandler(w, r, auth)
 			return
@@ -120,7 +113,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request, auth bool) {
 		IndexPage    structs.UserIndexPage
 		IsHit        bool
 		QueryKeys    string
-		CurrentQuery string
+		CurrentQuery template.URL
 	}{
 		Header:       header,
 		IndexPage:    indexPage,

@@ -39,7 +39,7 @@ resource "aws_cloudfront_distribution" "code-database-secondary" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
-    # acm_certificate_arn            = aws_acm_certificate.code-database.arn
+    acm_certificate_arn            = aws_acm_certificate.code-database.arn
     minimum_protocol_version       = "TLSv1.2_2018"
     ssl_support_method             = "sni-only"
   }
@@ -109,7 +109,7 @@ resource "aws_cloudfront_distribution" "upload_files" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
-    # acm_certificate_arn            = aws_acm_certificate.code-database.arn
+    acm_certificate_arn            = aws_acm_certificate.code-database.arn
     minimum_protocol_version       = "TLSv1.2_2018"
     ssl_support_method             = "sni-only"
   }

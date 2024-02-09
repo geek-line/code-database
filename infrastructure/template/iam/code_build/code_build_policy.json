@@ -64,7 +64,7 @@
             "Action": [
                 "ssm:GetParameters"
             ],
-            "Resource": "arn:aws:ssm:ap-northeast-1:793527092498:parameter/dockerhub-token"
+            "Resource": "arn:aws:ssm:ap-northeast-1:720606550022:parameter/dockerhub-token"
         }
     ]
 }

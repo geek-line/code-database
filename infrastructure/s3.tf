@@ -1,11 +1,11 @@
 resource "aws_s3_bucket" "code_pipeline_bucket" {
-  bucket        = "code-database-pipeline-2024"
+  bucket        = "code-database-pipeline-${var.execution_year}"
   force_destroy = false
 }
 
 
 resource "aws_s3_bucket" "code-database_secondary" {
-  bucket        = "code-database-secondary-2024"
+  bucket        = "code-database-secondary-${var.execution_year}"
   force_destroy = false
 }
 
@@ -18,7 +18,7 @@ resource "aws_s3_bucket_policy" "secondary" {
 }
 
 resource "aws_s3_bucket" "code-database_images" {
-  bucket        = "code-database-images-2024"
+  bucket        = "code-database-images-${var.execution_year}"
   force_destroy = false
 }
 

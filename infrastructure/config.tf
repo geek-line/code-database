@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.1.3"
+  required_version = ">= 1.6.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -8,12 +8,13 @@ terraform {
   }
 
   backend "s3" {
-    bucket                  = "code-database-terraform-2024"
-    key                     = "alpha/terraform.tfstate"
-    region                  = "ap-northeast-1"
-    profile                 = "code-database"
-    shared_credentials_file = "./.aws/credentials"
-    encrypt                 = true
+    bucket                   = "code-database-terraform-2024"
+    key                      = "alpha/terraform.tfstate"
+    region                   = "ap-northeast-1"
+    profile                  = "code-database"
+    shared_config_files      = ["./.aws/config"]
+    shared_credentials_files = ["./.aws/credentials"]
+    encrypt                  = true
   }
 
 }
